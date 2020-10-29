@@ -1,15 +1,23 @@
 import React from 'react'
 import {connect} from 'react-redux';
 import {login} from './Auth';
-import {loginById} from '../actions/users';
+import {loginUser} from '../actions/users';
+import axios from 'axios';
+
+const USERS_REST_API_PREFIX = 'http://localhost:8080/customers/';
+
 class Login extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            clientId:''
+            clientId:'',
+            error:undefined,
+            loading:false
         };
         this.onClickLoginButton=this.onClickLoginButton.bind(this);
         this.updateClientId=this.updateClientId.bind(this);
+        this.onClickLogin=this.onClickLogin.bind(this);
+        this.authenticateData = this.authenticateData.bind(this);
      }
     
     updateClientId(e){
@@ -20,11 +28,25 @@ class Login extends React.Component{
         this.setState({password:e.target.value});
         console.log(`passw: ${this.state.password}`);
     }
+    authenticateData(url){
+        axios.get(url).then((response)=>{
+            this.props.dispatch(loginUser(response.data));
+            login(response.data);
+            this.props.history.push('/homepage');
+            })
+    .catch(error => {
+        console.log(error);
+        this.setState({
+            error: "User Not Found"
+        })
+    })
+    this.setState(()=>({loading:false}));
+    }
     onClickLogin(){
         if(this.state.clientId){
-            let clientVar=this.state.clientId;
-            this.props.userLogin(clientVar);
-            this.props.history.push('/homepage');
+            this.setState({loading:true});
+            this.setState({error:undefined});
+           this.authenticateData(USERS_REST_API_PREFIX+this.state.clientId);
         }
     }
 
@@ -80,11 +102,14 @@ class Login extends React.Component{
     render(){
         return(
             <div>
+                {this.state.loading && <p>loading</p>}
                 <div style={{backgroundColor:"red",color:"white", border:"solid",width:"30%", textAlign:"center",borderBlock:"black",transform:"translateX(160%)",marginTop:"6%"}}>
                 <p>Dear {localStorage.getItem("roleName")} please enter your ID to login </p><br/>
                 <p>{localStorage.getItem("roleName")} ID: </p><input style={{ marginTop:"20%",marginBottom:"5%"}} type="text" onChange={this.updateClientId} /><br/>
                 {/* Password: <input style={{ marginTop:"5%",marginBottom:"5%"}} type="password" onChange={this.updatePassword}/><br/> */}
-                <button style={{ backgroundColor:"red",color:"white",marginTop:"5%",marginBottom:"20%",paddingRight:"7%",paddingLeft:"7%"}} id="loginButton" onClick={()=>{this.onClickLogin()}}>Login</button>
+                {!!this.state.error && <p>{this.state.error}</p>}
+                
+                <button style={{ backgroundColor:"red",color:"white",marginTop:"5%",marginBottom:"20%",paddingRight:"7%",paddingLeft:"7%"}} id="loginButton" onClick={this.onClickLogin}>Login</button>
                 {/* <p>Logging in for the first time?</p> */}
                 {/* <button id="setPassword" onClick={this.onClickSetPasswordButton} style={{backgroundColor:"red",color:"white", marginBottom:"5%"}}>Set Password</button><br/> */}
                 {/* <button style={{ backgroundColor:"red",color:"white",transform:"translateX(70%)",marginBottom:"5%",marginTop:"5%"}} onClick={this.onClickForgotPasswordButton}>Forgot Password?</button> */}
@@ -109,4 +134,4 @@ const  mapStateToProps = (state) =>{
       }
   }
   
-  export default connect(mapStateToProps,mapDispatchToProps)(Login);
+  export default connect(mapStateToProps)(Login);
