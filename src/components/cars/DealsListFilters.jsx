@@ -3,6 +3,30 @@ import {Slider,Chip,TextField} from '@material-ui/core';
 import {connect} from 'react-redux';
 import {setBudget,setBodyType,setSearch,setSort,setOrder} from '../../actions/cars/filters';
 import {getCustomerCarBudget} from '../../customisation/cars.js';
+import '../../style/dealsListFilters.css'
+import { InputGroup, InputGroupAddon, InputGroupText, Input } from 'reactstrap';
+// import { MDBCol, MDBInput } from "mdbreact";
+import { MDBContainer, MDBFormInline, MDBIcon } from "mdbreact";
+import { BorderAllRounded, Search } from '@material-ui/icons';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+
+const muiTheme = createMuiTheme({
+  overrides:{
+    MuiSlider: {
+      thumb:{
+      color: "#909090",
+      },
+      track: {
+        color: '#909090'
+      },
+      rail: {
+        color: '#909090'
+      },
+    }
+}
+});
 
 class DealsFilters extends React.Component{
 
@@ -181,9 +205,9 @@ class DealsFilters extends React.Component{
         
 
           return (
-            <div style={{width:250, margin:30}}>
+            <div  id="dealsListFilterMainBackground" style={{font: "15px Arial, sans-serif",textShadow:"1px 1px rgba(0,0,0,0.2)",width:250, margin:30}}>
 
-            Sort By: <select 
+            Sort By: <select id="sortOption" style={{padding:"3%",color:"#909090"}}
                     className="select"
                     value={this.state.sortBy} 
                     onChange={(e)=>{
@@ -196,18 +220,31 @@ class DealsFilters extends React.Component{
           
                     >
           
-                        <option value="name">Name</option>
-                        <option value="price">Price</option>
+                        <option style={{padding:"5%"}} value="name">Name</option>
+                        <option style={{padding:"5%"}} value="price">Price</option>
                     </select>
-                    {(this.state.order===1)?<button onClick={()=>this.changeOrder()}>Ascending</button>:<button onClick={()=>this.changeOrder()}>Descending</button>}<br/><br/>
+                    {(this.state.order===1)?<button class="sortButton" onClick={()=>this.changeOrder()}>Ascending</button>:<button class="sortButton" onClick={()=>this.changeOrder()}>Descending</button>}<br/><br/>
 
-            <TextField 
+            <input type="search" class="search1" style={{padding:"5%"}}
             value={this.state.input}
-            label="Search Cars"
-            variant="outlined"
+            // label="Search Cars2"
+            placeholder="Search Cars"
+            // variant="outlined"
             onChange={e=>this.onSearch(e)}
             onKeyDown={e=>this.onSearch(e)}
             />
+            {/* <button style={{backgroundColor:"red",color:"white"}} onClick={e=>this.onSearch(e)}>Search</button> */}
+
+
+
+
+
+
+
+
+
+
+
             {this.state.searchInput.map((type,index) => (<Chip 
               label={type} 
               key={index}
@@ -217,6 +254,7 @@ class DealsFilters extends React.Component{
               />))}<br />
 
             <p>Select Budget:</p>
+            <ThemeProvider theme={muiTheme}>
             <Slider
               value={this.state.value}
               onChange={(e,data)=>this.onBudgetChange(e,data)}
@@ -246,14 +284,15 @@ class DealsFilters extends React.Component{
               }
               }//change
               valueLabelDisplay="auto"
-             /><br />
+             /></ThemeProvider><br />
 
             <p>Select Body Type:</p>
             {this.state.bodyTypes.map((type,index) => (<Chip 
               label={type.label} 
               key={index}
               variant = {type.variant}
-              color="primary"
+              color="#909090"
+              style={{padding:"5%",margin:"3%",boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)"}}
               clickable={true}
               onClick={()=>this.onTypeChange(type)}
               />))}

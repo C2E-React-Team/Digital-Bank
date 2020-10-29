@@ -10,7 +10,7 @@ class HomePage extends React.Component{
     render(){
         return(
             <div>
-                <h1>Home Page</h1><br />
+                {/* <h1>Home Page</h1><br /> */}
                 <Link to="/">Cars</Link>
                 <div style = {{display:"flex", flexDirection:"row", gap:"50px"}}>
                      <CarFilters />
