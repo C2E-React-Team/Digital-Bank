@@ -11,7 +11,7 @@
     export default (state=defaultLoan,action) => {
         switch(action.type){
             case 'APPLIED_LOANS':
-                return state.concat(action);
+                return [].concat(action.loans);
                 // return {
                 // ...state,
                 // clientId:action.clientId,

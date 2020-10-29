@@ -2,6 +2,9 @@ import React from 'react'
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import '../css/index_style.css';
+
+const localName = "customerDetails";
+
 class Profile extends React.Component{
     constructor(props){
         super(props);
@@ -92,11 +95,11 @@ class Profile extends React.Component{
             <div className="div1">
                 <div>
                     <h2 className="h2_heading">My Profile</h2>
-        <h2>Client ID: {JSON.parse(localStorage.getItem('clientDetails')).customerId}</h2>
-        <h2>Sex : {JSON.parse(localStorage.getItem('clientDetails')).sex}</h2>
-        <h2>Marital Status : {JSON.parse(localStorage.getItem('clientDetails')).maritalStatus}</h2>
-        <h2>Income : {JSON.parse(localStorage.getItem('clientDetails')).income} SGD </h2>
-        <h2>Eligible EMI : {JSON.parse(localStorage.getItem('clientDetails')).eMICapacity} SGD</h2>
+        <h2>Client ID: {JSON.parse(localStorage.getItem(localName)).customerId}</h2>
+        <h2>Sex : {JSON.parse(localStorage.getItem(localName)).sex}</h2>
+        <h2>Marital Status : {JSON.parse(localStorage.getItem(localName)).maritalStatus}</h2>
+        <h2>Income : {JSON.parse(localStorage.getItem(localName)).income} SGD </h2>
+        <h2>Eligible EMI : {JSON.parse(localStorage.getItem(localName)).eMICapacity} SGD</h2>
 
         <Link className="button" to="/appliedloan">
                     <h3>Applied Loans</h3>

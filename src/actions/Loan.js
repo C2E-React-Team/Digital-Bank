@@ -1,11 +1,13 @@
-export const appliedLoans = (clientId,loanAmount,emi,carCost,selectedFile,time) => ({
+export const appliedLoans = (loans) => ({
     type:'APPLIED_LOANS',
-    //minPrice:min,
-   // maxPrice:max
-    clientId:clientId,
-    loanAmount:loanAmount,
-    emi:emi,
-    carCost:carCost,
-    selectedFile:selectedFile,
-    time:time
+    
+    loans
+    // customerId:customerId,
+    // loanAmount:loanAmount,
+    // emi:emi,
+    // carCost:carCost,
+    // selectedFile:selectedFile,
+    // time:time,
+    // carName:carName,
+    // refId:refId
 })

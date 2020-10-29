@@ -30,6 +30,7 @@ class Login extends React.Component{
     }
     authenticateData(url){
         axios.get(url).then((response)=>{
+            console.log(response);
             this.props.dispatch(loginUser(response.data));
             login(response.data);
             this.props.history.push('/homepage');
