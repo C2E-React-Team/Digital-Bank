@@ -74,7 +74,11 @@ render(){
             )}  
            onChange = {(e,page)=>this.onPageChange(e,page)}
            page={this.state.currentPage}
+<<<<<<< HEAD
            color="#f7f7f7"
+=======
+           color="secondary"
+>>>>>>> 9d8a8bc4e14922bcb2f7c7750162669d74eb5767
            />
           
             {currentDeals.map((deal) => {
@@ -89,7 +93,11 @@ render(){
           )}  
           onChange = {(e,page)=>this.onPageChange(e,page)}
           page={this.state.currentPage}
+<<<<<<< HEAD
           color="#f7f7f7"
+=======
+          color="secondary"
+>>>>>>> 9d8a8bc4e14922bcb2f7c7750162669d74eb5767
           />
         </Card>
     </div>

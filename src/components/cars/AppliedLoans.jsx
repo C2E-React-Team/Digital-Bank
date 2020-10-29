@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import '../../css/index_style.css';
 class AppliedLoan extends Component{
 constructor(props)
 {
@@ -12,9 +13,10 @@ this.state = {
 
 render(){
     return(
-        <div>        
-    <h2>My Details</h2>
-        Client ID: <p>{JSON.parse(localStorage.getItem('clientDetails')).customerId}</p><br/>
+        <center>
+        <div className="div1">        
+    <h2 className="h2_heading">Applied Loan Details</h2>
+       <h3> Client ID: <p>{JSON.parse(localStorage.getItem('clientDetails')).customerId}</p><br/>
     
        {  
         this.props.data.length === 0 ? (
@@ -29,8 +31,9 @@ render(){
     submitted document is {loan.selectedFile.name}
     <br/><br/><br/>
     </div>)))
-       }
+       }</h3>
     </div>
+    </center>
  )};
 }
 const mapStateToProps = (state) => {

@@ -1,0 +1,49 @@
+.App-header {
+    background-color:red;
+    min-height: 5vh;
+    display: left;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+
+  }
+
+
+  .div1 {
+    background-color: lightgrey;
+    width: 500px;
+    border: 15px solid red;
+    padding: 50px;
+    margin: 20px;
+  }
+
+
+  
+  .h2_heading{
+    text-shadow: 2px 2px 8px #FF0000;
+}
+  
+
+input[type=text], select, input[type=number] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+  
+  .button {
+    background-color:red;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  

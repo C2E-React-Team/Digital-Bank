@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux';
 import {login} from './Auth';
 import {loginById} from '../actions/users';
+import '../css/LoginStyle.css';
 class Login extends React.Component{
     constructor(props){
         super(props);
@@ -80,17 +81,43 @@ class Login extends React.Component{
     render(){
         return(
             <div>
-                <div style={{backgroundColor:"red",color:"white", border:"solid",width:"30%", textAlign:"center",borderBlock:"black",transform:"translateX(160%)",marginTop:"6%"}}>
-                <p>Dear {localStorage.getItem("roleName")} please enter your ID to login </p><br/>
-                <p>{localStorage.getItem("roleName")} ID: </p><input style={{ marginTop:"20%",marginBottom:"5%"}} type="text" onChange={this.updateClientId} /><br/>
+
+<div className="limiter">
+		<div className="cont">
+			<div className="wrap">
+				<form className="login-form">
+					<span className="login-form-title">
+						Digital Bank
+					</span>
+					<div className="wrap-input">
+                    {/*<p>Dear {localStorage.getItem("roleName")} please enter your ID to login </p><br/>
+                    <p>{localStorage.getItem("roleName")} ID: </p>*/}
+						<input className="input" type="text" name="cid" onChange={this.updateClientId} />
+						<span className="focus-input" data-placeholder="Customer ID"></span >
+					</div>
+
+					<div className="cont-form-btn">
+						<div className="wrap-form-btn">
+							<div className="login-form-bgbtn"></div>
+							<button onClick={()=>{this.onClickLogin()}} className="login-form-btn">
+								Login
+							</button>
+						</div>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+	
                 {/* Password: <input style={{ marginTop:"5%",marginBottom:"5%"}} type="password" onChange={this.updatePassword}/><br/> */}
-                <button style={{ backgroundColor:"red",color:"white",marginTop:"5%",marginBottom:"20%",paddingRight:"7%",paddingLeft:"7%"}} id="loginButton" onClick={()=>{this.onClickLogin()}}>Login</button>
+                
                 {/* <p>Logging in for the first time?</p> */}
                 {/* <button id="setPassword" onClick={this.onClickSetPasswordButton} style={{backgroundColor:"red",color:"white", marginBottom:"5%"}}>Set Password</button><br/> */}
                 {/* <button style={{ backgroundColor:"red",color:"white",transform:"translateX(70%)",marginBottom:"5%",marginTop:"5%"}} onClick={this.onClickForgotPasswordButton}>Forgot Password?</button> */}
                 {/* <h1>Client ID: {this.state.clientId}</h1>
                 <h1>Password: {this.state.password}</h1> */}
-                </div>
+                
                 
             </div>
         );

@@ -227,9 +227,15 @@ class DealsFilters extends React.Component{
 
             <input type="search" class="search1" style={{padding:"5%"}}
             value={this.state.input}
+<<<<<<< HEAD
             // label="Search Cars2"
             placeholder="Search Cars"
             // variant="outlined"
+=======
+            label="Search Cars"
+            variant="outlined"
+            color="secondary"
+>>>>>>> 9d8a8bc4e14922bcb2f7c7750162669d74eb5767
             onChange={e=>this.onSearch(e)}
             onKeyDown={e=>this.onSearch(e)}
             />
@@ -249,7 +255,7 @@ class DealsFilters extends React.Component{
               label={type} 
               key={index}
               variant = "outlined"
-              color="primary"
+              color="secondary"
               onDelete={()=>this.onSearchDelete(type)}
               />))}<br />
 
@@ -258,6 +264,7 @@ class DealsFilters extends React.Component{
             <Slider
               value={this.state.value}
               onChange={(e,data)=>this.onBudgetChange(e,data)}
+              color="secondary"
               marks={marks}
               min={1}
               max={99}
@@ -291,8 +298,12 @@ class DealsFilters extends React.Component{
               label={type.label} 
               key={index}
               variant = {type.variant}
+<<<<<<< HEAD
               color="#909090"
               style={{padding:"5%",margin:"3%",boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)"}}
+=======
+              color="secondary"
+>>>>>>> 9d8a8bc4e14922bcb2f7c7750162669d74eb5767
               clickable={true}
               onClick={()=>this.onTypeChange(type)}
               />))}

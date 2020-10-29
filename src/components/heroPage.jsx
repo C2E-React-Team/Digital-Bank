@@ -1,4 +1,5 @@
 import React from 'react'
+import HomePage from '../components/HomePage.js'
 class HeroPage extends React.Component{
     constructor(props){
         super(props);
@@ -24,6 +25,7 @@ class HeroPage extends React.Component{
     render(){
         return(
             <div>
+                
                 <div style={{backgroundColor:"red",color:"white", border:"solid",width:"30%", textAlign:"center",borderBlock:"black",transform:"translateX(160%)",marginTop:"6%"}}>
                 <p>Please choose your role</p><br/>
                 <button onClick={this.onClickCustomerButton}>Customer Login</button>

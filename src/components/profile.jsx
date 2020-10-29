@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-
+import '../css/index_style.css';
 class Profile extends React.Component{
     constructor(props){
         super(props);
@@ -88,16 +88,20 @@ class Profile extends React.Component{
 
     render(){
         return(
-            <div>
-            <Link to="/appliedloan">
-                    <h3 style={{transform:"translateX(60%)"}}>Applied Loans</h3>
+            <center>
+            <div className="div1">
+                <div>
+                    <h2 className="h2_heading">My Profile</h2>
+        <h2>Client ID: {JSON.parse(localStorage.getItem('clientDetails')).customerId}</h2>
+        <h2>Sex : {JSON.parse(localStorage.getItem('clientDetails')).sex}</h2>
+        <h2>Marital Status : {JSON.parse(localStorage.getItem('clientDetails')).maritalStatus}</h2>
+        <h2>Income : {JSON.parse(localStorage.getItem('clientDetails')).income} SGD </h2>
+        <h2>Eligible EMI : {JSON.parse(localStorage.getItem('clientDetails')).eMICapacity} SGD</h2>
+
+        <Link className="button" to="/appliedloan">
+                    <h3>Applied Loans</h3>
                 </Link><br/>
-                <div style={{backgroundColor:"red",color:"white", border:"solid",width:"30%", textAlign:"center",borderBlock:"black",transform:"translateX(160%)",marginTop:"3%"}}>
-        Client ID: <p>{JSON.parse(localStorage.getItem('clientDetails')).customerId}</p>
-        Sex : <p>{JSON.parse(localStorage.getItem('clientDetails')).sex}</p>
-        Marital Status : <p>{JSON.parse(localStorage.getItem('clientDetails')).maritalStatus}</p>
-        Income : <p>{JSON.parse(localStorage.getItem('clientDetails')).income}</p>
-        Eligible EMI : <p>{JSON.parse(localStorage.getItem('clientDetails')).eMICapacity}</p>
+            
                 {/* Password: <input style={{ marginTop:"5%",marginBottom:"5%"}} type="password" onChange={this.updatePassword}/><br/> */}
                 {/* <button style={{ backgroundColor:"red",color:"white",marginTop:"5%",marginBottom:"20%",paddingRight:"7%",paddingLeft:"7%"}} id="loginButton" onClick={this.onClickLoginButton}>Login</button> */}
                 {/* <p>Logging in for the first time?</p> */}
@@ -106,7 +110,7 @@ class Profile extends React.Component{
                 {/* <h1>Client ID: {this.state.clientId}</h1>
                 <h1>Password: {this.state.password}</h1> */}
                 </div>
-            </div>
+            </div></center>
         );
     }
 }

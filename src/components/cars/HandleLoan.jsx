@@ -184,7 +184,8 @@ fileData = () => {
 
 render(){
     return(
-        <div>
+        <center>
+        <div className="div1">
         {
             (this.state.loading===true)? (
                 <div className="list-item list-item--message">
@@ -195,8 +196,8 @@ render(){
 
         (<form onSubmit={e=>e.preventDefault()}>
                 
-    <h2>My Details</h2>
-                <label>Name:</label>
+    <h2 className="h2_heading">My Details</h2>
+                <h3><label>Name:</label>
                 <input type="text" value={JSON.parse(localStorage.getItem('clientDetails')).creditHistory} readOnly /><br/>                
                 <label>Client Id :</label>
                 <input type="text" value={JSON.parse(localStorage.getItem('clientDetails')).customerId} readOnly /><br/>
@@ -205,39 +206,40 @@ render(){
                 <label>Martial Status :</label>
                 <input type="text" value={JSON.parse(localStorage.getItem('clientDetails')).maritalStatus} readOnly /><br/> 
                 <label>Eligible Emi</label>
-                <input type="text" value={(parseFloat(JSON.parse(localStorage.getItem('clientDetails')).eMICapacity)*54.27)} readOnly />
+                <input type="text" value={(parseFloat(JSON.parse(localStorage.getItem('clientDetails')).eMICapacity)*54.27)} readOnly /></h3>
                 <h2>U selected {console.log(this.props.CarData),this.props.CarData.car_name} <br />
                 {this.props.CarData.model}<br />
                 INR {this.props.CarData.price} <br />
-                from {this.props.CarData.dealer_name}</h2>
-               
+                from {this.props.CarData.dealer_name}
+               </h2>
                 <h3>Select Tenure</h3>
-                <select onChange={(e)=>this.updatetime(e)} required>
-                    <option value="select time" disabled selected>select Tenure</option>
+                <select onChange={(e)=>this.updatetime(e)} required defaultValue="select time">
+                    <option value="select time"  disabled>select Tenure</option>
                     <option value="24">24 months</option>
                     <option value="36">36 months</option>
                     <option value="48">48 months</option>
                     <option value="60">60 months</option>
                 </select>
-              <h2>your loan amount eligibility is INR {this.state.loanAmountdisplay.toFixed(2)}</h2>
-              <label>Enter your Loan Amount :</label>
+              <h2>your loan amount eligibility is INR <mark>{this.state.loanAmountdisplay.toFixed(2)}</mark></h2>
+              <h3><label>Enter your Loan Amount :</label></h3>
                 <input type="number" name="quantity" onChange={(e)=>this.loan(e)} value={this.state.loanAmount_request} required/><br></br>
-                <h2>U need to pay EMI INR {this.state.emi}</h2>
-            <h2>For your car to buy, bank will provide loan of INR {this.state.loanAmount_request} and you ned to pay INR {this.props.CarData.price-this.state.loanAmount_request}</h2>
+                <h2>U need to pay EMI INR <mark>{this.state.emi}</mark></h2>
+            <h2>For your car to buy, bank will provide loan of INR <mark>{this.state.loanAmount_request}</mark> and you ned to pay INR <mark>{this.props.CarData.price-this.state.loanAmount_request}</mark></h2>
             <h3> 
 			Upload scanned copy for your document :
 			</h3> 
 			<div> 
-				<input type="file" onChange={this.onFileChange} required/> 
-				<button onClick={this.onFileUpload}> 
+				<input className="button" type="file" onChange={this.onFileChange} required/> <br />
+				<button className="button" onClick={this.onFileUpload}> 
 				Upload! 
 				</button> 
 			</div> 
 		{this.fileData()}
-    <button type="submit" onClick={()=>this.onApply()} >Submit my request to bank</button>
+    <button className="button" type="submit" onClick={()=>this.onApply()} >Submit my request to bank</button>
     </form>
         )  }
     </div>
+    </center>
  )};
 }
 const mapStateToProps = (state,props) => {
