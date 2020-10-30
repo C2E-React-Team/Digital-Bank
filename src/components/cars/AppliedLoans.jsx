@@ -22,10 +22,30 @@ this.state = {
 componentWillMount(){
     const CUSTOMER_LOANS_REST_API_URL = "http://localhost:8080/loans/get/"+JSON.parse(localStorage.getItem(localName)).customerId;
     axios.get(CUSTOMER_LOANS_REST_API_URL).then((response)=>{
-        console.log(response);
+        console.log("in get res",response);
         this.props.dispatch(appliedLoans(response.data));
         this.setState(()=>({loading:false}));
         });
+}
+
+onLoanWithdraw(refID){
+    this.setState(()=>({loading:true}));
+    axios.delete("http://localhost:8080/loans/delete/"+refID)
+     .then(res => {
+         
+        console.log("in delete res",res);
+        
+        const CUSTOMER_LOANS_REST_API_URL = "http://localhost:8080/loans/get/"+JSON.parse(localStorage.getItem(localName)).customerId;
+     axios.get(CUSTOMER_LOANS_REST_API_URL).then((response)=>{
+         console.log("in get after del",response);
+         this.props.dispatch(appliedLoans(response.data));
+         this.setState(()=>({loading:false}));
+         });
+    
+    
+    });
+
+     
 }
 
 render(){
@@ -53,7 +73,7 @@ render(){
     <br />Loan Amount you have requested for : INR {loan.loanAmount}<br/>
     You need to pay EMI INR {loan.emi}<br />
     submitted document is {loan.selectedFile}<br/>
-    <button>Withdraw</button>
+    <button onClick={()=>this.onLoanWithdraw(loan.refId)}>Withdraw</button>
     <br/><br/><br/>
     
     </div>)))
