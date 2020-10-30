@@ -1,4 +1,4 @@
-const TOKEN_KEY = 'clientDetails';
+const TOKEN_KEY = 'customerDetails';
 export const login = (user) =>{
     const json = JSON.stringify(user);
     localStorage.setItem(TOKEN_KEY,json);
@@ -6,7 +6,7 @@ export const login = (user) =>{
 }
 
 export const logout = () => {
-    localStorage.setItem(TOKEN_KEY,'');
+    localStorage.setItem(TOKEN_KEY,"");
     console.log(localStorage.getItem(TOKEN_KEY));
 }
 

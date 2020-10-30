@@ -2,6 +2,9 @@ import React from 'react'
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import '../css/index_style.css';
+
+const localName = "customerDetails";
+
 class Profile extends React.Component{
     constructor(props){
         super(props);
@@ -88,29 +91,26 @@ class Profile extends React.Component{
 
     render(){
         return(
-            <center>
-            <div className="div1">
-                <div>
-                    <h2 className="h2_heading">My Profile</h2>
-        <h2>Client ID: {JSON.parse(localStorage.getItem('clientDetails')).customerId}</h2>
-        <h2>Sex : {JSON.parse(localStorage.getItem('clientDetails')).sex}</h2>
-        <h2>Marital Status : {JSON.parse(localStorage.getItem('clientDetails')).maritalStatus}</h2>
-        <h2>Income : {JSON.parse(localStorage.getItem('clientDetails')).income} SGD </h2>
-        <h2>Eligible EMI : {JSON.parse(localStorage.getItem('clientDetails')).eMICapacity} SGD</h2>
-
-        <Link className="button" to="/appliedloan">
-                    <h3>Applied Loans</h3>
-                </Link><br/>
             
-                {/* Password: <input style={{ marginTop:"5%",marginBottom:"5%"}} type="password" onChange={this.updatePassword}/><br/> */}
-                {/* <button style={{ backgroundColor:"red",color:"white",marginTop:"5%",marginBottom:"20%",paddingRight:"7%",paddingLeft:"7%"}} id="loginButton" onClick={this.onClickLoginButton}>Login</button> */}
-                {/* <p>Logging in for the first time?</p> */}
-                {/* <button id="setPassword" onClick={this.onClickSetPasswordButton} style={{backgroundColor:"red",color:"white", marginBottom:"5%"}}>Set Password</button><br/> */}
-                {/* <button style={{ backgroundColor:"red",color:"white",transform:"translateX(70%)",marginBottom:"5%",marginTop:"5%"}} onClick={this.onClickForgotPasswordButton}>Forgot Password?</button> */}
-                {/* <h1>Client ID: {this.state.clientId}</h1>
-                <h1>Password: {this.state.password}</h1> */}
-                </div>
-            </div></center>
+                <div className="div3">       
+            <center><br/><br/>
+            <div className="card">
+                <div>
+                    <h2>My Profile</h2>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRerBR3bfynBVdF2gjoii3i_8yI4KOdK5_cxw&usqp=CAU"></img>
+           <br/>  
+        <h3>Client ID: {JSON.parse(localStorage.getItem(localName)).customerId}</h3>
+        <div className="title">Sex : {JSON.parse(localStorage.getItem(localName)).sex}<br />
+        Marital Status : {JSON.parse(localStorage.getItem(localName)).maritalStatus}<br />
+        Income : {JSON.parse(localStorage.getItem(localName)).income} SGD <br />
+        Eligible EMI : {JSON.parse(localStorage.getItem(localName)).eMICapacity} SGD</div><br />
+
+        <Link className="button_profile" to="/appliedloan">
+                    <h3> View Applied Loans</h3>
+                </Link><br/><br /><br />
+                </div></div>
+        </center></div>
+            
         );
     }
 }

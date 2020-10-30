@@ -13,10 +13,13 @@ import Profile from '../components/profile.jsx';
 import HeroPage from '../components/heroPage.jsx'
 import DealerHome from '../components/dealerHome.jsx'
 import AdminHome from '../components/adminHome.jsx'
-export const history = createBrowserHistory();
 import AppliedLoan from '../components/cars/AppliedLoans.jsx'
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../../node_modules/bootstrap/dist/js/bootstrap.bundle";
+
+
+export const history = createBrowserHistory();
+
 
 const AppRouter = () => (
         

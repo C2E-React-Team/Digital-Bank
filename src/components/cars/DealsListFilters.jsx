@@ -224,7 +224,9 @@ class DealsFilters extends React.Component{
                         <option style={{padding:"5%"}} value="price">Price</option>
                     </select>
                     {(this.state.order===1)?<button class="sortButton" onClick={()=>this.changeOrder()}>Ascending</button>:<button class="sortButton" onClick={()=>this.changeOrder()}>Descending</button>}<br/><br/>
-                    <input type="search" class="search1" style={{padding:"5%"}}
+
+            
+            <input type="search" class="search1" style={{padding:"5%"}}
             value={this.state.input}
             label="Search Cars"
             variant="outlined"
@@ -282,7 +284,7 @@ class DealsFilters extends React.Component{
               label={type.label} 
               key={index}
               variant = {type.variant}
-              color="secondary"
+              color="#909090"
               clickable={true}
               onClick={()=>this.onTypeChange(type)}
               />))}

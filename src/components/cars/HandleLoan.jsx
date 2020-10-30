@@ -4,6 +4,10 @@ import {getDealById} from '../../selectors/cars.js'
 import {getCarDeals} from '../../services/carService';
 import {setDeals} from '../../actions/cars/deals';
 import {appliedLoans} from '../../actions/Loan';
+import axios from 'axios';
+
+const localName = "customerDetails";
+
 class HandleLoan extends Component{
 constructor(props)
 {
@@ -15,11 +19,13 @@ this.state = {
     time:24,
     loanAmountdisplay:0,
     loanAmount_request:0,
-    emi:0,
+    emi:0
     }; 
  
+    this.onApply = this.onApply.bind(this);
+
 }
-componentDidMount(){
+componentWillMount(){
       
     getCarDeals().then((response) => {
       console.log("in response",response.data)
@@ -40,7 +46,7 @@ componentDidMount(){
 		this.state.selectedFile.name 
 	); 
     console.log(this.state.selectedFile);
-    console.log(JSON.parse(localStorage.getItem('clientDetails')));
+    console.log(JSON.parse(localStorage.getItem(localName)));
      
 };
 
@@ -55,7 +61,7 @@ eligible(time){
     }else{
         rate=9.5/1200;
     }
-var emi = (parseFloat(JSON.parse(localStorage.getItem('clientDetails')).eMICapacity)*54.27);
+var emi = (parseFloat(JSON.parse(localStorage.getItem(localName)).eMICapacity)*54.27);
 var t1=Math.pow((1+rate),time);
 var t2=(t1-1)/t1;
 
@@ -134,7 +140,7 @@ updatetime(e){
 
 onApply(){
     
-    const clientId=JSON.parse(localStorage.getItem('clientDetails')).customerId;
+    const customerId=JSON.parse(localStorage.getItem(localName)).customerId;
     const emi=this.state.emi;
     const time = this.state.time;
     //this.setState({emi:emi});
@@ -142,14 +148,32 @@ onApply(){
     const loanAmount=this.state.loanAmount_request;
     //this.setState({loanAmount:loanAmount});
     const carCost=this.props.CarData.price;
+    const carName=this.props.CarData.car_name;
     //this.setState({carCost:carCost});
     const selectedFile=this.state.selectedFile;
     //this.setState({selectedFile:selectedFile});
     if(selectedFile!= null &&
         loanAmount>0 &&
         emi>0){
-    this.props.dispatch(appliedLoans(clientId,loanAmount,emi,carCost,selectedFile,time));
-    this.props.history.push(`/appliedloan`);}
+            let ref_id="";
+    axios.post('http://localhost:8080/loans/add', {
+        customerId:customerId,
+        loan_amount:loanAmount,
+        emi,
+        car_cost:carCost,
+        selected_file:selectedFile.name,
+        tenure:time,
+        car_name:carName
+      })
+      .then((response)=> {
+        console.log(response);
+        ref_id=response.data.ref_id;
+        this.props.dispatch(appliedLoans(customerId,loanAmount,emi,carCost,selectedFile.name,time,carName,ref_id));
+        this.props.history.push(`/appliedloan`);
+      })
+
+      
+    }
     else
     alert("Enter All Details");
 
@@ -198,15 +222,15 @@ render(){
                 
     <h2 className="h2_heading">My Details</h2>
                 <h3><label>Name:</label>
-                <input type="text" value={JSON.parse(localStorage.getItem('clientDetails')).creditHistory} readOnly /><br/>                
+                <input type="text" value={JSON.parse(localStorage.getItem(localName)).creditHistory} readOnly /><br/>                
                 <label>Client Id :</label>
-                <input type="text" value={JSON.parse(localStorage.getItem('clientDetails')).customerId} readOnly /><br/>
+                <input type="text" value={JSON.parse(localStorage.getItem(localName)).customerId} readOnly /><br/>
                 <label>Gender :</label>
-                <input type="text" value={JSON.parse(localStorage.getItem('clientDetails')).sex} readOnly /><br/>
+                <input type="text" value={JSON.parse(localStorage.getItem(localName)).sex} readOnly /><br/>
                 <label>Martial Status :</label>
-                <input type="text" value={JSON.parse(localStorage.getItem('clientDetails')).maritalStatus} readOnly /><br/> 
+                <input type="text" value={JSON.parse(localStorage.getItem(localName)).maritalStatus} readOnly /><br/> 
                 <label>Eligible Emi</label>
-                <input type="text" value={(parseFloat(JSON.parse(localStorage.getItem('clientDetails')).eMICapacity)*54.27)} readOnly /></h3>
+                <input type="text" value={(parseFloat(JSON.parse(localStorage.getItem(localName)).eMICapacity)*54.27)} readOnly /></h3>
                 <h2>U selected {console.log(this.props.CarData),this.props.CarData.car_name} <br />
                 {this.props.CarData.model}<br />
                 INR {this.props.CarData.price} <br />
