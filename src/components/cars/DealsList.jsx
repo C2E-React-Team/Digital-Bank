@@ -53,7 +53,7 @@ render(){
 
   return (
     <div id="mainBackground1">
-      <Card>
+      {/* <Card> */}
         {
         (this.state.loading===true)? (
           <div className="list-item list-item--message">
@@ -74,7 +74,7 @@ render(){
             )}  
            onChange = {(e,page)=>this.onPageChange(e,page)}
            page={this.state.currentPage}
-           color="secondary"
+           color="#909090"
            />
           
             {currentDeals.map((deal) => {
@@ -90,9 +90,9 @@ render(){
           )}  
           onChange = {(e,page)=>this.onPageChange(e,page)}
           page={this.state.currentPage}
-          color="secondary"
+          color="909090"
           />
-        </Card>
+        {/* </Card> */}
     </div>
 );}
       }

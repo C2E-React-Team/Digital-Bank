@@ -264,22 +264,13 @@ class DealsFilters extends React.Component{
             value={this.state.input}
             label="Search Cars"
             variant="outlined"
+            placeholder="Search Cars"
             color="secondary"
             onChange={e=>this.onSearch(e)}
             onKeyDown={e=>this.onSearch(e)}
             />
+            
             {/* <button style={{backgroundColor:"red",color:"white"}} onClick={e=>this.onSearch(e)}>Search</button> */}
-
-
-
-
-
-
-
-
-
-
-
             {this.state.searchInput.map((type,index) => (<Chip 
               label={type} 
               key={index}
@@ -327,7 +318,7 @@ class DealsFilters extends React.Component{
               label={type.label} 
               key={index}
               variant = {type.variant}
-              color="secondary"
+              color="#909090"
               clickable={true}
               onClick={()=>this.onTypeChange(type)}
               />))}
