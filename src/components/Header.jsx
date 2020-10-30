@@ -2,25 +2,23 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {logout} from './Auth.js';
 import {history} from '../routers/AppRouter.jsx';
-
+import '../style/header.css'
 export default (props) =>{ 
     
     const handleLogout = () => {
         logout();
         window.location.reload(false);
     }
-    
     return (
     <header>
-            <div style ={{display:"flex", flexDirection:"row", gap:"250px"}}>
-            
-                <Link className="header__title" to="/homepage">
-                    <h1>Digital Bank</h1>
+            <div id="headerMainBackground" style ={{display:"flex", flexDirection:"row", gap:"10px"}}>
+                <Link style={{textDecoration:"none",color:"red"}} className="header__title" to="/homepage">
+                    <div style={{padding:"5%"}}><img src={require(`./dbsLogo.png`).default} style={{width:"40%",height:"20%"}} alt="DBS logo"/><h3>Digital Bank</h3></div>
                 </Link>
                 <Link to="/profile">
-                    <h3>Profile</h3>
+                    <h3 style={{position:"fixed",right:"20px",top:"40px",color:"#909090"}}>Profile</h3>
                 </Link>
-                <button style={{height:"40px",width: "60px"}} onClick={() => handleLogout()}>Logout</button>
+                <button className="logoutLblPos" style={{height:"40px",width: "60px"}} onClick={() => handleLogout()}>Logout</button>
             </div>
        
     </header>

@@ -5,6 +5,12 @@ import selectCarDeals from '../../selectors/cars.js';
 import {getCarDeals} from '../../services/carService';
 import {setDeals} from '../../actions/cars/deals';
 import {Pagination} from '@material-ui/lab';
+import '../../style/dealsList.css'
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button
+} from 'reactstrap';
+import { Spinner } from 'reactstrap';
 
 class CarDealsList extends React.Component{
 
@@ -46,11 +52,13 @@ render(){
   
 
   return (
-    <div>
+    <div id="mainBackground1">
+      <Card>
         {
         (this.state.loading===true)? (
           <div className="list-item list-item--message">
-            <span>Loading</span>
+            {/* <span>Loading</span> */}
+            <Spinner color="primary" />
           </div>
         ) :
           ( 
@@ -70,7 +78,8 @@ render(){
            />
           
             {currentDeals.map((deal) => {
-              return <DealListItem key={deal.id} {...deal} />;
+              return <DealListItem key={deal.id} {...deal} history={this.props.history} />;
+             
             })}
           </div>
           ))
@@ -83,6 +92,7 @@ render(){
           page={this.state.currentPage}
           color="secondary"
           />
+        </Card>
     </div>
 );}
       }

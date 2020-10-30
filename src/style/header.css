@@ -1,0 +1,21 @@
+#headerMainBackground{
+    background-color: #f7f7f7;
+    
+}
+.logoutLblPos{
+
+    position:fixed;
+    right:10px;
+    top:7px;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+
+
+  border: none;
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+ }
