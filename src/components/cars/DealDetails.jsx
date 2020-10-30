@@ -29,9 +29,6 @@ const CarDealDetails = (props) => {
     const handleLoan = () => {
         props.history.push(`/loanpage/${props.data.id}`)
     }
-
-    console.log(props.data);
-    console.log("27",props,loading);
     return (
         <div>
         {

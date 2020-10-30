@@ -44,14 +44,48 @@ class DealsFilters extends React.Component{
           }
         }
 
-        componentWillMount(){
-          const budget = getCustomerCarBudget();
-          const minBudget = budget - (0.2*budget);
-          const maxBudget = budget + (0.2*budget);
-          //set slider coordinates
 
-          //this.setState({value:});
+        getCoordinate(val){
+
+          let coord;
+          coord = parseFloat(val/100000).toFixed(1);
+          console.log("coord = ",coord);
+          if(coord<=10)
+            {
+              coord = (parseFloat(coord)*2);
+              console.log("1");
+              return parseInt(coord);
+            }
+          else if(coord>10 && coord<=50)
+          {
+            
+              coord=  parseFloat(coord)+10;
+              console.log("2",coord);
+              return parseInt(coord);
+          }
+          else if(coord>50 && coord<=100)
+          {
+            console.log("3");
+            coord=60+(parseFloat(coord)-50)/2.5;
+              return parseInt(coord);
+          }
+          else if(coord>100 && coord<=2000)
+          {
+            console.log("4");
+            coord = 80+parseFloat(coord)/100; 
+            return parseInt(coord);
+          }
+          console.log("5");
+        }
+
+        componentDidMount(){
+          const budget = parseFloat(getCustomerCarBudget());
+          const minBudget = budget - (0.4*budget);
+          const maxBudget = budget + (0.4*budget);
+          //set slider coordinates //Done
+          this.setState({value:[this.getCoordinate(minBudget),this.getCoordinate(maxBudget)]});
           this.props.dispatch(setBudget(minBudget,maxBudget));
+          console.log("min cord = "+ this.getCoordinate(minBudget)+" max cord = "+this.getCoordinate(maxBudget));
         }
 
           onSearch(e){
@@ -223,29 +257,20 @@ class DealsFilters extends React.Component{
                         <option style={{padding:"5%"}} value="name">Name</option>
                         <option style={{padding:"5%"}} value="price">Price</option>
                     </select>
-                    {(this.state.order===1)?<button class="sortButton" onClick={()=>this.changeOrder()}>Ascending</button>:<button class="sortButton" onClick={()=>this.changeOrder()}>Descending</button>}<br/><br/>
+                    {(this.state.order===1)?<button className="sortButton" onClick={()=>this.changeOrder()}>Ascending</button>:<button className="sortButton" onClick={()=>this.changeOrder()}>Descending</button>}<br/><br/>
 
                     Search Cars:
-            <input type="search" class="search1" style={{padding:"5%"}}
+            <input type="search" className="search1" style={{padding:"5%"}}
             value={this.state.input}
             label="Search Cars"
             variant="outlined"
+            placeholder="Search Cars"
             color="secondary"
             onChange={e=>this.onSearch(e)}
             onKeyDown={e=>this.onSearch(e)}
             />
+            
             {/* <button style={{backgroundColor:"red",color:"white"}} onClick={e=>this.onSearch(e)}>Search</button> */}
-
-
-
-
-
-
-
-
-
-
-
             {this.state.searchInput.map((type,index) => (<Chip 
               label={type} 
               key={index}
@@ -293,7 +318,7 @@ class DealsFilters extends React.Component{
               label={type.label} 
               key={index}
               variant = {type.variant}
-              color="secondary"
+              color="#909090"
               clickable={true}
               onClick={()=>this.onTypeChange(type)}
               />))}

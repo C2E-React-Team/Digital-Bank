@@ -161,12 +161,12 @@ onApply(){
             let ref_id="";
     axios.post('http://localhost:8080/loans/add', {
         customerId:customerId,
-        loan_amount:loanAmount,
+        loanAmount:loanAmount,
         emi,
-        car_cost:carCost,
-        selected_file:selectedFile.name,
+        carCost:carCost,
+        selectedFile:selectedFile.name,
         tenure:time,
-        car_name:carName
+        carName:carName
       })
       .then((response)=> {
         console.log(response);
