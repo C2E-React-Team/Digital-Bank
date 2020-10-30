@@ -6,7 +6,7 @@ import { isLogin } from '../components/Auth';
     return (
         <Route {...rest} render={props => (
             isLogin() ?
-                <Redirect to="/homepage" />
+                <Redirect to="/" />
             : <Component {...props} />
         )} />
     );
