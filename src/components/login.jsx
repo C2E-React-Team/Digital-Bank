@@ -33,7 +33,7 @@ class Login extends React.Component{
         axios.get(url).then((response)=>{
             this.props.dispatch(loginUser(response.data));
             login(response.data);
-            this.props.history.push('/');
+            this.props.history.push('/cars');
             })
     .catch(error => {
         console.log(error);
