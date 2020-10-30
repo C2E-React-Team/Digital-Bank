@@ -225,6 +225,7 @@ class DealsFilters extends React.Component{
                     </select>
                     {(this.state.order===1)?<button class="sortButton" onClick={()=>this.changeOrder()}>Ascending</button>:<button class="sortButton" onClick={()=>this.changeOrder()}>Descending</button>}<br/><br/>
 
+                    Search Cars:
             <input type="search" class="search1" style={{padding:"5%"}}
             value={this.state.input}
             label="Search Cars"

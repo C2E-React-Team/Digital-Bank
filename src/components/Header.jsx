@@ -12,7 +12,7 @@ export default (props) =>{
     return (
     <header>
             <div id="headerMainBackground" style ={{display:"flex", flexDirection:"row", gap:"10px"}}>
-                <Link style={{textDecoration:"none",color:"red"}} className="header__title" to="/homepage">
+                <Link style={{textDecoration:"none",color:"red"}} className="header__title" to="/">
                     <div style={{padding:"5%"}}><img src={require(`./dbsLogo.png`).default} style={{width:"40%",height:"20%"}} alt="DBS logo"/><h3>Digital Bank</h3></div>
                 </Link>
                 <Link to="/profile">

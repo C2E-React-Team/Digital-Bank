@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import '../../css/index_style.css';
 import axios from 'axios';
 import {appliedLoans} from '../../actions/Loan';
+import { red } from '@material-ui/core/colors';
 
 const localName = "customerDetails";
 
@@ -73,7 +74,7 @@ render(){
     <br />Loan Amount you have requested for : INR {loan.loanAmount}<br/>
     You need to pay EMI INR {loan.emi}<br />
     submitted document is {loan.selectedFile}<br/>
-    <button onClick={()=>this.onLoanWithdraw(loan.refId)}>Withdraw</button>
+    <button  onClick={()=>this.onLoanWithdraw(loan.refId)} className="button">Withdraw</button>
     <br/><br/><br/>
     
     </div>)))
