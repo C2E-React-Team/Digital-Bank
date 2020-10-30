@@ -15,9 +15,17 @@ constructor(props)
     super(props);
 
 this.state = { 
-    loading:true
+    loading:true,
+    status:'Applied',
+    value:''
     }; 
  
+}
+status(){
+if(this.state.status =="Applied"){
+    this.setState({value:'active'});
+}
+    
 }
 
 componentWillMount(){
@@ -51,14 +59,15 @@ onLoanWithdraw(refID){
 
 render(){
     return(
-        <center>{
+        <center>
+            <div className="div4">{
             (this.state.loading===true)? (
                 <div className="list-item list-item--message">
                   <span>Loading</span>
                 </div>
               ) :
-        (<div className="div1">        
-    <h2 className="h2_heading">Applied Loan Details</h2>
+        (<div >    
+    <h2>Applied Loan Details</h2>
        <h3> Client ID: <p>{JSON.parse(localStorage.getItem(localName)).customerId}</p><br/>
     
        {  
@@ -68,18 +77,40 @@ render(){
       </div>
     ): (this.props.data.map((loan)=>(<div key={loan.refId}>
         Reference ID:{console.log("refID",loan),loan.refId} <br />
-        Car Cost :INR{loan.carCost} <br />
-        Car Name :{loan.carName} <br />
-        Loan Tenure Period :{loan.tenure} Months
-    <br />Loan Amount you have requested for : INR {loan.loanAmount}<br/>
-    You need to pay EMI INR {loan.emi}<br />
-    submitted document is {loan.selectedFile}<br/>
-    <button  onClick={()=>this.onLoanWithdraw(loan.refId)} className="button">Withdraw</button>
+        
+        <table className="customers">
+        <tr>
+                <td>Car Cost</td>
+                <td>INR {loan.carCost}</td>
+            </tr>
+            <tr>
+                <td>Loan Amount Requested</td>
+                <td>INR {loan.loanAmount} </td>
+                </tr>
+                <tr>
+                <td>EMI</td>
+                <td>INR {loan.emi}</td>
+                </tr>
+                <tr>
+                <td>Submitted Document</td>
+                <td>{loan.selectedFile}</td>
+                </tr>  
+        </table>
+        <button className="button-appliedloan"  onClick={()=>this.status()} >status</button>
+         <div className="container">
+          <ul className="progressbar">
+            <li className={this.state.value}>Applied</li>
+            <li>Processing</li>
+            <li>Accepted/Rejected</li>
+             </ul>
+      </div>
+      <button  onClick={()=>this.onLoanWithdraw(loan.refId)} className="button">Withdraw</button>
+         
     <br/><br/><br/>
     
     </div>)))
        }</h3>
-    </div>)}
+    </div>)}</div>
     </center>
  )};
 }
@@ -91,3 +122,4 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(AppliedLoan);
+

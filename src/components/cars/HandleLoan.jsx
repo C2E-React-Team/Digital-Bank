@@ -19,7 +19,8 @@ this.state = {
     time:24,
     loanAmountdisplay:0,
     loanAmount_request:0,
-    emi:0
+    emi:0,
+    showstore:false,
     }; 
  
     this.onApply = this.onApply.bind(this);
@@ -121,6 +122,8 @@ emiCal(e){
     this.emiCal(e);
 }*/
 updatetime(e){
+    this.setState({showstore:true});
+    
     var time=e.target.value;
     {this.setState({time:time})};
     console.log(time);
@@ -244,6 +247,8 @@ render(){
                     <option value="48">48 months</option>
                     <option value="60">60 months</option>
                 </select>
+                <div style={{display:this.state.showstore ? 'block': 'none'}}>
+       
               <h2>your loan amount eligibility is INR <mark>{this.state.loanAmountdisplay.toFixed(2)}</mark></h2>
               <h3><label>Enter your Loan Amount :</label></h3>
                 <input type="number" name="quantity" onChange={(e)=>this.loan(e)} value={this.state.loanAmount_request} required/><br></br>
@@ -259,7 +264,7 @@ render(){
 				</button> 
 			</div> 
 		{this.fileData()}
-    <button className="button" type="submit" onClick={()=>this.onApply()} >Submit my request to bank</button>
+    <button className="button" type="submit" onClick={()=>this.onApply()} >Submit my request to bank</button></div>
     </form>
         )  }
     </div>
