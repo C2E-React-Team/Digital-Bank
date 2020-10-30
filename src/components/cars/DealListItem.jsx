@@ -28,7 +28,7 @@ import {
 // 
  const DealListItem = ({ id, brand_name, car_name, price, dealer_name, image,history}) =>{
      return (
-    <div  class="card1"  onClick={() => history.push(`/cardetails/${id}`)}>
+    <div  className="card1"  onClick={() => history.push(`/cardetails/${id}`)}>
         <Card >
         <div style={{padding:"8% 8% 0 8%"}}>
         <CardImg top width="100%" src={require(`../../images/${image}`).default} alt="Card image cap" />
