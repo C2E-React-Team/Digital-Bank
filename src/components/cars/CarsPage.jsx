@@ -10,7 +10,7 @@ class CarsPage extends React.Component{
         console.log(this.props);
         return(
             <div>
-                <div style = {{display:"flex", flexDirection:"row", gap:"50px"}}>
+                <div style = {{display:"flex", flexDirection:"row", gap:"100px"}}>
                      <CarFilters />
                      <CarsDealsList history={this.props.history}/>
         

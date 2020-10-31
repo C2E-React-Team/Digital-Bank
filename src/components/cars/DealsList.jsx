@@ -20,7 +20,7 @@ class CarDealsList extends React.Component{
     this.state = {
         loading:true,
         currentPage:1,
-        dealsPerPage:5
+        dealsPerPage:6
       }
     }
   
@@ -77,8 +77,19 @@ render(){
            color="#909090"
            />
           
-            {currentDeals.map((deal) => {
-              return <DealListItem key={deal.id} {...deal} history={this.props.history} />;
+            {currentDeals.map((deal,index,deals) => {
+
+              
+              return (
+                ((index)%2==0)?
+                (<div style={{display:"flex", flexDirection:"row", gap:"50px"}}>
+                <DealListItem key={deal.id} {...deal} history={this.props.history} />
+                {console.log(deals[index].id)}
+                {((index+2)<=(deals.length))?
+                <DealListItem key={deals[index+1].id} {...deals[index+1]} history={this.props.history} />:""}
+                
+                </div>):""
+            )
              
             })}
           </div>
