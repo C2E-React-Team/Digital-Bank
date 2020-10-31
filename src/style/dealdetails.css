@@ -1,0 +1,41 @@
+.details_main{
+    font: "15px Arial, sans-serif";
+    text-shadow: "1px 1px rgba(0,0,0,0.2)";
+    font-weight: 200;
+}
+
+.details_image{
+    margin-left : 20px;
+    margin-bottom: 20px;
+}
+
+.details_title{
+    font-weight : 600;
+    color: rgb(36, 39, 44);
+    margin-top: 50px;
+    font-size: 28px;
+}
+
+.details_price{
+    font-weight : 600;
+    color: rgb(36, 39, 44);
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.details_fixed{
+    position: sticky;
+    width:25%;
+    height:300px;
+    float:left;
+    top :0;
+    /* left: 0;
+    top: 50%; */
+
+}
+
+.detailsDiv{
+    width:70%;
+    float: right;
+}
