@@ -31,13 +31,15 @@ const CarDealDetails = (props) => {
     }
     return (
         <div>
-        {
+        {   
             (loading===true)? (
               <div className="list-item list-item--message">
                 <span>Loading</span>
               </div>
             ) :
-            (<div ref={headerref} className="header_details" style = {{display:"flex", flexDirection:"row",gap:"50px",height:350}}>
+            (
+                <div>
+            <div ref={headerref} className="header_details" style = {{display:"flex", flexDirection:"row",gap:"50px",height:350}}>
                 <div id="imageDiv" className="details_image" style = {{width:"40%"}}>
                     <img src={require(`../../images/${props.data.image}`).default} alt="deal image" width="500" height="330"/>
                 </div>
@@ -47,9 +49,9 @@ const CarDealDetails = (props) => {
                 <h5 className="details_price">₹ {props.data.price}</h5>
                 <h5 style={{marginLeft:"5px"}}> {props.data.dealer_name}</h5>
                 <button className="button" onClick={()=>handleLoan()}>Apply for loan</button>
+                </div>
             </div>
-            </div>
-            )}
+            
             <div >
                 <div className="details_fixed">
                 <ul>
@@ -62,15 +64,46 @@ const CarDealDetails = (props) => {
                     <div className="mylink" style={{cursor:"pointer"}} onClick={()=>scrollToTop()}>  Go to top</div><br />
             */}
             </ul></div>
-                <div className="detailsDiv" ><h1>
-                    <div ref={featuresref} id="feature">Feature:Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec fermentum lectus. Ut sit amet elit nulla. Mauris malesuada mauris posuere ipsum faucibus efficitur. Vestibulum ultricies id metus et malesuada. Morbi eget lacus faucibus, suscipit velit at, lacinia metus. Maecenas commodo tortor ac metus pretium dictum. Nulla vestibulum at enim non volutpat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</div>
-                    <div style={{height:100}}></div>
-                    <div ref={loanref} id="loan">loanpage:Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec fermentum lectus. Ut sit amet elit nulla. Mauris malesuada mauris posuere ipsum faucibus efficitur. Vestibulum ultricies id metus et malesuada. Morbi eget lacus faucibus, suscipit velit at, lacinia metus. Maecenas commodo tortor ac metus pretium dictum. Nulla vestibulum at enim non volutpat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</div>
-                    <div style={{height:100}} id="dealer"></div>
-                    <div ref={dealerref} id="dealer">Dealer:Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec fermentum lectus. Ut sit amet elit nulla. Mauris malesuada mauris posuere ipsum faucibus efficitur. Vestibulum ultricies id metus et malesuada. Morbi eget lacus faucibus, suscipit velit at, lacinia metus. Maecenas commodo tortor ac metus pretium dictum. Nulla vestibulum at enim non volutpat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</div>
-                    </h1>
+                <div className="detailsDiv">
+                    <div ref={featuresref} id="feature" className="features_details">
+                        <h1 className="details_headings">Features & Specifications</h1>
+                        <table className="features_details_icons">
+                            <tr>
+                    <td><img src={require(`../../images/mileage.jpg`).default} alt="img" width="100" height="100"/></td>
+                                <td className="heading">Mileage</td>
+                                <td>{props.data.mileage} kmpl</td>
+                                </tr>
+                                <tr>
+                    <td><img src={require(`../../images/engine.jpg`).default} alt="img" width="100" height="100"/></td>
+                    <td className="heading">Engine Displacement</td>
+                    <td>{props.data.engine_displacement} cc</td>
+                                </tr>
+                                <tr>
+                    <td><img src={require(`../../images/seating.jpg`).default} alt="img" width="100" height="100"/></td>
+                    <td className="heading">Seating Capacity</td>
+                    <td>{props.data.seating_capacity} </td>
+                                </tr>
+                        </table>
+                        </div>
+                    <div style={{height:"50px"}}></div>
+                    <div ref={loanref} id="loan" className="loan_details">
+                    <h1 className="details_headings">Loan Information</h1>
+                    <div style={{height:"10px"}}></div>
+                    Here are some of the unique features of Digital Bank car loans:
+                    <ul className="loanlist">
+                        <li>Paperless and seamless process</li>
+                        <li>Easy online personal loan EMI calculator helps you plan for expenses after taking the loan</li>
+                        <li>You can get loans from Rs. 25,000 to Rs. 15 lakh</li>
+                        <li>You can choose a tenure between 12 and 60 months</li>
+                        <li>Best interest rates from 10.99% and up to 23.99%, depending on your eligibility and loan tenure</li>
+                    </ul>Once you reach the right amount and tenure, you can go ahead and apply for a personal loan.
+                    </div>
+                    <div style={{height:"50px"}} id="dealer"></div>
+                    <div ref={dealerref} id="dealer">
+                    <h1 className="details_headings">About dealer</h1>Dealer:Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec fermentum lectus. Ut sit amet elit nulla. Mauris malesuada mauris posuere ipsum faucibus efficitur. Vestibulum ultricies id metus et malesuada. Morbi eget lacus faucibus, suscipit velit at, lacinia metus. Maecenas commodo tortor ac metus pretium dictum. Nulla vestibulum at enim non volutpat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</div>
+                    
                 </div>
-            </div>
+            </div></div>)}
         </div>
      );
 }

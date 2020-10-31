@@ -30,12 +30,68 @@
     height:300px;
     float:left;
     top :0;
+    margin-top: 50px;
     /* left: 0;
     top: 50%; */
 
 }
-
+.details_fixed ul li a{
+    text-decoration: none;
+    font: "15px Arial, sans-serif";
+    text-shadow: "1px 1px rgba(0,0,0,0.2)";
+    font-weight: 200;
+    font-size: 28px;
+    color:inherit;
+}
+.details_fixed ul li a:hover{
+    color: rgb(255, 51, 51);
+}
+.details_fixed ul li a:active{
+    color: rgb(255, 51, 51);
+}
+.details_fixed ul li{
+    margin-top: 20px;
+    margin-left: 30px;
+}
 .detailsDiv{
     width:70%;
     float: right;
+}
+
+.features_details_icons tr{
+    display:block;
+    float:left;
+    width: 250px;
+}
+.features_details_icons{
+    margin-top: 25px;
+    margin-left: 10px;
+}
+.features_details_icons td{
+    display:block;
+    text-align: center;
+    font-size: 20px;
+}
+.features_details_icons .heading{
+    color: grey;
+    font-size: 16px;
+}
+.details_headings{
+    font-weight : 600;
+    color: rgb(255, 51, 51);
+    font-size: 28px;
+}
+.loandetails{
+    font: "15px OpenSans, sans-serif";
+}
+.loanlist{
+    list-style-type: circle;
+    margin-top: 5px;
+}
+.loanlist li{
+    margin-bottom: 8px;
+    list-style-type: circle;
+}
+.detailsDiv{
+    margin-top: 50px;
 }
