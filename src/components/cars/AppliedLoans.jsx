@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component,useEffect} from 'react';
 import {connect} from 'react-redux';
 import '../../css/index_style.css';
 import axios from 'axios';
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return ['Applied', 'Processing', 'Accepted'];
+  return ['Applied', 'Processing', 'Approved'];
 }
 
 function getStepContent(step) {
@@ -38,7 +38,7 @@ function getStepContent(step) {
     case 1:
       return 'Processisng';
     case 2:
-        return 'Accepted';
+        return 'Approved';
     case 3:
         return 'Rejected'
     default:
@@ -47,6 +47,12 @@ function getStepContent(step) {
 }
 
 export function HorizontalLinearStepper(e) {
+
+  useEffect(() => {
+    handleNext();
+  }, []);
+
+
     console.log(e);
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -72,7 +78,7 @@ export function HorizontalLinearStepper(e) {
   setSkipped(newSkipped);
 
 }
-      if(st.e==="Accepted"){
+      if(st.e==="Approved"){
           console.log("yess");
     let newSkipped = skipped;
     if (isStepSkipped(activeStep)) {
@@ -112,7 +118,7 @@ if(st.e=="Rejected"){
         {activeStep === steps.length ? (
           <div>
             <Typography className={classes.instructions}>
-              All steps completed - Loan Accepted.
+              All steps completed - Loan Approved.
             </Typography>
             
           </div>
@@ -120,14 +126,14 @@ if(st.e=="Rejected"){
           <div>
             <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
             <div>
-              <Button
+             {/* <Button
                 variant="contained"
                 color="primary"
                 
                 onClick={handleNext}
                 className={classes.button}
-              >{'Status'}
-              </Button>
+              >{'Get Status'}
+             </Button>*/}
             </div>
           </div>
         )}
@@ -144,7 +150,7 @@ constructor(props)
 
 this.state = { 
     loading:true,
-    status:"Accepted",
+    //status:"Rejected",
     //status:'Applied',
    // value:''
     }; 
@@ -208,6 +214,10 @@ render(){
         
         <table className="customers">
         <tr>
+                <td>Car Name</td>
+                <td>{loan.carName}</td>
+            </tr>
+        <tr>
                 <td>Car Cost</td>
                 <td>INR {loan.carCost}</td>
             </tr>
@@ -238,7 +248,7 @@ render(){
     </div>*/}
       <button  onClick={()=>this.onLoanWithdraw(loan.refId)} className="button">Withdraw</button>
      
-         <HorizontalLinearStepper e={this.state.status}/>
+         <HorizontalLinearStepper e={loan.status}/>
     <br/><br/><br/>
     
     </div>)))
@@ -251,7 +261,6 @@ render(){
 const mapStateToProps = (state) => {
     return {
     data :  state.loanData,
-    
     }
 }
 

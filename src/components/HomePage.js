@@ -5,6 +5,14 @@ import { NavLink } from "react-router-dom";
 //import gal1 from "../images/gal1.jpg";
 import logo from "../images/logo.jpg";
 import '../css/HomePageStyle.css';
+import { isLogin } from '../components/Auth';
+import {logout} from './Auth.js';
+
+
+const handleLogout = () => {
+  logout();
+  localStorage.clear();
+}
 
 import { Button, Container, Row, Col, Carousel } from "reactstrap";
 
@@ -37,7 +45,8 @@ class HomePage extends React.Component{
       
         return(
             <div>
-               <div className="container-fluid nav_bg">
+            
+            <div className="container-fluid nav_bg">
             <div className="row">
               <div className="col-10 mx-auto">
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -84,16 +93,8 @@ class HomePage extends React.Component{
                           </NavLink><span />
                         </li>
     
-                        <li className="nav-item">
-                          <NavLink
-                            
-                            className="nav-link"
-                            to="/properties"
-                          >
-                            Properties
-                          </NavLink><span /><span />
-                        </li>
-                        <li className="nav-item">
+
+                       {/* <li className="nav-item">
                           <NavLink
                             
                             className="nav-link"
@@ -101,7 +102,7 @@ class HomePage extends React.Component{
                           >
                             Gallary
                           </NavLink><span /><span />
-                        </li>
+        </li>*/}
                         <li>
                         <NavLink
                             
@@ -113,16 +114,27 @@ class HomePage extends React.Component{
                         </li>
     
     
-                        <li className="nav-item">
-                          <NavLink 
-                            onClick={this.onClickCustomerButton}
-                            className="nav-link "
-                            to="/login"
-                          >
-                            Login
-                          </NavLink>
-                        
-                        </li>
+                        {isLogin()?
+                          (<li className="nav-item">
+                              <NavLink 
+                                className="nav-link "
+                                onClick={()=>handleLogout()}
+                                to="/"
+                              >
+                                Logout
+                              </NavLink>
+                            
+                            </li>):
+                              (<li className="nav-item">
+                                <NavLink 
+                                  className="nav-link "
+                                  
+                                  to="/login"
+                                >
+                                  Login
+                                </NavLink>
+                              
+                              </li>)}
                       </ul>
                     </div>
                   </div>
@@ -130,13 +142,7 @@ class HomePage extends React.Component{
               </div>
             </div>
           </div>
-        
-    
-    
-    
-    
-    
-    
+
           <section id="header" className="d-flex align-items-center">
             <div className="container-fluid ">
               <div className="row">

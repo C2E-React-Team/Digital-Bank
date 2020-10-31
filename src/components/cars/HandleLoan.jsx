@@ -170,8 +170,6 @@ onApply(){
       })
       .then((response)=> {
         console.log(response);
-        ref_id=response.data.ref_id;
-        this.props.dispatch(appliedLoans(customerId,loanAmount,emi,carCost,selectedFile.name,time,carName,ref_id));
         this.props.history.push(`/appliedloan`);
       })
 

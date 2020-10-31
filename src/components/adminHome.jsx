@@ -6,7 +6,7 @@ import {appliedLoans} from '../actions/Loan';
 import { red } from '@material-ui/core/colors';
 //import Demo from './Demo.js';
 
-//const localName = "customerDetails";
+const localName = "customerDetails";
 
 
 
@@ -38,13 +38,11 @@ componentWillMount(){
         });
 }
 
-/*onLoanWithdraw(refID){
+onApproveLoan(refId){
     this.setState(()=>({loading:true}));
-    axios.delete("http://localhost:8080/loans/delete/"+refID)
-     .then(res => {
-         
-        console.log("in delete res",res);
-        
+    axios.delete('http://localhost:8080/loans/approve/'+refId)
+      .then((response)=> {
+        console.log(response);
         const CUSTOMER_LOANS_REST_API_URL = "http://localhost:8080/loans/get/"+JSON.parse(localStorage.getItem(localName)).customerId;
      axios.get(CUSTOMER_LOANS_REST_API_URL).then((response)=>{
          console.log("in get after del",response);
@@ -55,7 +53,24 @@ componentWillMount(){
     
     });
      
-}*/
+}
+
+onRejectLoan(refId){
+    this.setState(()=>({loading:true}));
+    axios.delete('http://localhost:8080/loans/reject/'+refId)
+      .then((response)=> {
+        console.log(response);
+        const CUSTOMER_LOANS_REST_API_URL = "http://localhost:8080/loans/get/"+JSON.parse(localStorage.getItem(localName)).customerId;
+     axios.get(CUSTOMER_LOANS_REST_API_URL).then((response)=>{
+         console.log("in get after del",response);
+         this.props.dispatch(appliedLoans(response.data));
+         this.setState(()=>({loading:false}));
+         });
+    
+    
+    });
+     
+}
 
 render(){
     return(
@@ -84,11 +99,11 @@ render(){
     <h3><br/>
     
        {  
-        this.props.data.length === 0 ? (
+        this.props.data.filter((loan)=>loan.status==this.state.status).length === 0 ? (
       <div className="list-item list-item--message">
         <span>No {this.state.status} Loans</span>
       </div>
-    ): (this.props.data.map((loan)=>(<div key={loan.refId}>
+    ): (this.props.data.filter((loan)=>loan.status==this.state.status).map((loan)=>(<div key={loan.refId}>
         Reference ID:{console.log("refID",loan),loan.refId} <br />
         
         <table className="customers">
@@ -129,8 +144,8 @@ render(){
             <li>Accepted/Rejected</li>
              </ul>
     </div>*/}
-      <button  onClick={()=>this.onLoanWithdraw(loan.refId)} className="button">Approve</button>
-      <button  onClick={()=>this.onLoanWithdraw(loan.refId)} className="button">Reject</button>
+      <button  onClick={()=>this.onApproveLoan(loan.refId)} className="button">Approve</button>
+      <button  onClick={()=>this.onRejectLoan(loan.refId)} className="button">Reject</button>
     <br/><br/><br/>
     
     </div>)))

@@ -14,7 +14,7 @@ const PrivatePath = ({component: Component, ...rest}) => {
                 <Header />
                 <Component {...props} />
                 </div>
-            : <Redirect to="/" />
+            : <Redirect to="/login" />
     ))} />
     );
 };
