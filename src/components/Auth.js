@@ -16,3 +16,12 @@ export const isLogin = () =>{
     }
     return false;
 }
+
+export const isAdmin = () =>{
+    if(isLogin())
+    if(JSON.parse(localStorage.getItem(TOKEN_KEY))=="admin"){
+        return true;
+    }
+    console.log("in auth",localStorage.getItem(TOKEN_KEY));
+    return false;
+}

@@ -34,7 +34,7 @@ const CarDealDetails = (props) => {
         {
             (loading===true)? (
               <div className="list-item list-item--message">
-                <span>Loading</span>
+               { <span>Loading</span>}
               </div>
             ) :
             (<div ref={headerref} id="headerDetails" style = {{display:"flex", flexDirection:"row",gap:"50px",height:300}}>
