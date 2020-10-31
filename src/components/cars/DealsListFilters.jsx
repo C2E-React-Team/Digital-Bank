@@ -239,9 +239,9 @@ class DealsFilters extends React.Component{
         
 
           return (
-            <div  id="dealsListFilterMainBackground" style={{font: "15px Arial, sans-serif",textShadow:"1px 1px rgba(0,0,0,0.2)",width:250, margin:30}}>
+            <div  id="dealsListFilterMainBackground" style={{font: "15px Arial, sans-serif",textShadow:"1px 1px rgba(0,0,0,0.2)",width:270, margin:30}}>
 
-            Sort By: <select id="sortOption" style={{padding:"3%",color:"#909090"}}
+          <div >  Sort By: <select id="sortOption" style={{padding:"3%",color:"#909090"}}
                     className="select"
                     value={this.state.sortBy} 
                     onChange={(e)=>{
@@ -258,7 +258,7 @@ class DealsFilters extends React.Component{
                         <option style={{padding:"5%"}} value="price">Price</option>
                     </select>
                     {(this.state.order===1)?<button className="sortButton" onClick={()=>this.changeOrder()}>Ascending</button>:<button className="sortButton" onClick={()=>this.changeOrder()}>Descending</button>}<br/><br/>
-
+                    </div>
                     Search Cars:
             <input type="search" className="search1" style={{padding:"5%"}}
             value={this.state.input}
