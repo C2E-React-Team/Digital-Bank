@@ -7,6 +7,134 @@ import { red } from '@material-ui/core/colors';
 
 const localName = "customerDetails";
 
+import { makeStyles } from '@material-ui/core/styles';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+  },
+  button: {
+    marginRight: theme.spacing(1),
+  },
+  instructions: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
+}));
+
+function getSteps() {
+  return ['Applied', 'Processing', 'Accpeted'];
+}
+
+function getStepContent(step) {
+  switch (step) {
+    case 0:
+      return 'Applied';
+    case 1:
+      return 'Processisng';
+    case 2:
+        return 'Accepted';
+    case 3:
+        return 'Rejected'
+    default:
+      return 'Rejected';
+  }
+}
+
+export function HorizontalLinearStepper(e) {
+    console.log(e);
+  const classes = useStyles();
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [skipped, setSkipped] = React.useState(new Set());
+  const steps = getSteps();
+
+
+  const isStepSkipped = (step) => {
+    return skipped.has(step);
+  };
+
+  const handleNext = () => {
+      var st=e;
+      if(st.e==="Applied" && activeStep === steps.length - 3){
+        
+  let newSkipped = skipped;
+  if (isStepSkipped(activeStep)) {
+    newSkipped = new Set(newSkipped.values());
+    newSkipped.delete(activeStep);
+  }
+
+  setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  setSkipped(newSkipped);
+
+}
+      if(st.e==="Accepted"){
+          console.log("yess");
+    let newSkipped = skipped;
+    if (isStepSkipped(activeStep)) {
+      newSkipped = new Set(newSkipped.values());
+      newSkipped.delete(activeStep);
+    }
+
+    setActiveStep((prevActiveStep) => prevActiveStep + 3);
+    setSkipped(newSkipped);
+
+}
+if(st.e=="Rejected"){
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+}
+
+  };
+
+
+  return (
+    <div className={classes.root}>
+      <Stepper activeStep={activeStep}>
+        {steps.map((label, index) => {
+          const stepProps = {};
+          const labelProps = {};
+          
+          if (isStepSkipped(index)) {
+            stepProps.completed = false;
+          }
+          return (
+            <Step key={label} {...stepProps}>
+              <StepLabel {...labelProps}>{label}</StepLabel>
+            </Step>
+          );
+        })}
+      </Stepper>
+      <div>
+        {activeStep === steps.length ? (
+          <div>
+            <Typography className={classes.instructions}>
+              All steps completed - Loan Accepted.
+            </Typography>
+            
+          </div>
+        ) : (
+          <div>
+            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+            <div>
+              <Button
+                variant="contained"
+                color="primary"
+                
+                onClick={handleNext}
+                className={classes.button}
+              >{'Status'}
+              </Button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
 
 class AppliedLoan extends Component{
@@ -16,17 +144,18 @@ constructor(props)
 
 this.state = { 
     loading:true,
-    status:'Applied',
-    value:''
+    status:'Accepted',
+    //status:'Applied',
+   // value:''
     }; 
  
 }
-status(){
+/*status(){
 if(this.state.status =="Applied"){
     this.setState({value:'active'});
-}
+}*/
     
-}
+
 
 componentWillMount(){
     const CUSTOMER_LOANS_REST_API_URL = "http://localhost:8080/loans/get/"+JSON.parse(localStorage.getItem(localName)).customerId;
@@ -53,7 +182,6 @@ onLoanWithdraw(refID){
     
     
     });
-
      
 }
 
@@ -68,7 +196,7 @@ render(){
               ) :
         (<div >    
     <h2>Applied Loan Details</h2>
-       <h3> Client ID: <p>{JSON.parse(localStorage.getItem(localName)).customerId}</p><br/>
+       <h3> Client ID: {JSON.parse(localStorage.getItem(localName)).customerId}<br/>
     
        {  
         this.props.data.length === 0 ? (
@@ -76,7 +204,7 @@ render(){
         <span>No Applied Loans</span>
       </div>
     ): (this.props.data.map((loan)=>(<div key={loan.refId}>
-        Reference ID:{console.log("refID",loan),loan.refId} <br />
+        
         
         <table className="customers">
         <tr>
@@ -95,17 +223,22 @@ render(){
                 <td>Submitted Document</td>
                 <td>{loan.selectedFile}</td>
                 </tr>  
+                <tr><td>Reference Id</td>
+                <td>
+                {console.log("refID",loan),loan.refId}
+                </td>
+                </tr>
         </table>
-        <button className="button-appliedloan"  onClick={()=>this.status()} >status</button>
-         <div className="container">
+        {/*<button className="button-appliedloan"  onClick={()=>this.status()} >status</button         <div className="container">
           <ul className="progressbar">
             <li className={this.state.value}>Applied</li>
             <li>Processing</li>
             <li>Accepted/Rejected</li>
              </ul>
-      </div>
+    </div>*/}
       <button  onClick={()=>this.onLoanWithdraw(loan.refId)} className="button">Withdraw</button>
-         
+     
+         <HorizontalLinearStepper e={this.state.status}/>
     <br/><br/><br/>
     
     </div>)))
@@ -114,6 +247,7 @@ render(){
     </center>
  )};
 }
+
 const mapStateToProps = (state) => {
     return {
     data :  state.loanData,
