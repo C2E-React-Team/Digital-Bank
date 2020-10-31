@@ -8,6 +8,7 @@ export default (props) =>{
     const handleLogout = () => {
         logout();
         window.location.reload(false);
+        localStorage.clear();
     }
     return (
     <header>
