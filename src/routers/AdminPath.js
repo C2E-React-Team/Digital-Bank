@@ -1,22 +1,20 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { isLogin,isAdmin } from '../components/Auth';
+import { isAdmin } from '../components/Auth';
+import AdminHome from '../components/AdminHome.jsx';
 import Header from '../components/Header.jsx';
 
-const PrivatePath = ({component: Component, ...rest}) => {
-    
+const AdminPath = ({component: Component, ...rest}) => {
     return (
         <Route {...rest} render={props => (
-            
-            isAdmin()?<Redirect to="/admin" />:
-            (isLogin() ?
+            isAdmin() ?
             <div>
                 <Header />
-                <Component {...props} />
+                <AdminHome />
                 </div>
             : <Redirect to="/" />
-    ))} />
+        )} />
     );
 };
 
-export default PrivatePath;
+export default AdminPath;

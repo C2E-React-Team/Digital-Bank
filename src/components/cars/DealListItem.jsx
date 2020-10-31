@@ -26,7 +26,7 @@ import {
 // );
 // }
 // 
- const DealListItem = ({ id, brand_name, car_name, price, dealer_name, image,history}) =>{
+ const DealListItem = ({ id, brand_name, car_name, price, dealer_name, image,history,mileage,engine_displacement,seating_capacity,type}) =>{
      return (
         <div style={{display:"flex", flexDirection:"row", gap:"50px"}}>
 
@@ -57,7 +57,11 @@ import {
                         <CardBody>
                             <CardText>ID: {id}</CardText>
                             <CardText>Price:<BiRupee/> {price}</CardText>
-                            <Button onClick={() => history.push(`/cardetails/${id}`)} style={{backgroundColor:"red"}}>Apply For Loan</Button>
+                            <CardText>Type: {type}</CardText>
+                            <CardText>Mileage: {mileage} kmpl</CardText>
+                            <CardText>Engine displacement: {engine_displacement} cc</CardText>
+                            <CardText>Seating Capacity: {parseInt(seating_capacity)} seater</CardText>
+                            <Button onClick={() => history.push(`/cardetails/${id}`)} style={{backgroundColor:"red"}}>More Details</Button>
                         </CardBody>
                     </Card>
 

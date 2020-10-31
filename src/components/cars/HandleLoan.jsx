@@ -211,8 +211,8 @@ fileData = () => {
 
 render(){
     return(
-        <center>
-        <div className="div1">
+        <center><br /><br />
+        <div className="card2">
         {
             (this.state.loading===true)? (
                 <div className="list-item list-item--message">
@@ -223,23 +223,23 @@ render(){
 
         (<form onSubmit={e=>e.preventDefault()}>
                 
-    <h2 className="h2_heading">My Details</h2>
-                <h3><label>Name:</label>
+    <h2>My Details</h2>
+                <h4><label>Name&ensp;&ensp;</label>
                 <input type="text" value={JSON.parse(localStorage.getItem(localName)).creditHistory} readOnly /><br/>                
-                <label>Client Id :</label>
+                <label>Client Id   &ensp; </label>
                 <input type="text" value={JSON.parse(localStorage.getItem(localName)).customerId} readOnly /><br/>
-                <label>Gender :</label>
+                <label>Gender &ensp;</label>
                 <input type="text" value={JSON.parse(localStorage.getItem(localName)).sex} readOnly /><br/>
-                <label>Martial Status :</label>
+                <label>Martial Status &ensp;</label>
                 <input type="text" value={JSON.parse(localStorage.getItem(localName)).maritalStatus} readOnly /><br/> 
-                <label>Eligible Emi</label>
-                <input type="text" value={(parseFloat(JSON.parse(localStorage.getItem(localName)).eMICapacity)*54.27)} readOnly /></h3>
+                <label>Eligible Emi &ensp;</label>
+                <input type="text" value={(parseFloat(JSON.parse(localStorage.getItem(localName)).eMICapacity)*54.27)} readOnly /></h4>
                 <h2>U selected {console.log(this.props.CarData),this.props.CarData.car_name} <br />
-                {this.props.CarData.model}<br />
+                
                 INR {this.props.CarData.price} <br />
                 from {this.props.CarData.dealer_name}
                </h2>
-                <h3>Select Tenure</h3>
+                <h4>Select Tenure</h4>
                 <select onChange={(e)=>this.updatetime(e)} required defaultValue="select time">
                     <option value="select time"  disabled>select Tenure</option>
                     <option value="24">24 months</option>
@@ -247,16 +247,17 @@ render(){
                     <option value="48">48 months</option>
                     <option value="60">60 months</option>
                 </select>
+                <br /><br />
                 <div style={{display:this.state.showstore ? 'block': 'none'}}>
        
-              <h2>your loan amount eligibility is INR <mark>{this.state.loanAmountdisplay.toFixed(2)}</mark></h2>
-              <h3><label>Enter your Loan Amount :</label></h3>
+              <h4>your loan amount eligibility is INR {this.state.loanAmountdisplay.toFixed(2)}</h4>
+              <h4><label>Enter your Loan Amount :</label></h4>
                 <input type="number" name="quantity" onChange={(e)=>this.loan(e)} value={this.state.loanAmount_request} required/><br></br>
-                <h2>U need to pay EMI INR <mark>{this.state.emi}</mark></h2>
-            <h2>For your car to buy, bank will provide loan of INR <mark>{this.state.loanAmount_request}</mark> and you ned to pay INR <mark>{this.props.CarData.price-this.state.loanAmount_request}</mark></h2>
-            <h3> 
+                <h4>U need to pay EMI INR {this.state.emi}</h4>
+            <h4>For your car to buy, bank will provide loan of INR {this.state.loanAmount_request} and you ned to pay INR {this.props.CarData.price-this.state.loanAmount_request}</h4>
+            <h4> 
 			Upload scanned copy for your document :
-			</h3> 
+			</h4> 
 			<div> 
 				<input className="button" type="file" onChange={this.onFileChange} required/> <br />
 				<button className="button" onClick={this.onFileUpload}> 
@@ -267,7 +268,7 @@ render(){
     <button className="button" type="submit" onClick={()=>this.onApply()} >Submit my request to bank</button></div>
     </form>
         )  }
-    </div>
+    </div><br /><br /><br />
     </center>
  )};
 }
