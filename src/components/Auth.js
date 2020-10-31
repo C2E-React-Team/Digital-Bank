@@ -2,7 +2,7 @@ const TOKEN_KEY = 'customerDetails';
 export const login = (user) =>{
     const json = JSON.stringify(user);
     localStorage.setItem(TOKEN_KEY,json);
-    console.log(localStorage.getItem(TOKEN_KEY));
+    console.log("in login",localStorage.getItem(TOKEN_KEY));
 }
 
 export const logout = () => {
@@ -14,6 +14,7 @@ export const isLogin = () =>{
     if(localStorage.getItem(TOKEN_KEY)){
         return true;
     }
+    console.log("in islogin",localStorage.getItem(TOKEN_KEY));
     return false;
 }
 
@@ -22,6 +23,6 @@ export const isAdmin = () =>{
     if(JSON.parse(localStorage.getItem(TOKEN_KEY))=="admin"){
         return true;
     }
-    console.log("in auth",localStorage.getItem(TOKEN_KEY));
+    console.log("in isAdmin",localStorage.getItem(TOKEN_KEY));
     return false;
 }

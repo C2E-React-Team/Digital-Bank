@@ -15,9 +15,9 @@ class HomePage extends React.Component{
         this.onClickDealerButton=this.onClickDealerButton.bind(this);
         this.onClickAdminButton=this.onClickAdminButton.bind(this);
     }
-    componentDidMount(){
-      localStorage.clear();
-    }
+    // componentDidMount(){
+    //   localStorage.clear(); Done once Logged out
+    // }
 
     onClickCustomerButton(){
         localStorage.setItem("roleName","Customer");

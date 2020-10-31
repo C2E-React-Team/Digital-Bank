@@ -43,7 +43,7 @@ const AppRouter = () => (
                 <AdminPath path="/admin" component={AdminHome} exact />
 
                  
-                <Route restricted={false} component={HomePage} path="/" exact />
+                <Route component={HomePage} path="/" exact />
                 {/* <PublicPath component={HeroPage} path="/" exact /> */}
                 <Route component={NotFoundPage} />
             </Switch>

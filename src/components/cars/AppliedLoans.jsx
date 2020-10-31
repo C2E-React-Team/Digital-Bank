@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return ['Applied', 'Processing', 'Accpeted'];
+  return ['Applied', 'Processing', 'Accepted'];
 }
 
 function getStepContent(step) {
@@ -144,7 +144,7 @@ constructor(props)
 
 this.state = { 
     loading:true,
-    status:'Accepted',
+    status:"Accepted",
     //status:'Applied',
    // value:''
     }; 
