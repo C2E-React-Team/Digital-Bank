@@ -28,22 +28,40 @@ import {
 // 
  const DealListItem = ({ id, brand_name, car_name, price, dealer_name, image,history}) =>{
      return (
-    <div  className="card1"  onClick={() => history.push(`/cardetails/${id}`)}>
+        <div style={{display:"flex", flexDirection:"row", gap:"50px"}}>
+
+
+                 <div  className="card1"  onClick={() => history.push(`/cardetails/${id}`)}>
+        
         <Card >
         <div style={{padding:"8% 8% 0 8%"}}>
         <CardImg top width="100%" src={require(`../../images/${image}`).default} alt="Card image cap" />
         {/* <img src={require(`../../images/${image}`).default} alt="Deal_Image"/> */}
         {/* <div style={{border:"solid white"}}> */}
          </div>
-        <div style={{paddingLeft:"8%",paddingTop:"5%", paddingBottom:"5%",borderBottom:"1px solid #909090"}}>
+        <div style={{textAlign:"left",paddingLeft:"8%",paddingTop:"5%", paddingBottom:"5%",borderBottom:"1px solid #909090"}}>
         <CardTitle style={{color:"#909090"}}>{brand_name}</CardTitle>
         <CardSubtitle style={{fontSize:"150%"}}><AiFillCar/>  {car_name}</CardSubtitle>
         </div>
-         <CardBody style={{padding:"3% 0 3% 8%", backgroundColor:"#f7f7f7"}}>
+         <CardBody style={{textAlign:"left",padding:"3% 0 3% 8%", backgroundColor:"#f7f7f7"}}>
              <CardText style={{margin:"0",fontSize:"120%"}}><BiRupee/> {price}</CardText>
              <CardText style={{padding:"0",margin:"0",color:"#909090"}}><FaIdeal/>  {dealer_name}</CardText>
          </CardBody>
          </Card>
+     </div>
+
+
+                    <Card style={{backgroundColor:"#f7f7f7"}}>
+                        <CardTitle>Car Name: {car_name}</CardTitle>
+                        <CardSubtitle>Brand: {brand_name}</CardSubtitle>
+                        <CardBody>
+                            <CardText>ID: {id}</CardText>
+                            <CardText>Price:<BiRupee/> {price}</CardText>
+                            <Button onClick={() => history.push(`/cardetails/${id}`)} style={{backgroundColor:"red"}}>Apply For Loan</Button>
+                        </CardBody>
+                    </Card>
+
+
      </div>
  );
  }

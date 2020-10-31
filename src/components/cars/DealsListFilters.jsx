@@ -35,8 +35,8 @@ class DealsFilters extends React.Component{
 
         this.state = {
             value: [10,20],
-            bodyTypes:[{label:"SUV",variant:"default"},{label:"Hatchback",variant:"default"},{label:"Sedan",variant:"default"},{label:"MUV",variant:"default"},{label:"Minivan",variant:"default"},
-            {label:"Coupe",variant:"default"},{label:"Hybrid",variant:"default"},{label:"Luxury",variant:"default"},{label:"Convertible",variant:"default"},{label:"Pickup Truck",variant:"default"},{label:"Wagon",variant:"default"}],
+            bodyTypes:[{label:"SUV",variant:"outlined"},{label:"Hatchback",variant:"outlined"},{label:"Sedan",variant:"outlined"},{label:"MUV",variant:"outlined"},{label:"Minivan",variant:"outlined"},
+            {label:"Coupe",variant:"outlined"},{label:"Hybrid",variant:"outlined"},{label:"Luxury",variant:"outlined"},{label:"Convertible",variant:"outlined"},{label:"Pickup Truck",variant:"outlined"},{label:"Wagon",variant:"outlined"}],
             searchInput:[],
             input:"",
             sortBy:"price",

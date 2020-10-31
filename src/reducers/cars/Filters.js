@@ -1,3 +1,5 @@
+const types = ["SUV","Hatchback","Sedan","MUV","Minivan","Coupe","Hybrid","Luxury","Convertible","Pickup Truck","Wagon"];
+
 const defaultFilters = {
     minPrice:500000,
     maxPrice:1000000,
@@ -20,7 +22,7 @@ export default (state=defaultFilters,action) => {
         case 'SET_BODY_TYPE':
             return{
                 ...state,
-                types:action.types,
+                types:(action.types.length==0)?types:action.types,
                 page:1
             }
         case 'SET_SEARCH':

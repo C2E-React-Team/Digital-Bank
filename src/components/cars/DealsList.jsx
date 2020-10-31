@@ -90,7 +90,7 @@ render(){
           )}  
           onChange = {(e,page)=>this.onPageChange(e,page)}
           page={this.state.currentPage}
-          color="909090"
+          color="#909090"
           />
         {/* </Card> */}
     </div>
