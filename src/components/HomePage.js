@@ -15,6 +15,9 @@ class HomePage extends React.Component{
         this.onClickDealerButton=this.onClickDealerButton.bind(this);
         this.onClickAdminButton=this.onClickAdminButton.bind(this);
     }
+    componentDidMount(){
+      localStorage.clear();
+    }
 
     onClickCustomerButton(){
         localStorage.setItem("roleName","Customer");
@@ -31,6 +34,7 @@ class HomePage extends React.Component{
         this.props.history.push("/login");
     }
     render(){
+      
         return(
             <div>
                <div className="container-fluid nav_bg">

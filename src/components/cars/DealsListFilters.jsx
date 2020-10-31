@@ -35,8 +35,8 @@ class DealsFilters extends React.Component{
 
         this.state = {
             value: [10,20],
-            bodyTypes:[{label:"SUV",variant:"default"},{label:"Hatchback",variant:"default"},{label:"Sedan",variant:"default"},{label:"MUV",variant:"default"},{label:"Minivan",variant:"default"},
-            {label:"Coupe",variant:"default"},{label:"Hybrid",variant:"default"},{label:"Luxury",variant:"default"},{label:"Convertible",variant:"default"},{label:"Pickup Truck",variant:"default"},{label:"Wagon",variant:"default"}],
+            bodyTypes:[{label:"SUV",variant:"outlined"},{label:"Hatchback",variant:"outlined"},{label:"Sedan",variant:"outlined"},{label:"MUV",variant:"outlined"},{label:"Minivan",variant:"outlined"},
+            {label:"Coupe",variant:"outlined"},{label:"Hybrid",variant:"outlined"},{label:"Luxury",variant:"outlined"},{label:"Convertible",variant:"outlined"},{label:"Pickup Truck",variant:"outlined"},{label:"Wagon",variant:"outlined"}],
             searchInput:[],
             input:"",
             sortBy:"price",
@@ -44,14 +44,48 @@ class DealsFilters extends React.Component{
           }
         }
 
-        componentWillMount(){
-          const budget = getCustomerCarBudget();
-          const minBudget = budget - (0.2*budget);
-          const maxBudget = budget + (0.2*budget);
-          //set slider coordinates
 
-          //this.setState({value:});
+        getCoordinate(val){
+
+          let coord;
+          coord = parseFloat(val/100000).toFixed(1);
+          console.log("coord = ",coord);
+          if(coord<=10)
+            {
+              coord = (parseFloat(coord)*2);
+              console.log("1");
+              return parseInt(coord);
+            }
+          else if(coord>10 && coord<=50)
+          {
+            
+              coord=  parseFloat(coord)+10;
+              console.log("2",coord);
+              return parseInt(coord);
+          }
+          else if(coord>50 && coord<=100)
+          {
+            console.log("3");
+            coord=60+(parseFloat(coord)-50)/2.5;
+              return parseInt(coord);
+          }
+          else if(coord>100 && coord<=2000)
+          {
+            console.log("4");
+            coord = 80+parseFloat(coord)/100; 
+            return parseInt(coord);
+          }
+          console.log("5");
+        }
+
+        componentDidMount(){
+          const budget = parseFloat(getCustomerCarBudget());
+          const minBudget = budget - (0.4*budget);
+          const maxBudget = budget + (0.4*budget);
+          //set slider coordinates //Done
+          this.setState({value:[this.getCoordinate(minBudget),this.getCoordinate(maxBudget)]});
           this.props.dispatch(setBudget(minBudget,maxBudget));
+          console.log("min cord = "+ this.getCoordinate(minBudget)+" max cord = "+this.getCoordinate(maxBudget));
         }
 
           onSearch(e){
@@ -223,10 +257,10 @@ class DealsFilters extends React.Component{
                         <option style={{padding:"5%"}} value="name">Name</option>
                         <option style={{padding:"5%"}} value="price">Price</option>
                     </select>
-                    {(this.state.order===1)?<button class="sortButton" onClick={()=>this.changeOrder()}>Ascending</button>:<button class="sortButton" onClick={()=>this.changeOrder()}>Descending</button>}<br/><br/>
+                    {(this.state.order===1)?<button className="sortButton" onClick={()=>this.changeOrder()}>Ascending</button>:<button className="sortButton" onClick={()=>this.changeOrder()}>Descending</button>}<br/><br/>
 
-            
-            <input type="search" class="search1" style={{padding:"5%"}}
+                    Search Cars:
+            <input type="search" className="search1" style={{padding:"5%"}}
             value={this.state.input}
             label="Search Cars"
             variant="outlined"
