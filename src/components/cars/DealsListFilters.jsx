@@ -266,12 +266,13 @@ class DealsFilters extends React.Component{
                     {(this.state.order===1)?<button className="sortButton" onClick={()=>this.changeOrder()}>Ascending</button>:<button className="sortButton" onClick={()=>this.changeOrder()}>Descending</button>}<br/><br/>
                     </div>
                     <p className="filter_heading" >Search Car</p>
+                    <ThemeProvider theme={muiTheme}>
             <input type="search" className="search1" style={{padding:"5%"}}
             value={this.state.input}
             label="Search Cars"
             variant="outlined"
             placeholder="Search Cars"
-            color="rgb(255, 51, 51)"
+            color="primary"
             onChange={e=>this.onSearch(e)}
             onKeyDown={e=>this.onSearch(e)}
             />
@@ -281,10 +282,10 @@ class DealsFilters extends React.Component{
               label={type} 
               key={index}
               variant = "outlined"
-              color="rgb(255, 51, 51)"
+              color="primary"
               onDelete={()=>this.onSearchDelete(type)}
               />))}<br />
-
+              </ThemeProvider>
             <p className="filter_heading" >Select Budget:</p>
             <ThemeProvider theme={muiTheme}>
             <Slider
