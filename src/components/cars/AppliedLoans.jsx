@@ -202,7 +202,7 @@ render(){
               ) :
         (<div >    
     <h2>Applied Loan Details</h2>
-       <h3> Client ID: {JSON.parse(localStorage.getItem(localName)).customerId}<br/>
+       <h3> Customer ID: {JSON.parse(localStorage.getItem(localName)).customerId}<br/>
     
        {  
         this.props.data.length === 0 ? (

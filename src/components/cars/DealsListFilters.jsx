@@ -25,7 +25,13 @@ const muiTheme = createMuiTheme({
         color: 'rgb(255, 51, 51)'
       },
     }
+},
+palette: {
+  primary: {
+    main: 'rgb(255, 51, 51)'
+  }
 }
+
 });
 
 class DealsFilters extends React.Component{
@@ -311,7 +317,7 @@ class DealsFilters extends React.Component{
               }
               }//change
               valueLabelDisplay="auto"
-             /></ThemeProvider><br />
+             /><br />
 
             <p className="filter_heading" >Select Body Type:</p>
             {this.state.bodyTypes.map((type,index) => (
@@ -319,10 +325,11 @@ class DealsFilters extends React.Component{
               label={type.label} 
               key={index}
               variant = {type.variant}
-              //color="secondary"
+              color="primary"
               clickable={true}
               onClick={()=>this.onTypeChange(type)}
               />))}
+              </ThemeProvider>
 
 
 
