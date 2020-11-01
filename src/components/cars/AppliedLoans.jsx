@@ -13,6 +13,7 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Spinner } from 'react-bootstrap';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -196,9 +197,9 @@ render(){
         <center>
             <div className="div4">{
             (this.state.loading===true)? (
-                <div className="list-item list-item--message">
-                  <span>Loading</span>
-                </div>
+              <div>
+              <Spinner variant="danger" animation="border" />
+              </div>
               ) :
         (<div >    
     <h2>Applied Loan Details</h2>

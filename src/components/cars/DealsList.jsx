@@ -10,7 +10,7 @@ import {
   Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
-import { Spinner } from 'reactstrap';
+import { Spinner } from 'react-bootstrap';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 
@@ -70,9 +70,8 @@ render(){
       {/* <Card> */}
         {
         (this.state.loading===true)? (
-          <div className="list-item list-item--message">
-            {/* <span>Loading</span> */}
-            <Spinner color="primary" />
+          <div>
+          <Spinner variant="danger" animation="border" />
           </div>
         ) :
           ( 

@@ -5,6 +5,7 @@ import axios from 'axios';
 import {appliedLoans} from '../actions/Loan';
 import { red } from '@material-ui/core/colors';
 //import Demo from './Demo.js';
+import { Spinner } from 'react-bootstrap';
 
 
 
@@ -76,9 +77,9 @@ render(){
         <center>
             <div className="div4">{
             (this.state.loading===true)? (
-                <div className="list-item list-item--message">
-                  <span>Loading</span>
-                </div>
+                <div>
+          <Spinner variant="danger" animation="border" />
+          </div>
               ) :
         (<div >    
     <h2>Applied Loan Details</h2>

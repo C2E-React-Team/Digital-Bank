@@ -5,6 +5,8 @@ import {getCarDeals} from '../../services/carService';
 import {setDeals} from '../../actions/cars/deals';
 import '../../css/index_style.css';
 import '../../style/dealdetails.css';
+import { Spinner } from 'react-bootstrap';
+
 const scrollToRef=(ref)=>window.scrollTo(0,ref.current.offsetTop);
 const scrollToTop = () => window.scrollTo(0,0);
 const useMountEffect = (fun) => useEffect(fun,[]);
@@ -33,9 +35,9 @@ const CarDealDetails = (props) => {
         <div><br/><br/>
         {   
             (loading===true)? (
-              <div className="list-item list-item--message">
-               { <span>Loading</span>}
-              </div>
+                <div>
+                <Spinner variant="danger" animation="border" />
+                </div>
             ) :
             (
                 <div>
