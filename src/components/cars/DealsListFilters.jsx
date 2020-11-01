@@ -91,6 +91,11 @@ class DealsFilters extends React.Component{
           //set slider coordinates //Done
           this.setState({value:[this.getCoordinate(minBudget),this.getCoordinate(maxBudget)]});
           this.props.dispatch(setBudget(minBudget,maxBudget));
+          this.props.dispatch(setSearch([""]));
+          this.props.dispatch(setBodyType([]));
+          this.props.dispatch(setOrder(1));
+          this.props.dispatch(setSort("price"));          
+
           console.log("min cord = "+ this.getCoordinate(minBudget)+" max cord = "+this.getCoordinate(maxBudget));
         }
 
