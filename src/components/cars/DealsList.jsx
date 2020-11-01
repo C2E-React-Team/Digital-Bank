@@ -11,6 +11,20 @@ import {
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
 import { Spinner } from 'reactstrap';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+
+const muiTheme = createMuiTheme({
+palette: {
+  primary: {
+    main: 'rgb(255, 51, 51)'
+  }
+}
+
+});
+
+
 
 class CarDealsList extends React.Component{
 
@@ -68,15 +82,16 @@ render(){
           </div>
         ) : (
           <div>
+          <ThemeProvider theme={muiTheme}>
           <Pagination count={parseInt((this.props.deals.length%this.state.dealsPerPage==0)?
                                       this.props.deals.length/this.state.dealsPerPage:
                                       this.props.deals.length/this.state.dealsPerPage+1
             )}  
            onChange = {(e,page)=>this.onPageChange(e,page)}
            page={this.state.currentPage}
-           color="rgb(255, 51, 51)"
+           color="primary"
            />
-          
+           </ThemeProvider>
             {currentDeals.map((deal,index,deals) => {
 
               
@@ -95,14 +110,16 @@ render(){
           </div>
           ))
         }
+        <ThemeProvider theme={muiTheme}>
         <Pagination count={parseInt((this.props.deals.length%this.state.dealsPerPage==0)?
                                     this.props.deals.length/this.state.dealsPerPage:
                                     this.props.deals.length/this.state.dealsPerPage+1
           )}  
           onChange = {(e,page)=>this.onPageChange(e,page)}
           page={this.state.currentPage}
-          color="rgb(255, 51, 51)"
+          color="primary"
           />
+          </ThemeProvider>
         {/* </Card> */}
     </div>
 );}
