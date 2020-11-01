@@ -1,12 +1,39 @@
 import React from 'react';
 
 //import web from "../images/carill1.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 //import gal1 from "../images/gal1.jpg";
 import logo from "../images/logo.jpg";
+import slide1 from "../images/sl1.jpg";
+import slide2 from "../images/sl2.jpg";
+import slide3 from "../images/sl3.jpg";
 import '../css/HomePageStyle.css';
 import { isLogin } from '../components/Auth';
 import {logout} from './Auth.js';
+
+
+
+const items = [
+  {
+    src: slide1,
+    
+    altText: 'Slide 1'
+    
+    
+  },
+  {
+    src:
+      slide2,
+    altText: 'Slide 1'
+    
+  },
+  {
+    src:
+      slide3,
+    altText: 'Slide 1'
+    
+  }
+];
 
 
 const handleLogout = () => {
@@ -14,7 +41,7 @@ const handleLogout = () => {
   localStorage.clear();
 }
 
-import { Button, Container, Row, Col, Carousel } from "reactstrap";
+import { Button, Container, Row, Col, UncontrolledCarousel } from "reactstrap";
 
 class HomePage extends React.Component{
     constructor(props){
@@ -45,11 +72,11 @@ class HomePage extends React.Component{
       
         return(
             <div>
-            
+            <div className="homeSize">
             <div className="container-fluid nav_bg">
             <div className="row">
               <div className="col-10 mx-auto">
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <nav className="navbar navbar-expand-lg navbar-light bg-white">
                   <div className="container-fluid">
                     <img className="logoresize" src={logo} />
                     <NavLink className="navbar-brand" to="/">
@@ -75,21 +102,21 @@ class HomePage extends React.Component{
                           <NavLink
                             
                             exact
-                            className="nav-link"
+                            className="nav-link mr-3"
                             aria-current="page"
                             to="/"
                           >
-                            Home
+                            HOME
                           </NavLink>
                           <span />
                         </li>
                         <li className="nav-item">
                           <NavLink
                             
-                            className="nav-link"
+                            className="nav-link mr-3"
                             to="/cars"
                           >
-                            Cars
+                            CARS
                           </NavLink><span />
                         </li>
     
@@ -106,10 +133,10 @@ class HomePage extends React.Component{
                         <li>
                         <NavLink
                             
-                            className="nav-link"
+                            className="nav-link mr-3"
                             to="/profile"
                           >
-                            Profile
+                            PROFILE
                           </NavLink><span /><span />
                         </li>
     
@@ -117,21 +144,23 @@ class HomePage extends React.Component{
                         {isLogin()?
                           (<li className="nav-item">
                               <NavLink 
-                                className="nav-link "
+                                className=" nav-link"
                                 onClick={()=>handleLogout()}
                                 to="/"
                               >
-                                Logout
+                                <div className="logcolor">LOGOUT</div>
+                                
                               </NavLink>
                             
                             </li>):
                               (<li className="nav-item">
                                 <NavLink 
-                                  className="nav-link "
+                                  className="nav-link"
                                   
                                   to="/login"
                                 >
-                                  Login
+                                  <div className="logcolor">LOGIN</div>
+                                  
                                 </NavLink>
                               
                               </li>)}
@@ -182,23 +211,24 @@ class HomePage extends React.Component{
             </div>
           </section>
     
+    </div>
     
     
     
+          
     
-       
+          
     
+            
+          <section className="slant1 hideme">   <div className="red-line"></div> </section>
     
-    
-    
-    
-          <section className="slant hideme">
+          {/*<section className="slant1 hideme">
     
                             <button className= "btnpos1 btn-grad">
     Show cars</button>
     <button className= "btnpos2 btn-grad">
     Show Properties</button>
-    </section>
+                        </section>*/}
     
     
     
@@ -206,49 +236,42 @@ class HomePage extends React.Component{
     
     
     
-    
-        <section className="section section-shaped">
-              <div className="shape shape-style-1 shape-default">
-                <span />
-                <span />
-                <span />
-                <span />
-                <span />
-                <span />
-              </div>
-              <Container className="py-md">
+              <section>
+              <div className=" carousel-bg ">
+                
                 <Row className="justify-content-between align-items-center">
-                  <Col className="mb-5 mb-lg-0" lg="5">
-                    <h1 activeStyle={{color:'red'}}>
+                  <Col >
+                    <p className=" text-black  page-section__title text-center">
                       Most Viewed
-                    </h1>
-                    <p className="lead text-black mt-4 page-section__paragraph">
+                    </p>
+                    <p className=" text-black  page-section__paragraph">
                     The Koenigsegg Regera is a car that 
                     is luxurious as well as insanely fast. 
                     There's little compromise in creature comfort. 
                     </p>
-                    
+                    <div className=" text-center" >
+                      <NavLink  className="text-center" to="/cars"><button className="btn-grad text-center">Show more</button></NavLink>
+                   
+                    </div>
+
+                  
                   </Col>
-                  <Col className="mb-lg-auto" lg="6">
-                    <div className="rounded shadow-lg overflow-hidden transform-perspective-right">
-                      
-    
-    
-        <img
-          className="d-block w-100"
+                  <Col>
+                    
+                    <UncontrolledCarousel className="slidesize overflow-hidden" items={items} />
+       {/* <img className="slidesize"
+          
           src={logo}
           alt="Third slide"
-        />
-    
-       
-    
-    
-    
-                    </div>
+                        />    */}
+                    
                   </Col>
                 </Row>
-              </Container>
-             
+              </div>
+              <section className="slant2 hideme">
+    
+  
+</section>
           
             </section>
     
@@ -257,7 +280,7 @@ class HomePage extends React.Component{
     
     
     
-    <div className="cont">
+    <div className="cont bg-white">
             <section className="slider">
               <div className="page-section text-center">
                 <h2 className="page-section__title">WHAT OUR CLIENTS SAY?</h2>

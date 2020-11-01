@@ -114,7 +114,7 @@ background-attachment: fixed;
         counter-reset: step;
       }
       .progressbar li {
-    float: left;
+        float: left;
         display: inline-block;
         width: 30.33%;
         position: relative;
