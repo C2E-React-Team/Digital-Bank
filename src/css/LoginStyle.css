@@ -168,10 +168,10 @@ button:hover {
   transition: all 0.4s;
 
   background: #e20909;
-  background: -webkit-linear-gradient(left, #f70f0f, #180303);
-  background: -o-linear-gradient(left, #f70f0f, #180303);
-  background: -moz-linear-gradient(left, #f70f0f, #180303);
-  background: linear-gradient(left, #f70f0f, #180303);
+  background: -webkit-linear-gradient(left, #f70f0f);
+  background: -o-linear-gradient(left, #f70f0f);
+  background: -moz-linear-gradient(left, #f70f0f);
+  background: linear-gradient(left, #f70f0f);
 }
 
 .focus-input::after {
@@ -227,18 +227,18 @@ button:hover {
 
 .btn-show-pass:hover {
   color: #e20909;
-  color: -webkit-linear-gradient(left, #f70f0f, #180303);
-  color: -o-linear-gradient(left, #f70f0f, #180303);
-  color: -moz-linear-gradient(left, #f70f0f, #180303);
-  color: linear-gradient(left, #f70f0f, #180303);
+  color: -webkit-linear-gradient(left, #f70f0f, red);
+  color: -o-linear-gradient(left, #f70f0f, red);
+  color: -moz-linear-gradient(left, #f70f0f, red);
+  color: linear-gradient(left, #f70f0f, red);
 }
 
 .btn-show-pass.active {
   color: #e20909;
-  color: -webkit-linear-gradient(left, #f70f0f, #180303);
-  color: -o-linear-gradient(left, #f70f0f, #180303);
-  color: -moz-linear-gradient(left, #f70f0f, #180303);
-  color: linear-gradient(left, #f70f0f, #180303);
+  color: -webkit-linear-gradient(left, #f70f0f,  red);
+  color: -o-linear-gradient(left, #f70f0f, red);
+  color: -moz-linear-gradient(left, #f70f0f, red);
+  color: linear-gradient(left, #f70f0f,  red);
 }
 
 
@@ -270,10 +270,10 @@ button:hover {
   width: 300%;
   height: 100%;
   background: #f70f0f;
-  background: -webkit-linear-gradient(right,  #f70f0f, #7e0606,  #f70f0f, #180303);
-  background: -o-linear-gradient(right, #f70f0f, #7e0606,  #f70f0f, #180303);
-  background: -moz-linear-gradient(right, #f70f0f, #7e0606,  #f70f0f, #180303);
-  background: linear-gradient(right, #f70f0f, #7e0606,  #f70f0f, #180303);
+  background: -webkit-linear-gradient(right,  #f70f0f, #e70606,  #f70f0f);
+  background: -o-linear-gradient(right, #f70f0f, #e70606,  #f70f0f);
+  background: -moz-linear-gradient(right, #f70f0f, #e70606,  #f70f0f);
+  background: linear-gradient(right, #f70f0f, #e70606,  #f70f0f);
   top: 0;
   left: -100%;
 
