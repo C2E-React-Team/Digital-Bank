@@ -74,7 +74,7 @@ onRejectLoan(refId){
 render(){
     return(
         <center><br /><br />
-            <div className="card3">{
+            <div className="card5">{
             (this.state.loading===true)? (
                 <div className="list-item list-item--message">
                   <span>Loading</span>
@@ -99,53 +99,41 @@ render(){
                     </select>
 </div></center>
 
-    <h4><br/>
-    
+    <h5><br/>
+   
+    <center>
+        <table className="customers" >
+            <tr>
+            <th>Customer Id</th><th>Car Name</th><th>Car Cost</th><th>Loan Amount Requested</th><th>Tenure</th>
+                <th>EMI</th><th>Submitted Document</th><th>Reference Id</th><th>Status</th>
+            </tr>
        {  
         this.props.data.filter((loan)=>loan.status==this.state.status).length === 0 ? (
       <div className="list-item list-item--message">
         <span>No {this.state.status} Loans</span>
       </div>
-    ): 
+    ):
     
-    (this.props.data.filter((loan1)=>loan1.status==this.state.status).map((loan)=>(<div key={loan.refId}>
-        <br />
-        <div className="card4"><br /><br />
-        <center>
-        <table className="customers" style={{width:'750px'}}>
-        <tr>
-                <td>Customer Id</td>
-                <td>INR {loan.customerId}</td>
-            </tr>
-            <tr>
-                <td>Car Name</td>
-                <td>{loan.carName} </td>
-                </tr>
-        <tr>
-                <td>Car Cost</td>
-                <td>INR {loan.carCost}</td>
-            </tr>
-            <tr>
-                <td>Loan Amount Requested</td>
-                <td>INR {loan.loanAmount} </td>
-                </tr>
+       
+               
+            
+            
+            (this.props.data.filter((loan1)=>loan1.status==this.state.status).map((loan)=>( 
+    
                 <tr>
-                <td>Loan Tenure Period</td>
-                <td>{loan.tenure} Months</td>
-                </tr>
-                <tr>
-                <td>EMI</td>
-                <td>INR {loan.emi}</td>
-                </tr>
-                <tr>
-                <td>Submitted Document</td>
-                <td>{loan.selectedFile}</td>
-                </tr> 
-                <tr>
-                <td>Reference Id</td>
-                <td>{loan.refId}</td>
-                </tr>  
-        </table></center>
+                <td>{loan.customerId}</td>
+                <td>{loan.carName} </td><td>INR {loan.carCost}</td><td>INR {loan.loanAmount} </td><td>{loan.tenure} Months</td>
+                <td>INR {loan.emi}</td><td>{loan.selectedFile}</td> <td>{loan.refId}</td>
+                <td>{console.log("refID",loan)}
+      {(loan.status!="Approved")?(<button  onClick={()=>this.onApproveLoan(loan.refId)} className="button-accept">Approve</button>):(<p></p>)}
+      {(loan.status!="Rejected")?(<button  onClick={()=>this.onRejectLoan(loan.refId)} className="button-reject">Reject</button>):(<p></p>)}
+    </td>
+                </tr>)))
+            
+                
+            
+       
+} </table></center>
         {/*<button className="button-appliedloan"  onClick={()=>this.status()} >status</button>
          <div className="container">
           <ul className="progressbar">
@@ -153,14 +141,11 @@ render(){
             <li>Processing</li>
             <li>Accepted/Rejected</li>
              </ul>
-    </div>*/}{console.log("refID",loan)}
-      {(loan.status!="Approved")?(<button  onClick={()=>this.onApproveLoan(loan.refId)} className="button-accept">Approve</button>):(<p></p>)}
-      {(loan.status!="Rejected")?(<button  onClick={()=>this.onRejectLoan(loan.refId)} className="button-reject">Reject</button>):(<p></p>)}
-    </div>
+    </div>*/}
     <br/><br/><br/>
     
-    </div>)))
-       }</h4>
+    
+       </h5>
     </div>)}</div>
     </center>
  )};

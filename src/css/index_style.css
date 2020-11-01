@@ -102,8 +102,8 @@ background-attachment: fixed;
   .customers th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
-    background-color: #4CAF50;
+    text-align: center;
+    background-color: rgb(184, 44, 44);
     color: white;
   }  
     .container {
@@ -258,6 +258,16 @@ background-attachment: fixed;
     
   box-shadow: 0px 4px 8px 0 black;
   max-width: 800px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  display:right;
+}
+
+.card5 {
+    
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 1300px;
   margin: auto;
   text-align: center;
   font-family: arial;
