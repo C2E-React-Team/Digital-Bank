@@ -6,7 +6,6 @@ import {appliedLoans} from '../actions/Loan';
 import { red } from '@material-ui/core/colors';
 //import Demo from './Demo.js';
 
-const localName = "customerDetails";
 
 
 
@@ -17,7 +16,7 @@ constructor(props)
 
 this.state = { 
     loading:true,
-    status:'Applied'
+    status:"Applied"
    // value:''
     }; 
  
@@ -30,7 +29,7 @@ if(this.state.status =="Applied"){
 
 
 componentWillMount(){
-    const CUSTOMER_LOANS_REST_API_URL = "http://localhost:8080/loans/";
+    const CUSTOMER_LOANS_REST_API_URL = "http://localhost:8080/loans";
     axios.get(CUSTOMER_LOANS_REST_API_URL).then((response)=>{
         console.log("in get res",response);
         this.props.dispatch(appliedLoans(response.data));
@@ -43,7 +42,7 @@ onApproveLoan(refId){
     axios.delete('http://localhost:8080/loans/approve/'+refId)
       .then((response)=> {
         console.log(response);
-        const CUSTOMER_LOANS_REST_API_URL = "http://localhost:8080/loans/get/"+JSON.parse(localStorage.getItem(localName)).customerId;
+        const CUSTOMER_LOANS_REST_API_URL = "http://localhost:8080/loans";
      axios.get(CUSTOMER_LOANS_REST_API_URL).then((response)=>{
          console.log("in get after del",response);
          this.props.dispatch(appliedLoans(response.data));
@@ -60,7 +59,7 @@ onRejectLoan(refId){
     axios.delete('http://localhost:8080/loans/reject/'+refId)
       .then((response)=> {
         console.log(response);
-        const CUSTOMER_LOANS_REST_API_URL = "http://localhost:8080/loans/get/"+JSON.parse(localStorage.getItem(localName)).customerId;
+        const CUSTOMER_LOANS_REST_API_URL = "http://localhost:8080/loans";
      axios.get(CUSTOMER_LOANS_REST_API_URL).then((response)=>{
          console.log("in get after del",response);
          this.props.dispatch(appliedLoans(response.data));
@@ -103,8 +102,8 @@ render(){
       <div className="list-item list-item--message">
         <span>No {this.state.status} Loans</span>
       </div>
-    ): (this.props.data.filter((loan)=>loan.status==this.state.status).map((loan)=>(<div key={loan.refId}>
-        Reference ID:{console.log("refID",loan),loan.refId} <br />
+    ): (this.props.data.filter((loan1)=>loan1.status==this.state.status).map((loan)=>(<div key={loan.refId}>
+        Reference ID:{loan.refId} <br />
         
         <table className="customers">
         <tr>
@@ -143,9 +142,9 @@ render(){
             <li>Processing</li>
             <li>Accepted/Rejected</li>
              </ul>
-    </div>*/}
-      <button  onClick={()=>this.onApproveLoan(loan.refId)} className="button">Approve</button>
-      <button  onClick={()=>this.onRejectLoan(loan.refId)} className="button">Reject</button>
+    </div>*/}{console.log("refID",loan)}
+      {(loan.status!="Approved")?(<button  onClick={()=>this.onApproveLoan(loan.refId)} className="button">Approve</button>):(<p></p>)}
+      {(loan.status!="Rejected")?(<button  onClick={()=>this.onRejectLoan(loan.refId)} className="button">Reject</button>):(<p></p>)}
     <br/><br/><br/>
     
     </div>)))
