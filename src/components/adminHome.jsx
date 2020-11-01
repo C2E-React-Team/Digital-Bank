@@ -74,39 +74,46 @@ onRejectLoan(refId){
 
 render(){
     return(
-        <center>
-            <div className="div4">{
+        <center><br /><br />
+            <div className="card3">{
             (this.state.loading===true)? (
                 <div>
           <Spinner variant="danger" animation="border" />
           </div>
               ) :
         (<div >    
-    <h2>Applied Loan Details</h2>
-  
-    Status: <select id="statusOption" style={{padding:"3%",color:"#909090"}}
+    <h3>Loan Details</h3>
+    <h3>Status</h3>
+    <center>
+    <div className="select-style">
+    <select id="statusOption" style={{padding:"5%",color:'black'}}
                     className="select"
                     value={this.state.status} 
                     onChange={(e)=>{
                         this.setState({status:e.target.value});
                     }}
                     >
-                        <option style={{padding:"5%"}} value="Applied">Applied</option>
-                        <option style={{padding:"5%"}} value="Approved">Approved</option>
-                        <option style={{padding:"5%"}} value="Rejected">Rejected</option>
+                        
+                        <option style={{padding:"5%", color:'blue'}} value="Applied">Applied</option>
+                        <option style={{padding:"5%", color:'green'}} value="Approved">Approved</option>
+                        <option style={{padding:"5%", color:'red'}} value="Rejected">Rejected</option>
                     </select>
+</div></center>
 
-    <h3><br/>
+    <h4><br/>
     
        {  
         this.props.data.filter((loan)=>loan.status==this.state.status).length === 0 ? (
       <div className="list-item list-item--message">
         <span>No {this.state.status} Loans</span>
       </div>
-    ): (this.props.data.filter((loan1)=>loan1.status==this.state.status).map((loan)=>(<div key={loan.refId}>
-        Reference ID:{loan.refId} <br />
-        
-        <table className="customers">
+    ): 
+    
+    (this.props.data.filter((loan1)=>loan1.status==this.state.status).map((loan)=>(<div key={loan.refId}>
+        <br />
+        <div className="card4"><br /><br />
+        <center>
+        <table className="customers" style={{width:'750px'}}>
         <tr>
                 <td>Customer Id</td>
                 <td>INR {loan.customerId}</td>
@@ -134,8 +141,12 @@ render(){
                 <tr>
                 <td>Submitted Document</td>
                 <td>{loan.selectedFile}</td>
+                </tr> 
+                <tr>
+                <td>Reference Id</td>
+                <td>{loan.refId}</td>
                 </tr>  
-        </table>
+        </table></center>
         {/*<button className="button-appliedloan"  onClick={()=>this.status()} >status</button>
          <div className="container">
           <ul className="progressbar">
@@ -144,12 +155,13 @@ render(){
             <li>Accepted/Rejected</li>
              </ul>
     </div>*/}{console.log("refID",loan)}
-      {(loan.status!="Approved")?(<button  onClick={()=>this.onApproveLoan(loan.refId)} className="button">Approve</button>):(<p></p>)}
-      {(loan.status!="Rejected")?(<button  onClick={()=>this.onRejectLoan(loan.refId)} className="button">Reject</button>):(<p></p>)}
+      {(loan.status!="Approved")?(<button  onClick={()=>this.onApproveLoan(loan.refId)} className="button-accept">Approve</button>):(<p></p>)}
+      {(loan.status!="Rejected")?(<button  onClick={()=>this.onRejectLoan(loan.refId)} className="button-reject">Reject</button>):(<p></p>)}
+    </div>
     <br/><br/><br/>
     
     </div>)))
-       }</h3>
+       }</h4>
     </div>)}</div>
     </center>
  )};
