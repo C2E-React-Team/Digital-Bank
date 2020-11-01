@@ -13,6 +13,7 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Spinner } from 'react-bootstrap';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -193,16 +194,16 @@ onLoanWithdraw(refID){
 
 render(){
     return(
-        <center>
-            <div className="div4">{
+        <center><br />
+            <div className="card3">{
             (this.state.loading===true)? (
-                <div className="list-item list-item--message">
-                  <span>Loading</span>
-                </div>
+              <div>
+              <Spinner variant="danger" animation="border" />
+              </div>
               ) :
         (<div >    
-    <h2>Applied Loan Details</h2>
-       <h3> Client ID: {JSON.parse(localStorage.getItem(localName)).customerId}<br/>
+    <h3>Applied Loan Details</h3>
+       <h3> Customer ID: {JSON.parse(localStorage.getItem(localName)).customerId}<br/><br />
     
        {  
         this.props.data.length === 0 ? (
@@ -210,9 +211,12 @@ render(){
         <span>No Applied Loans</span>
       </div>
     ): (this.props.data.map((loan)=>(<div key={loan.refId}>
-        
-        
-        <table className="customers">
+        <div className="card4">
+        <center>
+          <br /><br />
+         <HorizontalLinearStepper e={loan.status}/>
+
+        <table className="customers" style={{width:'750px'}}>
         <tr>
                 <td>Car Name</td>
                 <td>{loan.carName}</td>
@@ -238,7 +242,7 @@ render(){
                 {console.log("refID",loan),loan.refId}
                 </td>
                 </tr>
-        </table>
+        </table></center>
         {/*<button className="button-appliedloan"  onClick={()=>this.status()} >status</button         <div className="container">
           <ul className="progressbar">
             <li className={this.state.value}>Applied</li>
@@ -248,7 +252,7 @@ render(){
     </div>*/}
       <button  onClick={()=>this.onLoanWithdraw(loan.refId)} className="button">Withdraw</button>
      
-         <HorizontalLinearStepper e={loan.status}/>
+         </div>
     <br/><br/><br/>
     
     </div>)))

@@ -5,6 +5,8 @@ import {getCarDeals} from '../../services/carService';
 import {setDeals} from '../../actions/cars/deals';
 import '../../css/index_style.css';
 import '../../style/dealdetails.css';
+import { Spinner } from 'react-bootstrap';
+
 const scrollToRef=(ref)=>window.scrollTo(0,ref.current.offsetTop);
 const scrollToTop = () => window.scrollTo(0,0);
 const useMountEffect = (fun) => useEffect(fun,[]);
@@ -30,12 +32,12 @@ const CarDealDetails = (props) => {
         props.history.push(`/loanpage/${props.data.id}`)
     }
     return (
-        <div>
+        <div><br/><br/>
         {   
             (loading===true)? (
-              <div className="list-item list-item--message">
-               { <span>Loading</span>}
-              </div>
+                <center><div>
+                <Spinner variant="danger" animation="border" />
+                </div></center>
             ) :
             (
                 <div>
@@ -93,14 +95,19 @@ const CarDealDetails = (props) => {
                     <ul className="loanlist">
                         <li>Paperless and seamless process</li>
                         <li>Easy online personal loan EMI calculator helps you plan for expenses after taking the loan</li>
-                        <li>You can get loans from Rs. 25,000 to Rs. 15 lakh</li>
-                        <li>You can choose a tenure between 12 and 60 months</li>
-                        <li>Best interest rates from 10.99% and up to 23.99%, depending on your eligibility and loan tenure</li>
+                        <li>You can get loans from Rs. 1 lakh to Rs. 15 lakh</li>
+                        <li>You can choose a tenure between 24 and 60 months</li>
+                        <li>Best interest rates from 8% and up to 9%, depending on your eligibility and loan tenure</li>
                     </ul>Once you reach the right amount and tenure, you can go ahead and apply for a personal loan.
                     </div>
-                    <div style={{height:"50px"}} id="dealer"></div>
-                    <div ref={dealerref} id="dealer">
-                    <h1 className="details_headings">About dealer</h1>Dealer:Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec fermentum lectus. Ut sit amet elit nulla. Mauris malesuada mauris posuere ipsum faucibus efficitur. Vestibulum ultricies id metus et malesuada. Morbi eget lacus faucibus, suscipit velit at, lacinia metus. Maecenas commodo tortor ac metus pretium dictum. Nulla vestibulum at enim non volutpat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</div>
+                    <div style={{height:"59px"}} id="dealer"></div>
+                    <div ref={dealerref} id="dealer" className="dealer_details">
+                    <h1 className="details_headings">About dealer</h1>
+                    We are one of the leading used car Dealer in India. We stock a huge range of different makes and models, giving you the variety that you are looking for.
+                    Since 30 years throughout our time selling cars, we have been genuinely committed to providing a quality first class service and value for money in every area of our business.
+            This website has been built to be as user friendly as possible to help you choose the best car suitable for you. 
+We are the 1st Independent Pre-Owned Car Dealer to Introduce a dynamic website for our Customers, setting Benchmark for all others in this Industry.
+                    </div>
                     
                 </div>
             </div></div>)}

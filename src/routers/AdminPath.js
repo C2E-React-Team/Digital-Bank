@@ -10,7 +10,7 @@ const AdminPath = ({component: Component, ...rest}) => {
             isAdmin() ?
             <div>
                 <Header />
-                <AdminHome />
+                <Component {...props} />
                 </div>
             : <Redirect to="/" />
         )} />

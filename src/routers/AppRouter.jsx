@@ -17,6 +17,7 @@ import AppliedLoan from '../components/cars/AppliedLoans.jsx'
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../../node_modules/bootstrap/dist/js/bootstrap.bundle";
 import AdminPath  from './AdminPath.js';
+import AdminProfileView from '../components/AdminProfileView.jsx';
 
 export const history = createBrowserHistory();
 
@@ -41,7 +42,7 @@ const AppRouter = () => (
                 <PublicPath path="/login" component={LoginPage} exact /> 
                 
                 <AdminPath path="/admin" component={AdminHome} exact />
-
+                <AdminPath path="/profile/:id" component={AdminProfileView} exact />
                  
                 <Route component={HomePage} path="/" exact />
                 {/* <PublicPath component={HeroPage} path="/" exact /> */}

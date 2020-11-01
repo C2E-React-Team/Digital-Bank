@@ -16,16 +16,22 @@ const muiTheme = createMuiTheme({
   overrides:{
     MuiSlider: {
       thumb:{
-      color: "#909090",
+      color: "rgb(255, 51, 51)",
       },
       track: {
-        color: '#909090'
+        color: 'rgb(255, 51, 51)'
       },
       rail: {
-        color: '#909090'
+        color: 'rgb(255, 51, 51)'
       },
     }
+},
+palette: {
+  primary: {
+    main: 'rgb(255, 51, 51)'
+  }
 }
+
 });
 
 class DealsFilters extends React.Component{
@@ -241,7 +247,7 @@ class DealsFilters extends React.Component{
           return (
             <div  id="dealsListFilterMainBackground" style={{font: "15px Arial, sans-serif",textShadow:"1px 1px rgba(0,0,0,0.2)",width:270, margin:30}}>
 
-          <div >  Sort By: <select id="sortOption" style={{padding:"3%",color:"#909090"}}
+          <div >  <p className="filter_heading">Sort By</p> <select id="sortOption" style={{padding:"3%",color:"#909090"}}
                     className="select"
                     value={this.state.sortBy} 
                     onChange={(e)=>{
@@ -259,13 +265,14 @@ class DealsFilters extends React.Component{
                     </select>
                     {(this.state.order===1)?<button className="sortButton" onClick={()=>this.changeOrder()}>Ascending</button>:<button className="sortButton" onClick={()=>this.changeOrder()}>Descending</button>}<br/><br/>
                     </div>
-                    Search Cars:
+                    <p className="filter_heading" >Search Car</p>
+                    <ThemeProvider theme={muiTheme}>
             <input type="search" className="search1" style={{padding:"5%"}}
             value={this.state.input}
             label="Search Cars"
             variant="outlined"
             placeholder="Search Cars"
-            color="secondary"
+            color="primary"
             onChange={e=>this.onSearch(e)}
             onKeyDown={e=>this.onSearch(e)}
             />
@@ -275,16 +282,16 @@ class DealsFilters extends React.Component{
               label={type} 
               key={index}
               variant = "outlined"
-              color="secondary"
+              color="primary"
               onDelete={()=>this.onSearchDelete(type)}
               />))}<br />
-
-            <p>Select Budget:</p>
+              </ThemeProvider>
+            <p className="filter_heading" >Select Budget:</p>
             <ThemeProvider theme={muiTheme}>
             <Slider
               value={this.state.value}
               onChange={(e,data)=>this.onBudgetChange(e,data)}
-              color="secondary"
+              color="rgb(255, 51, 51)"
               marks={marks}
               min={1}
               max={99}
@@ -311,17 +318,19 @@ class DealsFilters extends React.Component{
               }
               }//change
               valueLabelDisplay="auto"
-             /></ThemeProvider><br />
+             /><br />
 
-            <p>Select Body Type:</p>
-            {this.state.bodyTypes.map((type,index) => (<Chip 
+            <p className="filter_heading" >Select Body Type:</p>
+            {this.state.bodyTypes.map((type,index) => (
+              <Chip 
               label={type.label} 
               key={index}
               variant = {type.variant}
-              color="#909090"
+              color="primary"
               clickable={true}
               onClick={()=>this.onTypeChange(type)}
               />))}
+              </ThemeProvider>
 
 
 
