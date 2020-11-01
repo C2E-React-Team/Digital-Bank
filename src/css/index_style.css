@@ -188,7 +188,7 @@ background-attachment: fixed;
   
   .select-style {
     border: 1px solid black;
-    width: 120px;
+    width: 160px;
     border-radius: 3px;
     overflow: hidden;
     
@@ -196,7 +196,7 @@ background-attachment: fixed;
 
 .select-style select {
     padding: 5px 8px;
-    width: 130%;
+    width: 100%;
     border: none;
     box-shadow: none;
     background: transparent;
@@ -245,4 +245,21 @@ background-attachment: fixed;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
   }
 
-  
+  .card3 {
+    
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  display:right;
+}
+.card4 {
+    
+  box-shadow: 0px 4px 8px 0 black;
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  display:right;
+}
