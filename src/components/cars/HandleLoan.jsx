@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import '../../style/handleloan.css'
+import { Spinner } from 'react-bootstrap';
 
 const localName = "customerDetails";
 
@@ -219,9 +220,9 @@ render(){
         <div className="handlediv">
         {
             (this.state.loading===true)? (
-                <div className="list-item list-item--message">
-                  <span>Loading</span>
-                </div>
+              <div>
+              <Spinner variant="danger" animation="border" />
+              </div>
               ) :
                
 
