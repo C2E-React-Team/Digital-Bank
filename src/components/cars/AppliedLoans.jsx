@@ -214,6 +214,8 @@ render(){
         <div className="card4">
         <center>
           <br /><br />
+         <HorizontalLinearStepper e={loan.status}/>
+
         <table className="customers" style={{width:'750px'}}>
         <tr>
                 <td>Car Name</td>
@@ -250,7 +252,6 @@ render(){
     </div>*/}
       <button  onClick={()=>this.onLoanWithdraw(loan.refId)} className="button">Withdraw</button>
      
-         <HorizontalLinearStepper e={loan.status}/>
          </div>
     <br/><br/><br/>
     
