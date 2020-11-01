@@ -74,8 +74,8 @@ onRejectLoan(refId){
 
 render(){
     return(
-        <center>
-            <div className="div4">{
+        <center><br /><br />
+            <div className="card">{
             (this.state.loading===true)? (
                 <div className="list-item list-item--message">
                   <span>Loading</span>
@@ -83,19 +83,21 @@ render(){
               ) :
         (<div >    
     <h2>Applied Loan Details</h2>
-  
-    Status: <select id="statusOption" style={{padding:"3%",color:"#909090"}}
+    <h2>Status</h2>
+    <center>
+    <div className="select-style">
+    <select id="statusOption" style={{padding:"3%",color:"#909090"}}
                     className="select"
                     value={this.state.status} 
                     onChange={(e)=>{
                         this.setState({status:e.target.value});
                     }}
                     >
-                        <option style={{padding:"5%"}} value="Applied">Applied</option>
-                        <option style={{padding:"5%"}} value="Approved">Approved</option>
-                        <option style={{padding:"5%"}} value="Rejected">Rejected</option>
+                        <option style={{padding:"5%", color:'blue'}} value="Applied">Applied</option>
+                        <option style={{padding:"5%", color:'green'}} value="Approved">Approved</option>
+                        <option style={{padding:"5%", color:'red'}} value="Rejected">Rejected</option>
                     </select>
-
+</div></center>
     <h3><br/>
     
        {  
@@ -144,8 +146,8 @@ render(){
             <li>Accepted/Rejected</li>
              </ul>
     </div>*/}
-      <button  onClick={()=>this.onApproveLoan(loan.refId)} className="button">Approve</button>
-      <button  onClick={()=>this.onRejectLoan(loan.refId)} className="button">Reject</button>
+      <button  onClick={()=>this.onApproveLoan(loan.refId)} className="button-accept">Approve</button>
+      <button  onClick={()=>this.onRejectLoan(loan.refId)} className="button-reject">Reject</button>
     <br/><br/><br/>
     
     </div>)))

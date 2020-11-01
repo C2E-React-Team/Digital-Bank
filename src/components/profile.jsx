@@ -101,7 +101,9 @@ class Profile extends React.Component{
            <br/>  
         <h3>Client ID: {JSON.parse(localStorage.getItem(localName)).customerId}</h3>
         <div className="title">Sex : {JSON.parse(localStorage.getItem(localName)).sex}<br />
-        Marital Status : {JSON.parse(localStorage.getItem(localName)).maritalStatus}<br />
+        
+        Employment : {JSON.parse(localStorage.getItem(localName)).selfEmployed}<br />
+        Dependents : {JSON.parse(localStorage.getItem(localName)).dependents}<br />
         Income : {JSON.parse(localStorage.getItem(localName)).income} SGD <br />
         Eligible EMI : {JSON.parse(localStorage.getItem(localName)).eMICapacity} SGD</div><br />
 
