@@ -10,7 +10,6 @@ class Profile extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            loading:true,
             userData:{}
         }
     }
@@ -20,7 +19,6 @@ class Profile extends React.Component{
             console.log(response.data);
            // this.props.dispatch(loginUser(response.data));
             this.setState({userData:response.data});
-            this.setState(()=>({loading:false}));
             })
     .catch(error => {
         console.log(error);
@@ -30,24 +28,24 @@ class Profile extends React.Component{
 
     render(){
         return(
-            
-                <div className="div3">       
+            <div className="div3">       
             <center><br/><br/>
             <div className="card">
-                <div>
-                    <h2>My Profile</h2>
+            <div>
+                    <h2>customer Profile</h2>
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRerBR3bfynBVdF2gjoii3i_8yI4KOdK5_cxw&usqp=CAU"></img>
            <br/>  
         <h3>Customer ID: {this.state.userData.customerId}</h3>
-        <div className="title">Sex : {this.state.userData.sex}<br />
+       <div className="title">Sex : {this.state.userData.sex}<br />
         
         Employment : {this.state.userData.selfEmployed}<br />
         Dependents : {this.state.userData.dependents}<br />
         Income : {this.state.userData.income} SGD <br />
-        Eligible EMI : {this.state.userData.eMICapacity} SGD</div><br />
+        Eligible EMI : {this.state.userData.eMICapacity} SGD</div>
+        <br />
 
         <br/><br /><br />
-                </div></div>
+                </div> </div>
         </center></div>
             
         );

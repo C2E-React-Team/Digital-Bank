@@ -35,9 +35,9 @@ const CarDealDetails = (props) => {
         <div><br/><br/>
         {   
             (loading===true)? (
-                <div>
+                <center><div>
                 <Spinner variant="danger" animation="border" />
-                </div>
+                </div></center>
             ) :
             (
                 <div>

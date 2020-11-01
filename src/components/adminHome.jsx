@@ -6,6 +6,7 @@ import {appliedLoans} from '../actions/Loan';
 import { red } from '@material-ui/core/colors';
 //import Demo from './Demo.js';
 import { Spinner } from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 
 
@@ -122,7 +123,7 @@ render(){
             (this.props.data.filter((loan1)=>loan1.status==this.state.status).map((loan)=>( 
     
                 <tr>
-                <td>{loan.customerId}</td>
+                <td><Link to={"/profile/"+loan.customerId}>{loan.customerId}</Link></td>
                 <td>{loan.carName} </td><td>INR {loan.carCost}</td><td>INR {loan.loanAmount} </td><td>{loan.tenure} Months</td>
                 <td>INR {loan.emi}</td><td>{loan.selectedFile}</td> <td>{loan.refId}</td>
                 <td>{console.log("refID",loan)}
