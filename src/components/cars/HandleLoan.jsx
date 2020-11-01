@@ -4,7 +4,10 @@ import {getDealById} from '../../selectors/cars.js'
 import {getCarDeals} from '../../services/carService';
 import {setDeals} from '../../actions/cars/deals';
 import {appliedLoans} from '../../actions/Loan';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
+import '../../style/handleloan.css'
 
 const localName = "customerDetails";
 
@@ -187,7 +190,7 @@ fileData = () => {
         
       return ( 
         <div> 
-          <h2>File Details:</h2> 
+          <h6 style={{marginTop:"20px"}}>File Details:</h6> 
           <p>File Name: {this.state.selectedFile.name}</p> 
           <p>File Type: {this.state.selectedFile.type}</p> 
           <p> 
@@ -200,7 +203,7 @@ fileData = () => {
      else { 
       return ( 
         <div> 
-          <h3>choose before pressing upload</h3>
+          <p className="para" style={{marginTop:"8px"}}>choose before pressing upload</p>
           </div> 
       ); 
     } 
@@ -209,8 +212,11 @@ fileData = () => {
 
 render(){
     return(
-        <center><br /><br />
-        <div className="card2">
+        
+        <div className="bgdiv">
+                <br></br>
+                <br></br>
+        <div className="handlediv">
         {
             (this.state.loading===true)? (
                 <div className="list-item list-item--message">
@@ -219,27 +225,63 @@ render(){
               ) :
                
 
-        (<form onSubmit={e=>e.preventDefault()}>
-                
-    <h2>My Details</h2>
-                <h4><label>Name&ensp;&ensp;</label>
-                <input type="text" value={JSON.parse(localStorage.getItem(localName)).creditHistory} readOnly /><br/>                
-                <label>Client Id   &ensp; </label>
-                <input type="text" value={JSON.parse(localStorage.getItem(localName)).customerId} readOnly /><br/>
-                <label>Gender &ensp;</label>
-                <input type="text" value={JSON.parse(localStorage.getItem(localName)).sex} readOnly /><br/>
-                <label>Martial Status &ensp;</label>
-                <input type="text" value={JSON.parse(localStorage.getItem(localName)).maritalStatus} readOnly /><br/> 
-                <label>Eligible Emi &ensp;</label>
-                <input type="text" value={(parseFloat(JSON.parse(localStorage.getItem(localName)).eMICapacity)*54.27)} readOnly /></h4>
-                <h2>U selected {console.log(this.props.CarData),this.props.CarData.car_name} <br />
-                
-                INR {this.props.CarData.price} <br />
-                from {this.props.CarData.dealer_name}
-               </h2>
-                <h4>Select Tenure</h4>
-                <select onChange={(e)=>this.updatetime(e)} required defaultValue="select time">
-                    <option value="select time"  disabled>select Tenure</option>
+        (<form className="handle_form" onSubmit={e=>e.preventDefault()}>          
+    <div className="heading">My Details</div>
+    <br></br>
+    <Grid container spacing={3}>
+        <Grid item xs={8} sm={5}>
+          <TextField
+            readonly
+            id="clientid"
+            name="Client Id"
+            label="Client Id"
+            value={JSON.parse(localStorage.getItem(localName)).customerId}
+            color="secondary"
+            size="medium"
+          />
+        </Grid>
+        <Grid item xs={8} sm={5}>
+          <TextField
+            readonly
+            id="gender"
+            name="gender"
+            label="Gender"
+            value={JSON.parse(localStorage.getItem(localName)).sex}
+            color="secondary"
+            autoComplete="given-name"
+          />
+        </Grid>
+        <Grid item xs={8} sm={5}>
+          <TextField
+            readonly
+            id="credithistory"
+            name="credithistory"
+            label="Credit History"
+            value={JSON.parse(localStorage.getItem(localName)).creditHistory}
+            color="secondary"
+            autoComplete="given-name"
+          />
+        </Grid>
+        <Grid item xs={8} sm={5}>
+          <TextField
+            readonly
+            id="emicapacity"
+            name="emicapacity"
+            label="Eligible EMI"
+            value={(parseFloat(JSON.parse(localStorage.getItem(localName)).eMICapacity)*54.27)}
+            color="secondary"
+            autoComplete="given-name"
+          />
+        </Grid>
+        </Grid>
+        <br></br>
+                <p className="para">You have selected <div className="heading2">{  this.props.CarData.car_name  }</div>
+                   INR <p className="heading2" >{  this.props.CarData.price  }
+                </p>from <p className="heading2" >{  this.props.CarData.dealer_name  }</p>
+               </p>
+                {/* <h6 className="heading3">Select Tenure</h6> */}
+                <select className="dropdown" onChange={(e)=>this.updatetime(e)} required defaultValue="select time">
+                    <option value="select time"  disabled>Select Tenure</option>
                     <option value="24">24 months</option>
                     <option value="36">36 months</option>
                     <option value="48">48 months</option>
@@ -248,26 +290,43 @@ render(){
                 <br /><br />
                 <div style={{display:this.state.showstore ? 'block': 'none'}}>
        
-              <h4>your loan amount eligibility is INR {this.state.loanAmountdisplay.toFixed(2)}</h4>
-              <h4><label>Enter your Loan Amount :</label></h4>
-                <input type="number" name="quantity" onChange={(e)=>this.loan(e)} value={this.state.loanAmount_request} required/><br></br>
-                <h4>U need to pay EMI INR {this.state.emi}</h4>
-            <h4>For your car to buy, bank will provide loan of INR {this.state.loanAmount_request} and you ned to pay INR {this.props.CarData.price-this.state.loanAmount_request}</h4>
-            <h4> 
+                <p className="para">Your Eligible loan amount is INR <div className="heading2">{this.state.loanAmountdisplay.toFixed(2)}</div></p>
+                <Grid item xs={8} sm={5} style={{marginLeft:"55px"}}>
+                <TextField
+                    readonly
+                    id="loanamount"
+                    name="quantity"
+                    label="Loan Amount"
+                    value={this.state.loanAmount_request}
+                    color="secondary"
+                    onChange={(e)=>this.loan(e)}
+                    autoComplete="given-name"
+                    type="number"
+                    fullWidth
+                />
+        </Grid>
+              {/* <h4><label>Enter your Loan Amount :</label></h4>
+                <input type="number" name="quantity" onChange={(e)=>this.loan(e)} value={this.state.loanAmount_request} required/> */}
+                <br></br>
+                
+                <p className="para">You need to pay EMI INR <div className="heading2">{this.state.emi}</div></p>
+            {/* <h4>For your car to buy, bank will provide loan of INR {this.state.loanAmount_request} and you ned to pay INR {this.props.CarData.price-this.state.loanAmount_request}</h4> */}
+            <p className="para1"> 
 			Upload scanned copy for your document :
-			</h4> 
-			<div> 
-				<input className="button" type="file" onChange={this.onFileChange} required/> <br />
-				<button className="button" onClick={this.onFileUpload}> 
-				Upload! 
-				</button> 
+			</p>
+			<div style = {{display:"flex", flexDirection:"row", gap:"0px", marginLeft:"55px"}} > 
+            <input type="file" onChange={this.onFileChange} required/> <br />
+				<input style={{border: "2px solid grey"}} type="button" value="Upload!" onClick={this.onFileUpload}/>
 			</div> 
 		{this.fileData()}
     <button className="button" type="submit" onClick={()=>this.onApply()} >Submit my request to bank</button></div>
     </form>
         )  }
-    </div><br /><br /><br />
-    </center>
+    </div>
+    <br></br>
+                <br></br>
+    </div>
+   
  )};
 }
 const mapStateToProps = (state,props) => {

@@ -1,0 +1,85 @@
+.handle_form{
+    display:grid;
+    margin:40px;
+}
+
+.handlediv{
+    background-color:#FFFFFF;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 1000px;
+  /* margin-top: 20px;
+  margin-bottom: 20px; */
+  margin: 0 auto;
+  text-align: center;
+  font-family: arial;
+  display:right;
+  width:800px;
+}
+
+.bgdiv{
+    background-color:#F3F3F3;
+    width:100%;
+    height:100%;
+}
+
+#clientid , #emicapacity, #loanamount{
+    width:100%
+}
+
+
+
+/* #clientid-label, #emicapacity-label, #gender-label, #credithistory-label  {
+    font-size: 20px;
+    color: rgb(255,51,51);
+} */
+
+.heading
+    {
+        margin-top: 20px;
+        margin-left: 45px;
+        font-weight : 600;
+        color: rgb(255, 51, 51);
+        font-size: 24px;
+        text-align: left;
+        
+    }
+
+.heading2{
+    font-weight : 500;
+    color: rgb(255, 51, 51);
+    font-size: 16px; 
+    display:inline; 
+    margin-left: 8px;
+    margin-right: 8px;   
+    }
+
+.para{
+    font-size:16px;
+    text-align:left;
+    margin-left: 55px;
+}
+.para1{
+    font-size:16px;
+    text-align:left;
+    margin-left: 55px;
+    color: rgb(255, 51, 51);
+}
+
+
+.heading3{
+    text-align:left;
+    margin-left: 55px;
+    color: rgb(255, 51, 51);
+
+}
+
+.dropdown{
+    display : inline;
+   margin: 0 auto;
+    border: 2px solid grey;
+    background-color: #F3F3F3;
+}
+
+select.dropdown option:hover {
+    box-shadow: 0 0 10px 100px rgb(255, 51, 51) inset;
+}
