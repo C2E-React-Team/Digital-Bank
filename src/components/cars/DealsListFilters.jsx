@@ -275,7 +275,7 @@ class DealsFilters extends React.Component{
               label={type} 
               key={index}
               variant = "outlined"
-              // color="rgb(255, 51, 51)"
+              color="rgb(255, 51, 51)"
               onDelete={()=>this.onSearchDelete(type)}
               />))}<br />
 
@@ -314,11 +314,12 @@ class DealsFilters extends React.Component{
              /></ThemeProvider><br />
 
             <p className="filter_heading" >Select Body Type:</p>
-            {this.state.bodyTypes.map((type,index) => (<Chip 
+            {this.state.bodyTypes.map((type,index) => (
+              <Chip 
               label={type.label} 
               key={index}
               variant = {type.variant}
-              color="rgb(255, 51, 51)"
+              //color="secondary"
               clickable={true}
               onClick={()=>this.onTypeChange(type)}
               />))}

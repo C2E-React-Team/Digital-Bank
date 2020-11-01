@@ -30,7 +30,7 @@ const CarDealDetails = (props) => {
         props.history.push(`/loanpage/${props.data.id}`)
     }
     return (
-        <div>
+        <div><br/><br/>
         {   
             (loading===true)? (
               <div className="list-item list-item--message">

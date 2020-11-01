@@ -6,7 +6,6 @@ import {appliedLoans} from '../actions/Loan';
 import { red } from '@material-ui/core/colors';
 //import Demo from './Demo.js';
 
-const localName = "customerDetails";
 
 
 
@@ -17,7 +16,7 @@ constructor(props)
 
 this.state = { 
     loading:true,
-    status:'Applied'
+    status:"Applied"
    // value:''
     }; 
  
@@ -30,7 +29,7 @@ if(this.state.status =="Applied"){
 
 
 componentWillMount(){
-    const CUSTOMER_LOANS_REST_API_URL = "http://localhost:8080/loans/";
+    const CUSTOMER_LOANS_REST_API_URL = "http://localhost:8080/loans";
     axios.get(CUSTOMER_LOANS_REST_API_URL).then((response)=>{
         console.log("in get res",response);
         this.props.dispatch(appliedLoans(response.data));
@@ -43,7 +42,7 @@ onApproveLoan(refId){
     axios.delete('http://localhost:8080/loans/approve/'+refId)
       .then((response)=> {
         console.log(response);
-        const CUSTOMER_LOANS_REST_API_URL = "http://localhost:8080/loans/get/"+JSON.parse(localStorage.getItem(localName)).customerId;
+        const CUSTOMER_LOANS_REST_API_URL = "http://localhost:8080/loans";
      axios.get(CUSTOMER_LOANS_REST_API_URL).then((response)=>{
          console.log("in get after del",response);
          this.props.dispatch(appliedLoans(response.data));
@@ -60,7 +59,7 @@ onRejectLoan(refId){
     axios.delete('http://localhost:8080/loans/reject/'+refId)
       .then((response)=> {
         console.log(response);
-        const CUSTOMER_LOANS_REST_API_URL = "http://localhost:8080/loans/get/"+JSON.parse(localStorage.getItem(localName)).customerId;
+        const CUSTOMER_LOANS_REST_API_URL = "http://localhost:8080/loans";
      axios.get(CUSTOMER_LOANS_REST_API_URL).then((response)=>{
          console.log("in get after del",response);
          this.props.dispatch(appliedLoans(response.data));
@@ -75,40 +74,45 @@ onRejectLoan(refId){
 render(){
     return(
         <center><br /><br />
-            <div className="card">{
+            <div className="card3">{
             (this.state.loading===true)? (
                 <div className="list-item list-item--message">
                   <span>Loading</span>
                 </div>
               ) :
         (<div >    
-    <h2>Applied Loan Details</h2>
-    <h2>Status</h2>
+    <h3>Loan Details</h3>
+    <h3>Status</h3>
     <center>
     <div className="select-style">
-    <select id="statusOption" style={{padding:"3%",color:"#909090"}}
+    <select id="statusOption" style={{padding:"5%",color:'black'}}
                     className="select"
                     value={this.state.status} 
                     onChange={(e)=>{
                         this.setState({status:e.target.value});
                     }}
                     >
+                        
                         <option style={{padding:"5%", color:'blue'}} value="Applied">Applied</option>
                         <option style={{padding:"5%", color:'green'}} value="Approved">Approved</option>
                         <option style={{padding:"5%", color:'red'}} value="Rejected">Rejected</option>
                     </select>
 </div></center>
-    <h3><br/>
+
+    <h4><br/>
     
        {  
         this.props.data.filter((loan)=>loan.status==this.state.status).length === 0 ? (
       <div className="list-item list-item--message">
         <span>No {this.state.status} Loans</span>
       </div>
-    ): (this.props.data.filter((loan)=>loan.status==this.state.status).map((loan)=>(<div key={loan.refId}>
-        Reference ID:{console.log("refID",loan),loan.refId} <br />
-        
-        <table className="customers">
+    ): 
+    
+    (this.props.data.filter((loan1)=>loan1.status==this.state.status).map((loan)=>(<div key={loan.refId}>
+        <br />
+        <div className="card4"><br /><br />
+        <center>
+        <table className="customers" style={{width:'750px'}}>
         <tr>
                 <td>Customer Id</td>
                 <td>INR {loan.customerId}</td>
@@ -136,8 +140,12 @@ render(){
                 <tr>
                 <td>Submitted Document</td>
                 <td>{loan.selectedFile}</td>
+                </tr> 
+                <tr>
+                <td>Reference Id</td>
+                <td>{loan.refId}</td>
                 </tr>  
-        </table>
+        </table></center>
         {/*<button className="button-appliedloan"  onClick={()=>this.status()} >status</button>
          <div className="container">
           <ul className="progressbar">
@@ -145,13 +153,14 @@ render(){
             <li>Processing</li>
             <li>Accepted/Rejected</li>
              </ul>
-    </div>*/}
-      <button  onClick={()=>this.onApproveLoan(loan.refId)} className="button-accept">Approve</button>
-      <button  onClick={()=>this.onRejectLoan(loan.refId)} className="button-reject">Reject</button>
+    </div>*/}{console.log("refID",loan)}
+      {(loan.status!="Approved")?(<button  onClick={()=>this.onApproveLoan(loan.refId)} className="button-accept">Approve</button>):(<p></p>)}
+      {(loan.status!="Rejected")?(<button  onClick={()=>this.onRejectLoan(loan.refId)} className="button-reject">Reject</button>):(<p></p>)}
+    </div>
     <br/><br/><br/>
     
     </div>)))
-       }</h3>
+       }</h4>
     </div>)}</div>
     </center>
  )};
