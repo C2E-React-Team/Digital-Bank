@@ -277,7 +277,7 @@ class HomePage extends React.Component{
                     <div className=" text-center" >
                       <NavLink  className="text-center" to="/cars">
                         
-                        <button className="btn-grad">Show more</button>
+                        <button className="btn-grad" style={{ border: '1px solid red'}}>Show more</button>
                         
                         </NavLink>
                       
