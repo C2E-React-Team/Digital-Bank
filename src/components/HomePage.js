@@ -1,6 +1,6 @@
 import React from 'react';
 
-//import web from "../images/carill1.svg";
+import web from "../images/carill2.jpg";
 import { NavLink, Link } from "react-router-dom";
 //import gal1 from "../images/gal1.jpg";
 import logo from "../images/logo.jpg";
@@ -181,7 +181,7 @@ class HomePage extends React.Component{
     
                     <div className="col-md-6 pt-5 pt-lg-0 order-2 order-lg-1 header-img">
                       <img
-                        src={logo}
+                        src={web}
                         className="img-fluid animated"
                         alt="Commom img"
                       />
@@ -197,7 +197,7 @@ class HomePage extends React.Component{
                         <strong className="brand-name"> DIGITAL BANK </strong>
                       </h1>
                       <h2 className="page-section__paragraph">
-                      <text>{`   `}</text>Get 130% of the car value as loan, and repay in upto 6 years! 
+                      <text>{`   `}</text>Get 80% of the car value as loan, and repay in upto 6 years! 
       
                       </h2>
                       
@@ -220,7 +220,7 @@ class HomePage extends React.Component{
           
     
             
-          <section className="slant1 hideme">   <div className="red-line"></div> </section>
+          <section className="slant1 hideme">   {/*<div className="red-line"></div>*/} </section>
     
           {/*<section className="slant1 hideme">
     
@@ -237,6 +237,7 @@ class HomePage extends React.Component{
     
     
               <section>
+              
               <div className=" carousel-bg ">
                 
                 <Row className="justify-content-between align-items-center">
@@ -250,8 +251,8 @@ class HomePage extends React.Component{
                     There's little compromise in creature comfort. 
                     </p>
                     <div className=" text-center" >
-                      <NavLink  className="text-center" to="/cars"><button className="btn-grad text-center">Show more</button></NavLink>
-                   
+                      <NavLink  className="text-center" to="/cars"><button className="btn-grad">Show more</button></NavLink>
+                      
                     </div>
 
                   
@@ -279,11 +280,11 @@ class HomePage extends React.Component{
     
     
     
-    
+            
     <div className="cont bg-white">
             <section className="slider">
               <div className="page-section text-center">
-                <h2 className="page-section__title">WHAT OUR CLIENTS SAY?</h2>
+                <h2 className="page-section__title">WHAT OUR CUSTOMERS SAY?</h2>
                 <p className="page-section__paragraph"> All comments/reviews are moderated and will be approved at the sole discretion of DBS Bank. magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.
                       </p>
                 </div>
