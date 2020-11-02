@@ -7,9 +7,33 @@ import logo from "../images/logo.jpg";
 import slide1 from "../images/sl1.jpg";
 import slide2 from "../images/sl2.jpg";
 import slide3 from "../images/sl3.jpg";
+import card1 from "../images/card1.jpg";
+import card2 from "../images/card2.png";
+import card3 from "../images/card3.png";
 import '../css/HomePageStyle.css';
 import { isLogin } from '../components/Auth';
 import {logout} from './Auth.js';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { MuiThemeProvider } from '@material-ui/styles';
+import {Button} from '@material-ui/core'
+import { Container, Row, Col, UncontrolledCarousel } from "reactstrap";
+
+const theme = createMuiTheme({
+ 
+palette: {
+  primary: {
+    main: 'rgb(255, 51, 51)'
+  }
+},
+
+shape: {
+  borderRadius: 30
+}
+
+});
+
+
+
 
 
 
@@ -41,7 +65,7 @@ const handleLogout = () => {
   localStorage.clear();
 }
 
-import { Button, Container, Row, Col, UncontrolledCarousel } from "reactstrap";
+
 
 class HomePage extends React.Component{
     constructor(props){
@@ -220,7 +244,7 @@ class HomePage extends React.Component{
           
     
             
-          <section className="slant1 hideme">   {/*<div className="red-line"></div>*/} </section>
+    <section className="slant1 hideme">   {/*<div className="red-line"></div>*/} </section>
     
           {/*<section className="slant1 hideme">
     
@@ -239,7 +263,7 @@ class HomePage extends React.Component{
               <section>
               
               <div className=" carousel-bg ">
-                
+              
                 <Row className="justify-content-between align-items-center">
                   <Col >
                     <p className=" text-black  page-section__title text-center">
@@ -251,10 +275,13 @@ class HomePage extends React.Component{
                     There's little compromise in creature comfort. 
                     </p>
                     <div className=" text-center" >
-                      <NavLink  className="text-center" to="/cars"><button className="btn-grad">Show more</button></NavLink>
+                      <NavLink  className="text-center" to="/cars">
+                        
+                        <button className="btn-grad">Show more</button>
+                        
+                        </NavLink>
                       
                     </div>
-
                   
                   </Col>
                   <Col>
@@ -281,6 +308,49 @@ class HomePage extends React.Component{
     
     
             
+
+<section className="mt-5 ml-5 mr-5">
+            <div className="card-deck">
+              <Row>
+                <Col>
+  <div className="card">
+  <div className="align-items-center">
+  <img className="cardresize mb-3 mt-2" src={card1}/> </div>
+    <div className="card-body">
+      <h5 className="font-weight-bold">Less interest rates</h5>
+      <p className="card-paragraph">Get attractive interest rates as low as 9% onwards on your next car loan.</p>
+      
+    </div>
+  </div>
+  </Col><Col>
+  <div className="card">
+    <div className="align-items-center">
+  <img className="cardresize mb-3 mt-2" src={card2}/> </div>
+    <div className="card-body">
+      <h5 className="font-weight-bold">Paperless loan</h5>
+      <p className="card-paragraph">It's easy, instant and paperless. No collateral and it's <strong>secure</strong>.</p>
+      
+    </div>
+  </div>
+  </Col><Col>
+  <div className="card">
+  <div className="align-items-center">
+  <img className="cardresize mb-3 mt-2" src={card3}/> </div>
+    <div className="card-body">
+      <h5 className="font-weight-bold">Super Flexible</h5>
+      <p className="card-paragraph">Repay the car loan with our flexible EMI options conveniently.</p>
+      
+    </div>
+  </div>
+  </Col>
+  </Row>
+</div>
+</section>
+
+
+
+
+
     <div className="cont bg-white">
             <section className="slider">
               <div className="page-section text-center">
