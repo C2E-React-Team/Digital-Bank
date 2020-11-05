@@ -25,7 +25,8 @@ this.state = {
     loanAmount_request:0,
     emi:0,
     showstore:false,
-    uploadError:undefined
+    uploadError:undefined,
+    loanAmountError:undefined
     }; 
  
     this.onApply = this.onApply.bind(this);
@@ -49,7 +50,7 @@ componentWillMount(){
         this.setState({uploadError:undefined})
       }    
       else
-        this.setState({uploadError:"File extension should be pdf and size should be less than 10Mb"})
+        this.setState({uploadError:"File extension should be pdf and size should be less than 10MB"})
     }
 	}; 
 	onFileUpload = () => { 
@@ -86,18 +87,18 @@ return p1;
 }
 loan(e){
 var val = e.target.value;
+this.setState({loanAmount_request:val});
 if(val>this.state.loanAmountdisplay){
-alert("you are enetering more than eligibility");
+  this.setState({loanAmountError:"You cannot enter more than eligibility"});
 }
-// else if(val<100000){
-//   alert("you are enetering less than 1 lakh")
-// }
+else if(val<100000){
+  this.setState({loanAmountError:"Amount cannot be less than 1 lakh"});
+}
 else{
-    this.emiCal(e.target.value);
-
+  this.setState({loanAmountError:undefined})
 } 
+this.emiCal(e.target.value);
 }
-
 emiCal(principal){
   console.log("emifinalprin ",principal);
     this.setState({loanAmount_request:principal})
@@ -335,8 +336,11 @@ render(){
                     autoComplete="given-name"
                     type="number"
                     fullWidth
+                  //  helperText = {this.state.loanAmount_request<100000 ? "" : ''}
+                  //   error={this.state.loanAmount_request<100000}
                 />
         </Grid>
+        {this.state.loanAmountError && (<div className="error1"><br></br>{this.state.loanAmountError}</div>)}
               {/* <h4><label>Enter your Loan Amount :</label></h4>
                 <input type="number" name="quantity" onChange={(e)=>this.loan(e)} value={this.state.loanAmount_request} required/> */}
                 <br></br>
@@ -353,7 +357,7 @@ render(){
 			</div> 
 		{this.fileData()}
     <div className="heading2">{this.state.uploadError}</div>{}
-    <button className="button" disabled={!!this.state.uploadError} type="submit" onClick={()=>this.onApply()} >Submit my request to bank</button></div>
+    <button className="button" disabled={this.state.uploadError || this.state.loanAmountError} type="submit" onClick={()=>this.onApply()} >Submit my request to bank</button></div>
     </form>
         )  }
     </div>
