@@ -4,6 +4,7 @@ const DealerData = [
         dealername:'dealer1',
        cars:[
            "hyundai","maruthi swift","Kia Sonet"]
+           
        
     },
     {
