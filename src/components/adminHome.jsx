@@ -120,12 +120,20 @@ render(){
                
             
             
-            (this.props.data.filter((loan1)=>loan1.status==this.state.status).map((loan)=>( 
+            (this.props.data.filter((loan1)=>loan1.status==this.state.status).map((loan,key)=>( 
     
-                <tr>
+                <tr key={key}>
                 <td><Link to={"/profile/"+loan.customerId}>{loan.customerId}</Link></td>
                 <td>{loan.carName} </td><td>INR {loan.carCost}</td><td>INR {loan.loanAmount} </td><td>{loan.tenure} Months</td>
-                <td>INR {loan.emi}</td><td>{loan.selectedFile}</td> <td>{loan.refId}</td>
+                <td>INR {loan.emi}</td>
+                <td>{loan.selectedFile}
+                {loan.selected_file_data !=null && (<a href={"http://localhost:8080/loans/files/"+loan.refId} target="_blank" rel="noopener noreferrer" download>
+                <button className="button-download">
+                    Download File
+                </button>
+                </a>)}
+                </td> 
+                <td>{loan.refId}</td>
                 <td>{console.log("refID",loan)}
       {(loan.status!="Approved")?(<button  onClick={()=>this.onApproveLoan(loan.refId)} className="button-accept">Approve</button>):(<p></p>)}
       {(loan.status!="Rejected")?(<button  onClick={()=>this.onRejectLoan(loan.refId)} className="button-reject">Reject</button>):(<p></p>)}

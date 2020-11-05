@@ -25,6 +25,7 @@ this.state = {
     loanAmount_request:0,
     emi:0,
     showstore:false,
+    uploadError:undefined
     }; 
  
     this.onApply = this.onApply.bind(this);
@@ -41,7 +42,15 @@ componentWillMount(){
   }
 
 	onFileChange = event => { 
-	this.setState({ selectedFile: event.target.files[0] }); 
+    const file = event.target.files[0];
+    if(file){
+      if(file.name.split('.').pop() == "pdf" && file.size <= 10000000){
+          this.setState({ selectedFile: event.target.files[0] }); 
+        this.setState({uploadError:undefined})
+      }    
+      else
+        this.setState({uploadError:"File extension should be pdf and size should be less than 10Mb"})
+    }
 	}; 
 	onFileUpload = () => { 
 	const formData = new FormData(); 
@@ -50,8 +59,9 @@ componentWillMount(){
 		this.state.selectedFile, 
 		this.state.selectedFile.name 
 	); 
-    console.log(this.state.selectedFile);
+    console.log(this.state.selectedFile.name);
     console.log(JSON.parse(localStorage.getItem(localName)));
+
      
 };
 
@@ -78,14 +88,18 @@ loan(e){
 var val = e.target.value;
 if(val>this.state.loanAmountdisplay){
 alert("you are enetering more than eligibility");
-}else{
-    this.emiCal(e);
+}
+// else if(val<100000){
+//   alert("you are enetering less than 1 lakh")
+// }
+else{
+    this.emiCal(e.target.value);
 
 } 
 }
 
-emiCal(e){
-    var principal=e.target.value;
+emiCal(principal){
+  console.log("emifinalprin ",principal);
     this.setState({loanAmount_request:principal})
     var time=this.state.time;
     var rate;
@@ -139,10 +153,13 @@ updatetime(e){
     console.log("eligible",eligibleamount);
     if(principal<eligibleamount){
         this.setState({loanAmountdisplay:principal});
+
     }else{
          this.setState({loanAmountdisplay:eligibleamount});
-    }   
-    console.log(this.state.loanAmountdisplay);
+    }
+    this.setState((state) => ({loanAmount_request:state.loanAmountdisplay.toFixed(0)}),()=>{
+      this.emiCal(this.state.loanAmount_request);
+    });
 }
 
 onApply(){
@@ -159,19 +176,33 @@ onApply(){
     //this.setState({carCost:carCost});
     const selectedFile=this.state.selectedFile;
     //this.setState({selectedFile:selectedFile});
+
+    const formData = new FormData(); 
+	formData.append( 
+		"uploadedFile", 
+		this.state.selectedFile, 
+  );
+  formData.append(
+    "model",
+    JSON.stringify({
+      customerId:customerId,
+      loanAmount:loanAmount,
+      emi,
+      carCost:carCost,
+      selectedFile:selectedFile.name,
+      tenure:time,
+      carName:carName
+    })
+  )
+  
     if(selectedFile!= null &&
         loanAmount>0 &&
         emi>0){
             let ref_id="";
-    axios.post('http://localhost:8080/loans/add', {
-        customerId:customerId,
-        loanAmount:loanAmount,
-        emi,
-        carCost:carCost,
-        selectedFile:selectedFile.name,
-        tenure:time,
-        carName:carName
-      })
+    axios.post('http://localhost:8080/loans/add',formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }})
       .then((response)=> {
         console.log(response);
         this.props.history.push(`/appliedloan`);
@@ -204,7 +235,7 @@ fileData = () => {
      else { 
       return ( 
         <div> 
-          <p className="para" style={{marginTop:"8px"}}>choose before pressing upload</p>
+          <p className="para" style={{marginTop:"8px"}}>choose before pressing submit</p>
           </div> 
       ); 
     } 
@@ -311,16 +342,18 @@ render(){
                 <br></br>
                 
                 <p className="para">You need to pay EMI INR <div className="heading2">{this.state.emi}</div></p>
+                <p className="para">Downpayment INR <div className="heading2">{this.props.CarData.price-this.state.loanAmount_request}</div></p>
             {/* <h4>For your car to buy, bank will provide loan of INR {this.state.loanAmount_request} and you ned to pay INR {this.props.CarData.price-this.state.loanAmount_request}</h4> */}
             <p className="para1"> 
-			Upload scanned copy for your document :
+			Upload proof of deposit :
 			</p>
 			<div style = {{display:"flex", flexDirection:"row", gap:"0px", marginLeft:"55px"}} > 
-            <input type="file" onChange={this.onFileChange} required/> <br />
-				<input style={{border: "2px solid grey"}} type="button" value="Upload!" onClick={this.onFileUpload}/>
+            <input type="file" accept = "application/pdf" onChange={this.onFileChange} required/> <br />
+				{/* <input style={{border:"2px solid grey"}} type="button" value="Upload!" onClick={this.onFileUpload}/> */}
 			</div> 
 		{this.fileData()}
-    <button className="button" type="submit" onClick={()=>this.onApply()} >Submit my request to bank</button></div>
+    <div className="heading2">{this.state.uploadError}</div>{}
+    <button className="button" disabled={!!this.state.uploadError} type="submit" onClick={()=>this.onApply()} >Submit my request to bank</button></div>
     </form>
         )  }
     </div>
