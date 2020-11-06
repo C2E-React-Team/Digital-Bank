@@ -1,5 +1,5 @@
 import React from 'react'
-import {getDealById} from '../selectors/cars.js';
+import {getDealBycarid, getDealById} from '../selectors/cars.js';
 import {connect} from 'react-redux';
 class DealerEditPage extends React.Component{
     constructor(props){
@@ -16,8 +16,7 @@ setName(e){
     render(){
         return(
             <div>
-                <h2>this is </h2>
-                enter car name : <input type="text" name="" value={this.props.data.car_name} onChange={(e)=>{this.setName(e)}}/>
+                enter car name : <input type="text" name="" value={this.props.data.carName} onChange={(e)=>{this.setName(e)}}/>
                 
                 
                 </div>
@@ -26,7 +25,7 @@ setName(e){
 const mapStateToProps = (state,props) => {
     return {
     CarData: state.DealerData,
-    data :  getDealById(state.carDeals,props.match.params.id)
+    data :  getDealBycarid(state.DealerData,props.match.params.carid)
     }
 }
 export default connect(mapStateToProps)(DealerEditPage);

@@ -4,6 +4,9 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {getDealById} from '../selectors/cars.js';
 import {getCarDeals} from '../services/carService';
+import {DealListItem} from '../components/cars/DealListItem.jsx';
+import selectCarDeals from '../selectors/cars.js';
+import DealerEdit from './DealerEdit.jsx';
 class DealerHome extends React.Component{
     constructor(props)
 {
@@ -63,7 +66,7 @@ edit(item){
     render(){
         
         return(
-                 <div>
+         <div>
             {
             (this.state.loading===true)? (
               <div>
@@ -81,6 +84,7 @@ edit(item){
                {this.state.cars.map(item => (
             <li key={item} onClick={()=>this.edit(item)}>{item}</li>
           ))}
+          
             <Link to="/addCar">
                     <h3> Add Car</h3>
                 </Link>

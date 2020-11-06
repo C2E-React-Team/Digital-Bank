@@ -15,7 +15,7 @@ class AddCar extends React.Component{
            uploadError:undefined
         }       
     }
-onAdd(){
+/*onAdd(){
     this.setState({ carName: this.element.value });
     this.setState({ carPrice: this.element1.value });
     this.setState({ brandName: this.element2.value });
@@ -23,7 +23,39 @@ onAdd(){
     this.setState({ seatingCapacity: this.element4.value });
     this.setState({ engineDisplacement: this.element5.value });
     alert('car added');
+}*/
+onAdd(){
+  alert("car added");
 }
+updateCarName(e){
+  var carName=e.target.value;
+    {this.setState({carName:carName})};
+}
+updateCarPrice(e){
+  var carPrice=e.target.value;
+    {this.setState({carPrice:carPrice})};
+}
+
+updateBrandName(e){
+  var brandName=e.target.value;
+    {this.setState({brandName:brandName})};
+}
+
+updateMilege(e){
+  var Milege=e.target.value;
+    {this.setState({Milege:Milege})};
+}
+
+updateSeatingCapacity(e){
+  var seatingCapacity=e.target.value;
+    {this.setState({seatingCapacity:seatingCapacity})};
+}
+
+updateEngineDisplacement(e){
+  var engineDisplacement=e.target.value;
+    {this.setState({engineDisplacement:engineDisplacement})};
+}
+
 fileData = () => { 
      
     if (this.state.selectedFile) { 
@@ -66,12 +98,15 @@ onFileChange = event => {
             <div>
                 <h3>Add a new car</h3>
                <form onSubmit={e=>e.preventDefault()}>
-                   Enter Car Name :<input type="text" name="text" ref={el => this.element =el}/><br />
-                   Enter Car Price :<input type="number" name="quantity" ref={el => this.element1 =el}/><br />
-                   Enter Brand Name :<input type="text" name="text" ref={el => this.element2 =el}/><br />
-                   Enter Milege :<input type="text" name="text" ref={el => this.element3 =el}/><br />
-                   Enter seating capacity :<input type="number" name="quantity" ref={el => this.element4 =el}/><br />
-                   Enter engine displacement :<input type="text" name="text" ref={el => this.element5 =el}/><br />
+                   Enter Car Name :<input type="text" name="text" ref={el => this.element =el} onChange={(e)=>this.updateCarName(e)} required/><br />
+                   Enter Car Price :<input type="number" name="quantity" ref={el => this.element1 =el} onChange={(e)=>this.updateCarPrice(e)} required/><br />
+                   Enter Brand Name :<input type="text" name="text" ref={el => this.element2 =el} onChange={(e)=>this.updateBrandName(e)} required/><br />
+                   Enter Milege :<input type="text" name="text" ref={el => this.element3 =el} onChange={(e)=>this.updateMilege(e)} required/><br />
+                   Enter seating capacity :<input type="number" name="quantity" ref={el => this.element4 =el} onChange={(e)=>this.updateSeatingCapacity(e)} required/><br />
+                   Enter engine displacement :<input type="text" name="text" ref={el => this.element5 =el} onChange={(e)=>this.updateEngineDisplacement(e)} required/><br />
+                   {/*{this.state.carName}{this.state.carPrice}
+                   {this.state.brandName}{this.state.engineDisplacement}
+                   {this.state.seatingCapacity}{this.state.milege}*/}
                    Submit Car Image 
                    <div style = {{display:"flex", flexDirection:"row", gap:"0px", marginLeft:"55px"}} > 
             <input type="file" accept = "application/jpg" onChange={this.onFileChange} required/> <br />
