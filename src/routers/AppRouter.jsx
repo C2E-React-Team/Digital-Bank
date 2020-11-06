@@ -19,7 +19,7 @@ import "../../node_modules/bootstrap/dist/js/bootstrap.bundle";
 import AdminPath  from './AdminPath.js';
 import AdminProfileView from '../components/AdminProfileView.jsx';
 import AddCar from '../components/AddCar.jsx';
-
+import DealerEditPage from '../components/DealerEdit.jsx';
 export const history = createBrowserHistory();
 
 
@@ -41,6 +41,7 @@ const AppRouter = () => (
                 <PrivatePath path="/profile" component={Profile} exact />
                 
                 <PrivatePath component={DealerHome} path="/dealerpage" />
+                <PrivatePath component={DealerEditPage} path="/dealereditpage/:id" />
                 <PrivatePath component={AddCar} path="/addCar" />
                 <PublicPath path="/login" component={LoginPage} exact /> 
                 

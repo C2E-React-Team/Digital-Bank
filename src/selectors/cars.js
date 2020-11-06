@@ -5,6 +5,7 @@ export const getDealById = (carDeals,id) => {
 
 
 
+
 const filteredDeals =  (carDeals,carFilters) => {
     
     const modelSearch = (carDeal) =>{
