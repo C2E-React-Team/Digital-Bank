@@ -1,4 +1,5 @@
-const TOKEN_KEY = 'customerDetails';
+export const TOKEN_KEY = 'customerDetails';
+
 export const login = (user) =>{
     const json = JSON.stringify(user);
     localStorage.setItem(TOKEN_KEY,json);
@@ -24,5 +25,14 @@ export const isAdmin = () =>{
         return true;
     }
     console.log("in isAdmin",localStorage.getItem(TOKEN_KEY));
+    return false;
+}
+
+export const isDealer = () =>{
+    if(isLogin())
+    if(JSON.parse(localStorage.getItem(TOKEN_KEY)).dealerid){
+        return true;
+    }
+    console.log("in isDealer",localStorage.getItem(TOKEN_KEY));
     return false;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { isLogin,isAdmin } from '../components/Auth';
+import { isLogin,isAdmin,isDealer } from '../components/Auth';
 import Header from '../components/Header.jsx';
 
 const PrivatePath = ({component: Component, ...rest}) => {
@@ -9,13 +9,14 @@ const PrivatePath = ({component: Component, ...rest}) => {
         <Route {...rest} render={props => (
             
             isAdmin()?<Redirect to="/admin" />:
+            (isDealer()?<Redirect to="/dealerpage" />:
             (isLogin() ?
             <div>
                 <Header />
                 <Component {...props} />
                 </div>
             : <Redirect to="/login" />
-    ))} />
+    )))} />
     );
 };
 
