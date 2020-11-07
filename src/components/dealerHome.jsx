@@ -36,6 +36,7 @@ dealer(e){
     //console.log(id);
     //console.log(this.props.CarData[0].dealerid);
     for(let i=0;i<this.props.CarData.length;i++){
+        this.state.cars=[];
         if(this.props.CarData[i].dealerid == id){
             this.setState({dealername:this.props.CarData[i].dealername})
             this.setState({dealerid:this.props.CarData[i].dealerid})
@@ -57,6 +58,7 @@ edit(item){
     console.log(item);
     for(let i=0;i<this.props.CarData.length;i++){
         if(this.props.CarData[i].carName == item){
+            
             this.props.history.push(`/dealereditpage/${this.props.CarData[i].carid}`)
         }
     }
