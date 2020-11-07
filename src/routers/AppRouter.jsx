@@ -17,6 +17,7 @@ import AppliedLoan from '../components/cars/AppliedLoans.jsx'
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../../node_modules/bootstrap/dist/js/bootstrap.bundle";
 import AdminPath  from './AdminPath.js';
+import DealerPath  from './DealerPath.js';
 import AdminProfileView from '../components/AdminProfileView.jsx';
 import AddCar from '../components/AddCar.jsx';
 import DealerEditPage from '../components/DealerEdit.jsx';
@@ -40,9 +41,10 @@ const AppRouter = () => (
                 <PrivatePath component={AppliedLoan} path="/appliedloan" />
                 <PrivatePath path="/profile" component={Profile} exact />
                 
-                <PrivatePath component={DealerHome} path="/dealerpage" />
-                <PrivatePath component={DealerEditPage} path="/dealereditpage/:id" />
-                <PrivatePath component={AddCar} path="/addCar" />
+                <DealerPath component={DealerHome} path="/dealerpage" />
+                <DealerPath component={DealerEditPage} path="/dealereditpage/:id" />
+                <DealerPath component={AddCar} path="/addCar" />
+                
                 <PublicPath path="/login" component={LoginPage} exact /> 
                 
                 <AdminPath path="/admin" component={AdminHome} exact />

@@ -17,13 +17,16 @@ class AddCar extends React.Component{
         }       
     }
 onAdd(){
-    this.setState({ carName: this.element.value });
-    this.setState({ carPrice: this.element1.value });
-    this.setState({ brandName: this.element2.value });
-    this.setState({ mileage: this.element3.value });
-    this.setState({ seatingCapacity: this.element4.value });
-    this.setState({ engineDisplacement: this.element5.value });
-    const deal = {
+  const dealerName = JSON.parse(localStorage.getItem('customerDetails')).dealerid;
+
+  const formData = new FormData(); 
+	formData.append( 
+		"uploadedImage", 
+		this.state.selectedFile, 
+  );
+  formData.append(
+    "model",
+    JSON.stringify({
       id: 157.0,
       brand_name: this.state.brandName,
       car_name: this.state.carName,
@@ -33,17 +36,50 @@ onAdd(){
       type: "SUV",
       image: "Kia-Sonet.webp",
       price: this.state.carPrice,
-      dealer_name: "dealer1"
-  };
-  console.log(deal);
-    // addCarDeal(deal).then((response)=> {
-    //     console.log(response);
-    //     alert('car added');
-    //   })
+      dealer_name: dealerName
+    })
+  )
+  
+    addCarDeal(formData).then((response)=> {
+        console.log(response);
+        alert('car added');
+      })
    
 }
-fileData = () => {    
-    if (this.state.selectedFile) {     
+
+updateCarName(e){
+  var carName=e.target.value;
+    {this.setState({carName:carName})};
+}
+updateCarPrice(e){
+  var carPrice=e.target.value;
+    {this.setState({carPrice:carPrice})};
+}
+
+updateBrandName(e){
+  var brandName=e.target.value;
+    {this.setState({brandName:brandName})};
+}
+
+updateMilege(e){
+  var mileage=e.target.value;
+    {this.setState({mileage:mileage})};
+}
+
+updateSeatingCapacity(e){
+  var seatingCapacity=e.target.value;
+    {this.setState({seatingCapacity:seatingCapacity})};
+}
+
+updateEngineDisplacement(e){
+  var engineDisplacement=e.target.value;
+    {this.setState({engineDisplacement:engineDisplacement})};
+}
+
+fileData = () => { 
+     
+    if (this.state.selectedFile) { 
+        
       return ( 
         <div> 
           <h6 style={{marginTop:"20px"}}>File Details:</h6> 
@@ -82,12 +118,15 @@ onFileChange = event => {
             <div>
                 <h3>Add a new car</h3>
                <form onSubmit={e=>e.preventDefault()}>
-                   Enter Car Name :<input type="text" name="text" ref={el => this.element =el}/><br />
-                   Enter Car Price :<input type="number" name="quantity" ref={el => this.element1 =el}/><br />
-                   Enter Brand Name :<input type="text" name="text" ref={el => this.element2 =el}/><br />
-                   Enter Mileage :<input type="text" name="text" ref={el => this.element3 =el}/><br />
-                   Enter seating capacity :<input type="number" name="quantity" ref={el => this.element4 =el}/><br />
-                   Enter engine displacement :<input type="text" name="text" ref={el => this.element5 =el}/><br />
+                   Enter Car Name :<input type="text" name="text" ref={el => this.element =el} onChange={(e)=>this.updateCarName(e)} required/><br />
+                   Enter Car Price :<input type="number" name="quantity" ref={el => this.element1 =el} onChange={(e)=>this.updateCarPrice(e)} required/><br />
+                   Enter Brand Name :<input type="text" name="text" ref={el => this.element2 =el} onChange={(e)=>this.updateBrandName(e)} required/><br />
+                   Enter Milege :<input type="text" name="text" ref={el => this.element3 =el} onChange={(e)=>this.updateMilege(e)} required/><br />
+                   Enter seating capacity :<input type="number" name="quantity" ref={el => this.element4 =el} onChange={(e)=>this.updateSeatingCapacity(e)} required/><br />
+                   Enter engine displacement :<input type="text" name="text" ref={el => this.element5 =el} onChange={(e)=>this.updateEngineDisplacement(e)} required/><br />
+                   {/*{this.state.carName}{this.state.carPrice}
+                   {this.state.brandName}{this.state.engineDisplacement}
+                   {this.state.seatingCapacity}{this.state.milege}*/}
                    Submit Car Image 
                    <div style = {{display:"flex", flexDirection:"row", gap:"0px", marginLeft:"55px"}} > 
             <input type="file" accept = "application/jpg" onChange={this.onFileChange} required/> <br />

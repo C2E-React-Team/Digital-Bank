@@ -3,7 +3,13 @@ export const getDealById = (carDeals,id) => {
     return carDeals.filter((deal)=>deal.id==id)[0];
 }
 
+export const getDealBycarid = (DealerData,carid) => {
+    console.log("id is",carid);
+    console.log("selected car = "+ DealerData.filter((deal)=>deal.carid==carid)[0]+" ID = "+carid);
+    return DealerData.filter((deal)=>deal.carid==carid)[0];
+   
 
+}
 
 
 const filteredDeals =  (carDeals,carFilters) => {

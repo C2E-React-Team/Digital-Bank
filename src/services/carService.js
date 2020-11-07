@@ -22,7 +22,10 @@ export const getCarDealsById =(id)=>{
         return axios.get(CARS_REST_ID_API_URL+id);
 }
 
-export const addCarDeal =(deal)=>{
-        return axios.post(CARS_REST_API_CREATE_URL,deal);
+export const addCarDeal =(formData)=>{
+        return axios.post(CARS_REST_API_CREATE_URL,formData, {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                }});
 }
 

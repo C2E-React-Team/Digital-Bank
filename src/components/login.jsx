@@ -51,7 +51,14 @@ class Login extends React.Component{
             login("admin");
             this.props.history.push('/admin');
         }
-        if(this.state.clientId){
+        else if(this.state.clientId[0]=='d'){
+            login({
+                dealerid:this.state.clientId //if "dealerid" name changed, change in auth.js (isDealer)
+                //change this similar to customer after setting-up API 
+            });
+            this.props.history.push('/dealerpage');
+        }
+        else if(this.state.clientId){
             this.setState({loading:true});
             this.setState({error:undefined});
            this.authenticateData(USERS_REST_API_PREFIX+this.state.clientId);
