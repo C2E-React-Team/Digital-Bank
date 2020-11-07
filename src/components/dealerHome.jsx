@@ -1,9 +1,10 @@
 import { Edit } from '@material-ui/icons';
 import React from 'react'
 import {connect} from 'react-redux';
+import DealListItem from './cars/DealListItem.jsx'
 import {Link} from 'react-router-dom';
 import {getDealById} from '../selectors/cars.js';
-import {getCarDeals} from '../services/carService';
+import {getCarDealsByDealerName} from '../services/carService';
 class DealerHome extends React.Component{
     constructor(props)
 {
@@ -14,16 +15,16 @@ this.state = {
     dealerid:'',
     carName:'',
     cars:[],
-    carid:0
+    carid:0,
+    carDeals:[]
     };  
 }
 componentWillMount(){
       
-    getCarDeals().then((response) => {
-      console.log("in response",response.data)
-      
-      this.setState(()=>({loading:false}));
-      
+    getCarDealsByDealerName("dealer1").then((response) => {
+      console.log("in response",response.data); 
+      this.setState({carDeals:response.data});
+      this.setState(()=>({loading:false}));      
     });
   }
 
@@ -71,19 +72,21 @@ edit(item){
               </div>
               ) :(
                 <div>
-                <h1>This is the Home Page for Dealer</h1>
+                    <Link to="/addCar">
+                    <h3> Add Car</h3>
+                </Link>
+                {/* <h1>This is the Home Page for Dealer</h1>
                 
                 <h4><label>Enter your Dealer ID</label></h4>
                 <input style={{border: "2px solid grey"}}type="text" name="text" onChange={(e)=>this.dealer(e)} /> <br />
-               Name of the dealer :{this.state.dealername}<br />
+               Name of the dealer :{this.state.dealername}<br /> */}
 
             Available Cars :  
-               {this.state.cars.map(item => (
-            <li key={item} onClick={()=>this.edit(item)}>{item}</li>
+               {this.state.carDeals.map((deal,key) => (
+                   <DealListItem key={key} {...deal} history={this.props.history} pushTo={"/dealereditpage/"}/>
+            //<li key={key} onClick={()=>this.edit(deal)}>{deal.car_name}</li>
           ))}
-            <Link to="/addCar">
-                    <h3> Add Car</h3>
-                </Link>
+            
             </div>
         )
     }</div>)

@@ -42,6 +42,8 @@ class CarDealsList extends React.Component{
       
     getCarDeals().then((response) => {
       console.log("in response",response.data)
+      // const data = response.data;
+      // data.car_image ="data:image/jpeg;base64," + data.car_image;
       this.props.dispatch(setDeals(response.data));
       this.setState(()=>({loading:false}));
       
@@ -97,7 +99,7 @@ render(){
               return (
                 ((index)%2==0)?
                 (<div style={{display:"flex", flexDirection:"row", gap:"50px"}}>
-                <DealListItem key={deal.id} {...deal} history={this.props.history} />
+                <DealListItem key={deal.id} {...deal} history={this.props.history} pushTo={"/cardetails/"} />
                 {console.log(deals[index].id)}
                 {((index+2)<=(deals.length))?
                 <DealListItem key={deals[index+1].id} {...deals[index+1]} history={this.props.history} />:""}

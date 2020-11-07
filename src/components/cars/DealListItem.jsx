@@ -26,17 +26,19 @@ import {
 // );
 // }
 // 
- const DealListItem = ({ id, brand_name, car_name, price, dealer_name, image,history,mileage,engine_displacement,seating_capacity,type}) =>{
+ const DealListItem = ({ id, brand_name, car_name, price, dealer_name, carImage,history,mileage,engine_displacement,seating_capacity,type,pushTo}) =>{
      return (
         <div style={{display:"flex", flexDirection:"row", gap:"50px"}}>
 
 
-                 <div  className="card1"  onClick={() => history.push(`/cardetails/${id}`)} style={{display:"flex", flexDirection:"row"}}>
+                 <div  className="card1"  onClick={() => history.push(`${pushTo}${id}`)} style={{display:"flex", flexDirection:"row"}}>
         
         <Card style={{width:"100%"}}>
         <div style={{padding:"8% 8% 0 8%"}}>
-        <CardImg top width="100%" src={require(`../../images/${image}`).default} alt="Card image cap" />
-        {/* <img src={require(`../../images/${image}`).default} alt="Deal_Image"/> */}
+        {/* <CardImg top width="100%" src={require(`../../images/${image}`).default} alt="Card image cap" />
+         */}
+         <CardImg top width="100%" src={"data:image/jpeg;base64," +carImage} alt="Card image cap" />
+        {/* <img src={"data:image/jpeg;base64," +carImage} alt="Deal_Image"/> */}
         {/* <div style={{border:"solid white"}}> */}
          </div>
          <div style={{textAlign:"left",paddingLeft:"8%",paddingTop:"5%", paddingBottom:"5%",borderBottom:"1px solid #909090"}}>

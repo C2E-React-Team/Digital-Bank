@@ -1,4 +1,5 @@
 import React from 'react'
+import {addCarDeal} from '../services/carService.js';
 
 class AddCar extends React.Component{
     constructor(props){
@@ -8,7 +9,7 @@ class AddCar extends React.Component{
            carName:'',
            carPrice:0,
            brandName:'',
-           Milege:'',
+           mileage:'',
            seatingCapacity:0,
            engineDisplacement:'',
            selectedFile: null,
@@ -19,15 +20,30 @@ onAdd(){
     this.setState({ carName: this.element.value });
     this.setState({ carPrice: this.element1.value });
     this.setState({ brandName: this.element2.value });
-    this.setState({ Milege: this.element3.value });
+    this.setState({ mileage: this.element3.value });
     this.setState({ seatingCapacity: this.element4.value });
     this.setState({ engineDisplacement: this.element5.value });
-    alert('car added');
+    const deal = {
+      id: 157.0,
+      brand_name: this.state.brandName,
+      car_name: this.state.carName,
+      mileage: this.state.mileage,
+      engine_displacement: this.state.engineDisplacement,
+      seating_capacity: this.state.seatingCapacity,
+      type: "SUV",
+      image: "Kia-Sonet.webp",
+      price: this.state.carPrice,
+      dealer_name: "dealer1"
+  };
+  console.log(deal);
+    // addCarDeal(deal).then((response)=> {
+    //     console.log(response);
+    //     alert('car added');
+    //   })
+   
 }
-fileData = () => { 
-     
-    if (this.state.selectedFile) { 
-        
+fileData = () => {    
+    if (this.state.selectedFile) {     
       return ( 
         <div> 
           <h6 style={{marginTop:"20px"}}>File Details:</h6> 
@@ -69,7 +85,7 @@ onFileChange = event => {
                    Enter Car Name :<input type="text" name="text" ref={el => this.element =el}/><br />
                    Enter Car Price :<input type="number" name="quantity" ref={el => this.element1 =el}/><br />
                    Enter Brand Name :<input type="text" name="text" ref={el => this.element2 =el}/><br />
-                   Enter Milege :<input type="text" name="text" ref={el => this.element3 =el}/><br />
+                   Enter Mileage :<input type="text" name="text" ref={el => this.element3 =el}/><br />
                    Enter seating capacity :<input type="number" name="quantity" ref={el => this.element4 =el}/><br />
                    Enter engine displacement :<input type="text" name="text" ref={el => this.element5 =el}/><br />
                    Submit Car Image 
