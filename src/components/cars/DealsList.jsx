@@ -102,7 +102,7 @@ render(){
                 <DealListItem key={deal.id} {...deal} history={this.props.history} pushTo={"/cardetails/"} />
                 {console.log(deals[index].id)}
                 {((index+2)<=(deals.length))?
-                <DealListItem key={deals[index+1].id} {...deals[index+1]} history={this.props.history} />:""}
+                <DealListItem key={deals[index+1].id} {...deals[index+1]} history={this.props.history} pushTo={"/cardetails/"}/>:""}
                 
                 </div>):""
             )

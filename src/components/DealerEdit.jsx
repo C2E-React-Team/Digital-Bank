@@ -7,13 +7,14 @@ class DealerEditPage extends React.Component{
         super(props);
 
         this.state = { 
-           carName:'',
-           carDealData:{},               
+           carName:this.props.data.carName,
+           carDealData:{},              
+           carPrice:this.props.data.carPrice, 
            carid:this.props.match.params.id,
-           brandName:'',
-           Milege:'',
-           seatingCapacity:0,
-           engineDisplacement:'',
+           brandName:this.props.data.brandName,
+           Milege:this.props.data.mileage,
+           seatingCapacity:this.props.data.seatingCapacity,
+           engineDisplacement:this.props.data.engineDisplacement,
            selectedFile: null,
         }       
     }
@@ -59,12 +60,12 @@ getCarDealsById(this.props.match.params.id).then((response) => {
     render(){
         return(
             <div>
-                Enter Car Name :<input type="text" name="text" value={this.props.data.carName} onChange={(e)=>this.updateCarName(e)} required/><br />
-                Enter Car Price :<input type="number" name="quantity" value={this.props.data.carPrice} onChange={(e)=>this.updateCarPrice(e)} required/><br />
-                   Enter Brand Name :<input type="text" name="text" value={this.props.data.brandName} onChange={(e)=>this.updateBrandName(e)} required/><br />
-                   Enter Milege :<input type="text" name="text"  value={this.props.data.mileage}onChange={(e)=>this.updateMilege(e)} required/><br />
-                   Enter seating capacity :<input type="number" name="quantity" value={this.props.data.seatingCapacity} onChange={(e)=>this.updateSeatingCapacity(e)} required/><br />
-                   Enter engine displacement :<input type="text" name="text" value={this.props.data.engineDisplacement} onChange={(e)=>this.updateEngineDisplacement(e)} required/><br />
+                Enter Car Name :<input type="text" name="text" value={this.state.carName} onChange={(e)=>this.updateCarName(e)} required/><br />
+                Enter Car Price :<input type="number" name="quantity" value={this.state.carPrice} onChange={(e)=>this.updateCarPrice(e)} required/><br />
+                   Enter Brand Name :<input type="text" name="text" value={this.state.brandName} onChange={(e)=>this.updateBrandName(e)} required/><br />
+                   Enter Milege :<input type="text" name="text"  value={this.state.Milege}onChange={(e)=>this.updateMilege(e)} required/><br />
+                   Enter seating capacity :<input type="number" name="quantity" value={this.state.seatingCapacity} onChange={(e)=>this.updateSeatingCapacity(e)} required/><br />
+                   Enter engine displacement :<input type="text" name="text" value={this.state.engineDisplacement} onChange={(e)=>this.updateEngineDisplacement(e)} required/><br />
                    <button className="button" type="submit" onClick={()=>this.updateCar()} >Update</button>
                     
                 </div>
@@ -73,7 +74,7 @@ getCarDealsById(this.props.match.params.id).then((response) => {
 const mapStateToProps = (state,props) => {
     return {
     CarData: state.DealerData,
-    data :  getDealBycarid(state.DealerData,props.match.params.id)
+    data :  getDealBycarid(state.carDeals,props.match.params.id)
     }
 }
 export default connect(mapStateToProps)(DealerEditPage);

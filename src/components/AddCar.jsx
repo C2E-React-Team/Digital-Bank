@@ -1,6 +1,9 @@
 import React from 'react'
 import {addCarDeal} from '../services/carService.js';
 
+import axios from 'axios';
+import '../style/handleloan.css';
+import '../css/addcar-css.css';
 class AddCar extends React.Component{
     constructor(props){
         super(props);
@@ -95,7 +98,7 @@ fileData = () => {
      else { 
       return ( 
         <div> 
-          <p className="para" style={{marginTop:"8px"}}>choose before pressing submit</p>
+         <p className="para" style={{marginTop:"8px",marginLeft:"250px"}}>choose before pressing submit</p>
           </div> 
       ); 
     } 
@@ -115,28 +118,48 @@ onFileChange = event => {
 	}; 
     render(){
         return(
+          <div className="bgdiv">
+          <br></br>
+          <br></br>
+          <div className="handlediv">
             <div>
-                <h3>Add a new car</h3>
+                <div className="heading" >Add New Deal</div>
                <form onSubmit={e=>e.preventDefault()}>
-                   Enter Car Name :<input type="text" name="text" ref={el => this.element =el} onChange={(e)=>this.updateCarName(e)} required/><br />
-                   Enter Car Price :<input type="number" name="quantity" ref={el => this.element1 =el} onChange={(e)=>this.updateCarPrice(e)} required/><br />
-                   Enter Brand Name :<input type="text" name="text" ref={el => this.element2 =el} onChange={(e)=>this.updateBrandName(e)} required/><br />
-                   Enter Milege :<input type="text" name="text" ref={el => this.element3 =el} onChange={(e)=>this.updateMilege(e)} required/><br />
-                   Enter seating capacity :<input type="number" name="quantity" ref={el => this.element4 =el} onChange={(e)=>this.updateSeatingCapacity(e)} required/><br />
-                   Enter engine displacement :<input type="text" name="text" ref={el => this.element5 =el} onChange={(e)=>this.updateEngineDisplacement(e)} required/><br />
+              <center><table style={{width:"50%"}}>
+               <tr>
+                 <td>Enter Car Name</td>
+                  <td><input type="text" id="css" name="text" ref={el => this.element =el} onChange={(e)=>this.updateCarName(e)} required/></td>
+               </tr>
+               <tr><td>Enter Car Price(&#x20b9;)</td>
+                <td> <input type="number" id="css" name="quantity" ref={el => this.element1 =el} onChange={(e)=>this.updateCarPrice(e)} required/> </td>
+               </tr>
+               <tr>
+                   <td>Enter Brand Name </td>
+                   <td><input type="text"id="css" name="text" ref={el => this.element2 =el} onChange={(e)=>this.updateBrandName(e)} required/></td>
+              </tr>
+              <tr>
+                <td>Enter Mileage (kmpl) </td>
+                <td><input type="text" id="css"name="text" ref={el => this.element3 =el} onChange={(e)=>this.updateMilege(e)} required/></td>
+              </tr> 
+              <tr>
+                   <td>Enter seating capacity </td><td><input type="number" id="css" name="quantity" ref={el => this.element4 =el} onChange={(e)=>this.updateSeatingCapacity(e)} required/><br /></td>
+                   </tr> <tr> <td>Enter engine displacement (cc)</td><td><input type="text" id="css" name="text" ref={el => this.element5 =el} onChange={(e)=>this.updateEngineDisplacement(e)} required/><br /></td>
                    {/*{this.state.carName}{this.state.carPrice}
                    {this.state.brandName}{this.state.engineDisplacement}
                    {this.state.seatingCapacity}{this.state.milege}*/}
+                   </tr>
+                   </table></center>
                    Submit Car Image 
-                   <div style = {{display:"flex", flexDirection:"row", gap:"0px", marginLeft:"55px"}} > 
+                   <div style = {{display:"flex", flexDirection:"row", gap:"0px", marginLeft:"280px"}} > 
             <input type="file" accept = "application/jpg" onChange={this.onFileChange} required/> <br />
 		</div>
         {this.fileData()}
     <div className="heading2">{this.state.uploadError}</div>
-                   <button className="button" type="submit" onClick={()=>this.onAdd()} >Submit my request to bank</button>
+                   <button className="button" type="submit" onClick={()=>this.onAdd()} >Add Deal</button>
                 
                </form>
             </div>
+            </div></div>
         );
     }
 }
