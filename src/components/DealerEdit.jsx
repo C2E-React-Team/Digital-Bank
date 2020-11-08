@@ -74,7 +74,7 @@ getCarDealsById(this.props.match.params.id).then((response) => {
 const mapStateToProps = (state,props) => {
     return {
     CarData: state.DealerData,
-    data :  getDealBycarid(state.carDeals,props.match.params.id)
+    data :  getDealBycarid(state.DealerData,props.match.params.id)
     }
 }
 export default connect(mapStateToProps)(DealerEditPage);
