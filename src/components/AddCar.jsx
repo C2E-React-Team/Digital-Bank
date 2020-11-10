@@ -278,7 +278,12 @@ onFileChange = event => {
                    <br /><br />
                    Submit Car Image 
                    <div style = {{display:"flex", flexDirection:"row", gap:"0px", marginLeft:"280px"}} > 
-            <input type="file" accept = "application/jpg" onChange={this.onFileChange} required/> <br />
+                   <div class="image-upload">
+  <label for="file-input">
+    <img src="https://icon-library.net/images/upload-photo-icon/upload-photo-icon-21.jpg" height="100px" width="100px"/></label>
+ 
+            <input type="file" id="file-input" accept = "application/jpg" onChange={this.onFileChange} required/> <br />
+            </div>
 		</div>
         {this.fileData()}
     <div className="heading2">{this.state.uploadError}</div>
