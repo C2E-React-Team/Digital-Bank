@@ -1,11 +1,5 @@
 
 
-  input[type=text]#css,input[type=number]#css{
-    padding:8px;display:block;border:none;border-bottom:2px solid #ccc;width:100%;
-  }
-  input[type=text]#css:hover {
-    border: 1px solid #aaa;
-  }
-  
-  
-
+.image-upload>input {
+  display: none;
+}

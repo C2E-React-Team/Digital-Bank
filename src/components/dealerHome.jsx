@@ -65,7 +65,7 @@ componentWillMount(){
               </div>
               ) :(
                 <div>
-                  <div style={{float:"right"}}>
+                  <div style={{marginLeft:"1200px"}}>
                     <Link className="button" to="/addCar">
                     <h4> Add Car</h4>
                 </Link></div>
@@ -74,7 +74,8 @@ componentWillMount(){
                {this.state.carDeals.map((deal,key) => (
                    <DealListItem key={key} {...deal} history={this.props.history} pushTo={"/dealereditpage/"}/>
                ))}*/}
-                <ThemeProvider theme={muiTheme}>
+               <div style={{marginLeft:"205px"}}>
+                <ThemeProvider theme={muiTheme} >
           <Pagination count={parseInt((this.state.carDeals.length%this.state.dealsPerPage==0)?
                                       this.state.carDeals.length/this.state.dealsPerPage:
                                       this.state.carDeals.length/this.state.dealsPerPage+1
@@ -83,13 +84,13 @@ componentWillMount(){
            page={this.state.currentPage}
            color="primary"
            />
-           </ThemeProvider>
+           </ThemeProvider></div>
            {currentDeals.map((deal,index,deals) => {
 
               
 return (
   ((index)%2==0)?
-  (<div style={{display:"flex", flexDirection:"row", gap:"50px"}}>
+  (<div style={{display:"flex", flexDirection:"row", gap:"50px", marginLeft:"205px"}}>
   <DealListItem key={deal.id} {...deal} history={this.props.history} pushTo={"/dealereditpage/"} />
   {console.log(deals[index].id)}
   {((index+2)<=(deals.length))?

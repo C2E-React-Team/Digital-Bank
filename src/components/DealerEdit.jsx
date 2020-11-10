@@ -136,7 +136,7 @@ getCarDealsById(this.props.match.params.id).then((response) => {
          else { 
           return ( 
             <div> 
-             <p className="para" style={{marginTop:"8px",marginLeft:"250px"}}>choose before pressing submit</p>
+             <p className="para" style={{marginTop:"8px",marginLeft:"60px"}}>choose before pressing update</p>
               </div> 
           ); 
         } 
@@ -159,10 +159,13 @@ getCarDealsById(this.props.match.params.id).then((response) => {
               <br></br>
                 <br></br>
         <div style={{float:"right"}}>
-               <img src={"data:image/jpeg;base64," +this.state.carDealData.carImage} style={{ width:"300px", height:"300px"}}alt="Deal_Image"/><br></br>
-              Change Car Image 
-                   <div> 
-            <input type="file" accept = "application/jpg" onChange={this.onFileChange} required/> <br />
+               <img src={"data:image/jpeg;base64," +this.state.carDealData.carImage} style={{ width:"300px", height:"300px", borderRadius:"100px"}}alt="Deal_Image"/><br></br>
+              
+                    <div class="image-upload">
+  <label for="file-input">
+    <img src="https://icon-library.net/images/upload-photo-icon/upload-photo-icon-21.jpg" height="100px" width="100px"/></label>
+
+            <input type="file" id="file-input" accept = "application/jpg" onChange={this.onFileChange} required/> <br />
 		</div>
         {this.fileData()}
     <div className="heading2">{this.state.uploadError}</div></div>
