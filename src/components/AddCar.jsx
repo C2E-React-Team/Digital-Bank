@@ -1,5 +1,8 @@
 import React from 'react'
 import {addCarDeal} from '../services/carService.js';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 import axios from 'axios';
 import '../style/handleloan.css';
@@ -130,8 +133,120 @@ onFileChange = event => {
           <div className="handlediv">
             <div>
                 <div className="heading" >Add New Deal</div>
-               <form onSubmit={e=>e.preventDefault()}>
-              <center><table style={{width:"50%"}}>
+               <form className="handle_form"onSubmit={e=>e.preventDefault()}>
+              <Grid container spacing={3}>
+        <Grid item xs={8} sm={5}>
+          <TextField
+            
+            id="carName"
+            name="text"
+            label="Enter Car Name"
+           // value={JSON.parse(localStorage.getItem(localName)).customerId} 
+           color="secondary"
+            size="medium"
+            ref={el => this.element =el}
+            onChange={(e)=>this.updateCarName(e)}
+          />
+        </Grid>
+        <Grid item xs={8} sm={5}>
+          <TextField
+            
+            id="carPrice"
+            name="quantity"
+            label="Enter Car Price"
+           // value={JSON.parse(localStorage.getItem(localName)).customerId}
+            color="secondary"
+            size="medium"
+            ref={el => this.element1 =el}
+            
+            onChange={(e)=>this.updateCarPrice(e)}
+            InputProps={{
+              
+              endAdornment:<InputAdornment position="end">&#x20b9;</InputAdornment>
+              
+            }}
+          />
+        </Grid>
+
+        <Grid item xs={8} sm={5}>
+          <TextField
+            
+            id="brand name"
+            name="text1"
+            label="Enter Brand Name"
+            color="secondary"
+            size="medium"
+            ref={el => this.element2 =el} 
+            onChange={(e)=>this.updateBrandName(e)}
+            
+          />
+        </Grid>
+        <Grid item xs={8} sm={5}>
+          <TextField
+            
+            id="mileage"
+            name="text2"
+            label="Mileage"
+            color="secondary"
+            size="medium"
+            ref={el => this.element3 =el}
+           onChange={(e)=>this.updateMilege(e)}
+           InputProps={{
+              
+            endAdornment:<InputAdornment position="end">Kmpl</InputAdornment>
+            
+          }}
+          />
+        </Grid>
+
+        <Grid item xs={8} sm={5}>
+          <TextField
+            
+            id="type"
+            name="text3"
+            label="Type"
+            color="secondary"
+            size="medium"
+            ref={el => this.element6 =el}
+           onChange={(e)=>this.updateType(e)}
+            
+          />
+        </Grid>
+
+        <Grid item xs={8} sm={5}>
+          <TextField
+            
+            id="seatingcapacity"
+            name="quantity"
+            label="Seating Capacity"
+            color="secondary"
+            size="medium"
+            ref={el => this.element4 =el} 
+            onChange={(e)=>this.updateSeatingCapacity(e)}
+            
+          />
+        </Grid>
+        <Grid item xs={8} sm={5}>
+          <TextField
+            
+           id="engineDisplacement"
+            name="text"
+            label="Engine Displacement"
+            color="secondary"
+            size="medium"
+            ref={el => this.element5 =el} 
+            onChange={(e)=>this.updateEngineDisplacement(e)}
+            InputProps={{
+              
+              endAdornment:<InputAdornment position="end">cc</InputAdornment>
+              
+            }}
+            
+          />
+        </Grid>
+    </Grid>
+             
+              {/*<center><table style={{width:"50%"}}>
                <tr>
                  <td>Enter Car Name</td>
                   <td><input type="text" id="css" name="text" ref={el => this.element =el} onChange={(e)=>this.updateCarName(e)} required/></td>
@@ -154,18 +269,20 @@ onFileChange = event => {
               <tr>
                    <td>Enter seating capacity </td><td><input type="number" id="css" name="quantity" ref={el => this.element4 =el} onChange={(e)=>this.updateSeatingCapacity(e)} required/><br /></td>
                    </tr> <tr> <td>Enter engine displacement (cc)</td><td><input type="text" id="css" name="text" ref={el => this.element5 =el} onChange={(e)=>this.updateEngineDisplacement(e)} required/><br /></td>
-                   {/*{this.state.carName}{this.state.carPrice}
+                   {this.state.carName}{this.state.carPrice}
                    {this.state.brandName}{this.state.engineDisplacement}
-                   {this.state.seatingCapacity}{this.state.milege}*/}
+                   {this.state.seatingCapacity}{this.state.milege}
                    </tr>
-                   </table></center>
+        </table></center>*/}
+                   
+                   <br /><br />
                    Submit Car Image 
                    <div style = {{display:"flex", flexDirection:"row", gap:"0px", marginLeft:"280px"}} > 
             <input type="file" accept = "application/jpg" onChange={this.onFileChange} required/> <br />
 		</div>
         {this.fileData()}
     <div className="heading2">{this.state.uploadError}</div>
-                   <button className="button" type="submit" onClick={()=>this.onAdd()} >Add Deal</button>
+   <button className="button" disabled={this.state.uploadError} type="submit" onClick={()=>this.onAdd()} >Add Deal</button>
                 
                </form>
             </div>

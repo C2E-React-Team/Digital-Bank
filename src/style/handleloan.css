@@ -22,7 +22,7 @@
     height:100%;
 }
 
-#clientid , #emicapacity, #loanamount{
+#clientid , #emicapacity, #loanamount, #carName, #carPrice, #brandName, #mileage, #seatingCapacity, #type, #engineDisplacement{
     width:100%
 }
 
