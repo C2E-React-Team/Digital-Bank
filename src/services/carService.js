@@ -10,6 +10,8 @@ const LOANS_REST_API_CREATE = 'http://localhost:8080/loans/add';
 
 const CARS_REST_API_CREATE_URL = 'http://localhost:8080/cardeals/addDeal';
 
+const CARS_REST_API_UPDATE_URL = 'http://localhost:8080/cardeals/editDeal/';
+
 export const getCarDeals =()=>{
         return axios.get(CARS_REST_API_URL);
 }
@@ -24,6 +26,13 @@ export const getCarDealsById =(id)=>{
 
 export const addCarDeal =(formData)=>{
         return axios.post(CARS_REST_API_CREATE_URL,formData, {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                }});
+}
+
+export const updateCarDeal = (id,formdata) => {
+        return axios.put(CARS_REST_API_UPDATE_URL+id,formdata,{
                 headers: {
                   "Content-Type": "multipart/form-data",
                 }});

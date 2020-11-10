@@ -14,6 +14,7 @@ class AddCar extends React.Component{
            brandName:'',
            mileage:'',
            seatingCapacity:0,
+           type:'',
            engineDisplacement:'',
            selectedFile: null,
            uploadError:undefined
@@ -30,14 +31,13 @@ onAdd(){
   formData.append(
     "model",
     JSON.stringify({
-      id: 157.0,
       brand_name: this.state.brandName,
       car_name: this.state.carName,
       mileage: this.state.mileage,
       engine_displacement: this.state.engineDisplacement,
       seating_capacity: this.state.seatingCapacity,
-      type: "SUV",
-      image: "Kia-Sonet.webp",
+      type: this.state.type,
+      image: this.state.selectedFile.name,
       price: this.state.carPrice,
       dealer_name: dealerName
     })
@@ -78,6 +78,10 @@ updateEngineDisplacement(e){
   var engineDisplacement=e.target.value;
     {this.setState({engineDisplacement:engineDisplacement})};
 }
+updateType(e){
+  var type=e.target.value;
+    {this.setState({type})};
+}
 
 fileData = () => { 
      
@@ -107,13 +111,15 @@ fileData = () => {
 
 onFileChange = event => { 
     const file = event.target.files[0];
+    console.log(file.type.split('/').pop());
+    console.log(file.size);
     if(file){
-      if(file.name.split('.').pop() == "jpg" && file.size <= 10000000){
-          this.setState({ selectedFile: event.target.files[0] }); 
-        this.setState({uploadError:undefined})
-      }    
-      else
-        this.setState({uploadError:"Image should be in jpg"})
+      if(file.type.split('/')[0] == "image" && file.size <= 5000000){
+        this.setState({ selectedFile: event.target.files[0] }); 
+      this.setState({uploadError:undefined})
+    }    
+    else
+      this.setState({uploadError:"Please choose an image of size less than 5MB"});
     }
 	}; 
     render(){
@@ -135,11 +141,15 @@ onFileChange = event => {
                </tr>
                <tr>
                    <td>Enter Brand Name </td>
-                   <td><input type="text"id="css" name="text" ref={el => this.element2 =el} onChange={(e)=>this.updateBrandName(e)} required/></td>
+                   <td><input type="text"id="css" name="text1" ref={el => this.element2 =el} onChange={(e)=>this.updateBrandName(e)} required/></td>
               </tr>
               <tr>
                 <td>Enter Mileage (kmpl) </td>
-                <td><input type="text" id="css"name="text" ref={el => this.element3 =el} onChange={(e)=>this.updateMilege(e)} required/></td>
+                <td><input type="text" id="css" name="text2" ref={el => this.element3 =el} onChange={(e)=>this.updateMilege(e)} required/></td>
+              </tr>
+              <tr>
+                <td>Enter type </td>
+                <td><input type="text" id="css" name="text3" ref={el => this.element6 =el} onChange={(e)=>this.updateType(e)} required/></td>
               </tr> 
               <tr>
                    <td>Enter seating capacity </td><td><input type="number" id="css" name="quantity" ref={el => this.element4 =el} onChange={(e)=>this.updateSeatingCapacity(e)} required/><br /></td>
