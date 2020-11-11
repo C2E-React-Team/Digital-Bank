@@ -19,6 +19,7 @@ palette: {
   primary: {
     main: 'rgb(255, 51, 51)'
   }
+
 }
 
 });
@@ -104,7 +105,7 @@ return (
             </div>
         )
     }
-    <ThemeProvider theme={muiTheme}>
+    <div style={{marginLeft:"205px"}}><ThemeProvider theme={muiTheme}>
         <Pagination count={parseInt((this.state.carDeals.length%this.state.dealsPerPage==0)?
                                     this.state.carDeals.length/this.state.dealsPerPage:
                                     this.state.carDeals.length/this.state.dealsPerPage+1
@@ -113,7 +114,7 @@ return (
           page={this.state.currentPage}
           color="primary"
           />
-          </ThemeProvider>
+          </ThemeProvider></div>
         
     
     </div>

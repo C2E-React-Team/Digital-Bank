@@ -113,9 +113,12 @@ getCarDealsById(this.props.match.params.id).then((response) => {
         .then((response)=>{
           console.log("in edit response",response.data); 
           alert("car details updated");
+          this.props.history.push('/dealerpage');
         })
-        .catch((error)=>
-        console.log(error));
+        .catch((error)=>{
+          console.log(error);
+          alert('Could not perform operation!!! Try Again')
+        });
       }
       fileData = () => { 
      
@@ -136,7 +139,7 @@ getCarDealsById(this.props.match.params.id).then((response) => {
          else { 
           return ( 
             <div> 
-             <p className="para" style={{marginTop:"8px",marginLeft:"60px"}}>choose before pressing update</p>
+             <p className="para" style={{marginTop:"8px",marginLeft:"60px"}}>choose to change car image</p>
               </div> 
           ); 
         } 
@@ -158,7 +161,7 @@ getCarDealsById(this.props.match.params.id).then((response) => {
             <div className="card3">
               <br></br>
                 <br></br>
-        <div style={{float:"right"}}>
+        <div style={{float:"right",marginRight:"40px"}}>
                <img src={"data:image/jpeg;base64," +this.state.carDealData.carImage} style={{ width:"300px", height:"300px", borderRadius:"100px"}}alt="Deal_Image"/><br></br>
               
                     <div class="image-upload">
@@ -171,7 +174,7 @@ getCarDealsById(this.props.match.params.id).then((response) => {
     <div className="heading2">{this.state.uploadError}</div></div>
     
     <form className="handle_form" onSubmit={e=>e.preventDefault()}>          
-    <div className="heading">Edit Car Details</div>
+    <div className="heading4">Edit Car Details</div>
     <br></br>
     <Grid container spacing={3}>
    
@@ -225,7 +228,7 @@ getCarDealsById(this.props.match.params.id).then((response) => {
             size="medium"
           />
         </Grid>
-        <Grid item xs={8} sm={5}>
+        <Grid item xs={8} sm={5} style={{marginLeft:"17px"}}>
           <TextField
           
             id="mileage"
@@ -275,7 +278,7 @@ getCarDealsById(this.props.match.params.id).then((response) => {
             size="medium"
           />
         </Grid>
-        <Grid item xs={8} sm={5}>
+        <Grid item xs={8} sm={5} style={{marginLeft:"13px"}}>
           <TextField
           
             id="engineDisplacement"

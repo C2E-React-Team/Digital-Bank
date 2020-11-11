@@ -49,6 +49,11 @@ onAdd(){
     addCarDeal(formData).then((response)=> {
         console.log(response);
         alert('car added');
+        this.props.history.push('/dealerpage');
+      })
+      .catch((error)=>{
+        console.log(error);
+        alert('Could not perform operation!!! Try Again')
       })
    
 }
@@ -105,7 +110,7 @@ fileData = () => {
      else { 
       return ( 
         <div> 
-         <p className="para" style={{marginTop:"8px",marginLeft:"250px"}}>choose before pressing submit</p>
+         {/* <p className="para" style={{marginTop:"8px",marginLeft:"250px"}}>choose before pressing post deal</p> */}
           </div> 
       ); 
     } 
@@ -130,9 +135,10 @@ onFileChange = event => {
           <div className="bgdiv">
           <br></br>
           <br></br>
-          <div className="handlediv">
+          <div className="handlediv" >
             <div>
-                <div className="heading" >Add New Deal</div>
+              <br></br>
+                <div className="heading" style={{marginLeft:"90px"}}>Post New Deal</div>
                <form className="handle_form"onSubmit={e=>e.preventDefault()}>
               <Grid container spacing={3}>
         <Grid item xs={8} sm={5}>
@@ -140,7 +146,7 @@ onFileChange = event => {
             
             id="carName"
             name="text"
-            label="Enter Car Name"
+            label="Car Name"
            // value={JSON.parse(localStorage.getItem(localName)).customerId} 
            color="secondary"
             size="medium"
@@ -153,7 +159,7 @@ onFileChange = event => {
             
             id="carPrice"
             name="quantity"
-            label="Enter Car Price"
+            label="Price"
            // value={JSON.parse(localStorage.getItem(localName)).customerId}
             color="secondary"
             size="medium"
@@ -173,7 +179,7 @@ onFileChange = event => {
             
             id="brand name"
             name="text1"
-            label="Enter Brand Name"
+            label="Brand Name"
             color="secondary"
             size="medium"
             ref={el => this.element2 =el} 
@@ -181,7 +187,7 @@ onFileChange = event => {
             
           />
         </Grid>
-        <Grid item xs={8} sm={5}>
+        <Grid item xs={8} sm={5} style={{marginLeft:"15px"}}>
           <TextField
             
             id="mileage"
@@ -226,7 +232,7 @@ onFileChange = event => {
             
           />
         </Grid>
-        <Grid item xs={8} sm={5}>
+        <Grid item xs={8} sm={5} style={{marginLeft:"17px"}}>
           <TextField
             
            id="engineDisplacement"
@@ -276,18 +282,18 @@ onFileChange = event => {
         </table></center>*/}
                    
                    <br /><br />
-                   Submit Car Image 
+                   Upload Car Image 
                    <div style = {{display:"flex", flexDirection:"row", gap:"0px", marginLeft:"280px"}} > 
                    <div class="image-upload">
   <label for="file-input">
-    <img src="https://icon-library.net/images/upload-photo-icon/upload-photo-icon-21.jpg" height="100px" width="100px"/></label>
+    <img src="https://icon-library.net/images/upload-photo-icon/upload-photo-icon-21.jpg" style={{marginLeft:"30px"}} height="100px" width="100px"/></label>
  
             <input type="file" id="file-input" accept = "application/jpg" onChange={this.onFileChange} required/> <br />
             </div>
 		</div>
         {this.fileData()}
     <div className="heading2">{this.state.uploadError}</div>
-   <button className="button" disabled={this.state.uploadError} type="submit" onClick={()=>this.onAdd()} >Add Deal</button>
+   <button className="button" style={{width:"150px",marginLeft:"285px",marginBottom:"20px"}} disabled={this.state.uploadError} type="submit" onClick={()=>this.onAdd()} >Post Deal</button>
                 
                </form>
             </div>

@@ -1,6 +1,8 @@
 .handle_form{
     display:grid;
     margin:40px;
+    margin-top:10px;
+    
 }
 
 .handlediv{
@@ -92,3 +94,13 @@
 select.dropdown option:hover {
     box-shadow: 0 0 10px 100px rgb(255, 51, 51) inset;
 }
+
+.heading4
+    {
+        margin-left: 45px;
+        font-weight : 600;
+        color: rgb(255, 51, 51);
+        font-size: 24px;
+        text-align: left;
+        
+    }
