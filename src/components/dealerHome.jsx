@@ -66,6 +66,11 @@ componentWillMount(){
               </div>
               ) :(
                 <div>
+                  <br />
+                  <div style={{float:"left" ,marginLeft:"300px"}}><br />
+                 <h3 style={{color:"red"}}>Welcome {JSON.parse(localStorage.getItem('customerDetails')).dealerid}, here are your deals posted.</h3> 
+                 
+                    </div>
                   <div style={{marginLeft:"1200px"}}>
                     <Link className="button" to="/addCar">
                     <h4> Add Car</h4>
